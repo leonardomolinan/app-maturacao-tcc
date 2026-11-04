@@ -1,0 +1,21 @@
+\chapter{Regra de decisão usada pelo aplicativo}\label{ap:regra}
+
+A Tabela~\ref{tab:regra} relaciona cada classe do modelo às escalas de cor de referência e à recomendação exibida ao produtor.
+
+\begin{table}[htb]
+  \ABNTEXfontereduzida
+  \caption{Classes do modelo, escalas de referência e recomendação}
+  \label{tab:regra}
+  \begin{tabularx}{\textwidth}{lXXl X}
+    \hline
+    \textbf{Classe} & \textbf{Portaria 553/1995} & \textbf{USDA} & \textbf{Vermelho} & \textbf{Recomendação} \\
+    \hline
+    Verde & Todo verde e verde maduro & Green e Breakers & até 10\% & Esperar \\
+    De vez & Pintado e rosado & Turning e Pink & 10\% a 60\% & Colher se for para mercado distante; senão, esperar \\
+    Maduro & Vermelho e vermelho maduro & Light red e Red & acima de 60\% & Colher \\
+    Passado & Defeito grave & -- & -- & Colher já ou descartar \\
+    Outro & -- & -- & -- & Pedir nova foto \\
+    \hline
+  \end{tabularx}
+  \legend{Fonte: elaborada pelos autores com base em \citeonline{brasil1995}, \citeonline{usda1991} e \citeonline{pbmh2003}.}
+\end{table}
