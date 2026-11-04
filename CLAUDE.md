@@ -1,6 +1,6 @@
 # Instruções para agentes
 
-Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vitor Kazuma** e **Victor José** (revisam; sobrenomes ainda a confirmar). Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas.
+Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vitor Kazuma** e **Victor José** (revisam o que o Leonardo enviar, sem calendário fixo; sobrenomes ainda a confirmar). Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas.
 
 Responda em português do Brasil.
 
@@ -12,6 +12,8 @@ Responda em português do Brasil.
 - **Onde roda:** no celular, offline. Exportar para LiteRT (`.tflite`, Android) e Core ML (iOS).
 - **App:** Flutter, Android primeiro (minSdk 24, exigido pelo plugin `ultralytics_yolo`). Inferência pelo plugin `ultralytics_yolo` ou por `flutter_litert`.
 - **Backend:** nenhum no MVP. O histórico fica em SQLite no celular.
+- **Dataset:** público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação.
+- **Login:** só depois do MVP, se sobrar tempo.
 - **Fora do MVP:** a faixa de dias até a colheita e a comparação com um LLM na nuvem. Os dois só entram se o MVP estiver pronto em 22/11/2026; se entrar o LLM, a chave fica num FastAPI pequeno, nunca no app.
 
 ## Prazos
@@ -41,7 +43,7 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 - A Metodologia precisa dos 4 diagramas UML (casos de uso, classes, sequência, atividades) e do MER, cada um descrito.
 - Tabelas e figuras: título acima, fonte abaixo (`\legend{Fonte: ...}`), e toda figura citada no texto.
 - Termos: **classe** é o que o modelo devolve; **estádio de maturação** só no contexto agronômico (Referencial). Termos de computação ficam em inglês (dataset, label, baseline, backend, framework, transfer learning, bounding box) e vão em itálico na monografia.
-- Citações em `abntex2cite` (estilo `alf`). Ainda falta confirmar com o professor se vale a NBR 10520 de 2002 ou a de 2023.
+- Citações: o grupo decidiu pela **NBR 10520 de 2023**, com o autor em maiúsculas e minúsculas, como "(Demo, 2014)". O modelo ainda usa `abntex2cite` (estilo `alf`), que segue a versão de 2002 e põe o autor em caixa alta: falta ajustar.
 - `\pendente{...}` marca o que falta escrever ou confirmar; não pode sobrar na versão postada.
 - Depois de mexer em `docs/tcc/`, compile para conferir: `cd docs/tcc && tectonic --outdir build --keep-logs main.tex`. Verifique erros, `Invalid UTF-8` e avisos do BibTeX em `build/tectonic.out`.
 - No `.bib`: proteja siglas e nomes próprios do título com chaves (`{YOLOv8}`, `{Brazilian}`), porque o estilo põe o título em minúsculas. Em campos que vão para maiúsculas (autor, organização), escreva os acentos no formato do LaTeX (`{\'E}`, `{\c c}{\~a}o`). Autor composto ou entidade vai como `{\relax Nome}`. Nunca ponha comentário com `%` dentro de uma entrada.

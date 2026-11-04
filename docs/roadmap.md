@@ -10,7 +10,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 - **Postagem no Espaço do Aluno até sábado, 12/12/2026**, segundo o calendário oficial. Entregar no prazo é requisito de aprovação (MIA, seção 23).
 - As notas de V2 e VT fecham em 10/12, então o professor pode querer o trabalho antes. **Meta interna: texto completo em 28/11.**
 - **ENADE em 29/11 (domingo)**: obrigatório para a colação de cada integrante.
-- **Formato confirmado:** monografia; grupo de 3 aceito.
+- **Formato confirmado:** monografia; grupo de 3 aceito; citações pela NBR 10520 de 2023.
 
 ### Decisões tomadas
 
@@ -23,7 +23,9 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **D5** | Contribuição | App funcionando primeiro. A comparação com um LLM na nuvem só entra se sobrar tempo (decisão em 22/11) |
 | **D6** | Stack do app | Flutter, com Android primeiro |
 | **D7** | Backend | Nenhum no MVP: o histórico fica em SQLite no celular. Um FastAPI pequeno só entra junto com o LLM |
-| **D8** | Quem faz | O Leonardo executa tudo (código, modelo e texto), com apoio de IA declarado; os outros dois integrantes revisam |
+| **D8** | Quem faz | O Leonardo Sergi Molina executa tudo (código, modelo e texto), com apoio de IA declarado; Vitor Kazuma e Victor José revisam o que ele enviar, sem calendário fixo |
+| **D9** | Normas | Citações pela NBR 10520 de 2023 |
+| **D10** | Depois do MVP | Login pode entrar se sobrar tempo |
 
 ### Datas-chave
 
@@ -42,13 +44,20 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 
 ### O que fazer nesta semana
 
-- [ ] Levar ao professor as 4 perguntas do Anexo D.
-- [ ] Escolher o dataset público de tomate e mapear as classes: verde, de vez, maduro, passado e outro.
-- [ ] Treinar o primeiro YOLO26n-cls (passo a passo na seção 4.5).
-- [ ] Criar o repositório (pastas app/, ml/ e docs/) e o projeto abnTeX2 no Overleaf.
+Já feito em 04/11:
+
+- Dataset escolhido (Unified Tomato Dataset, que já traz os recortes por classe) e classes mapeadas no notebook.
+- Repositório leonardomolinan/app-maturacao-tcc criado, com README e instruções para agentes (CLAUDE.md).
+- Projeto abnTeX2 pronto para importar no Overleaf, compilando localmente com o Tectonic; Introdução em rascunho.
+- Notebook de treino `ml/01_treino_classificador.ipynb` pronto para o Colab.
+
+Falta nesta semana:
+
+- [ ] Levar ao professor as 2 perguntas que restam (Anexo D).
+- [ ] Importar o projeto no Overleaf.
+- [ ] Rodar o notebook no Colab e treinar o primeiro YOLO26n-cls.
 - [ ] Levantar os requisitos e desenhar o diagrama de casos de uso.
 - [ ] Comprar tomates verdes e começar as fotos diárias do conjunto de teste.
-- [ ] Combinar com os dois revisores o calendário de revisão (seção 7).
 
 ## 2. Entregáveis e prazos da disciplina (2026/2)
 
@@ -62,14 +71,14 @@ O Manual de TCC não traz datas nem entregas parciais. A busca nos documentos of
 | **Prazo interno** | Provavelmente antes: as notas de V2 e VT fecham em 10/12. | Inferido |
 | **Grupo e formato** | Grupo de 3 aceito; formato monografia. | Confirmado pelo professor |
 | **Banca, apresentação, páginas, critério de nota** | Nada publicado. Pelo MIA, cada colegiado divulga as regras de avaliação no início do semestre, e o plano de ensino fica no Espaço do Aluno. | Não encontrado |
-| **Formato e normas** | Overleaf, ABNT (NBR 14724, 10520 e 6023), 4 diagramas UML e o MER (seção 3). | Confirmado (manual) |
+| **Formato e normas** | Overleaf, ABNT (NBR 14724, 10520 de 2023 e 6023), 4 diagramas UML e o MER (seção 3). | Confirmado (manual; a versão de 2023 da NBR 10520 foi decidida pelo grupo) |
 | **Publicação** | O TCC vai para o repositório interno do Espaço do Aluno e do Professor; não há repositório público. | Confirmado (MIA, seção 22) |
 | **Ética** | O manual diz que não há comitê de ética. Seguimos o manual: nada de pesquisa envolvendo pessoas. | Decidido |
 | **Formatura (individual)** | Aprovação em tudo (TCC, estágio, atividades complementares) e situação regular no ENADE. Vale para cada integrante, mesmo com TCC em grupo. | Confirmado (MIA, seções 20, 21 e 25) |
 
 > [!warn] **Ainda sem resposta: perguntar ao professor nesta semana**
 >
-> Há entregas parciais ou nota de V1 ou V2 ligada ao TCC? Haverá banca? O que postar além do PDF? Cada integrante posta, ou só um? Dataset público é aceito? Qual NBR 10520 usar? A lista está no Anexo D.
+> Há entregas parciais ou nota de V1 ou V2 ligada ao TCC? Haverá banca? O que postar além do PDF? Cada integrante posta, ou só um? A lista está no Anexo D.
 
 **Não planejem com “TCC II no semestre que vem”.** Na matriz atual, isso só aconteceria com reprovação e nova matrícula, o que atrasaria a formatura em cerca de 6 meses.
 
@@ -83,8 +92,8 @@ Resumo prático do **Manual de Elaboração do Trabalho de Conclusão de Curso**
 | **Ferramenta de escrita** | Overleaf; as referências saem automaticamente das citações. | Projeto no Overleaf com modelo ABNT (abnTeX2) e um arquivo .bib único. |
 | **Estrutura** | Pré-textuais (capa, folha de rosto, resumo, sumário), textuais e pós-textuais (referências, apêndices). | 1 Introdução, 2 Referencial Teórico, 3 Estado da Arte, 4 Metodologia, 5 Resultados e Discussão, 6 Conclusão, Referências. |
 | **Introdução** | Escrita por último: contexto, problema, justificativa, objetivos, metodologia breve, hipóteses, estrutura do trabalho. Todos os parágrafos referenciados. | Rascunhar na semana 1 para alinhar o grupo; reescrever no final. |
-| **Referencial Teórico** | Livros, artigos e teses; nada de apostilas, notas de aula, Wikipédia ou blogs. Fichamento antes de escrever. Citações pela NBR 10520. Diálogo entre autores. | Maturação de frutos, visão computacional, CNN, YOLO e/ou LLMs multimodais, métricas, computação móvel. Atenção: os exemplos do manual, como “(DEMO, 2014)”, seguem a NBR 10520 de 2002; a versão de 2023 usa “(Demo, 2014)”. Perguntem qual seguir. |
-| **Estado da Arte** | 4 a 5 trabalhos dos últimos 5 a 10 anos; análise individual (problema, abordagem, achados, falhas); comparação; tabela comparativa; como o TCC se diferencia. | Usar as referências verificadas do Anexo C; o Leonardo ficha os trabalhos e o Revisor 1 confere. |
+| **Referencial Teórico** | Livros, artigos e teses; nada de apostilas, notas de aula, Wikipédia ou blogs. Fichamento antes de escrever. Citações pela NBR 10520. Diálogo entre autores. | Maturação de frutos, visão computacional, CNN, YOLO e/ou LLMs multimodais, métricas, computação móvel. **Decidido:** NBR 10520 de 2023, que cita “(Demo, 2014)” em vez de “(DEMO, 2014)”, a forma de 2002 usada nos exemplos do manual. O modelo LaTeX ainda segue 2002 e precisa de ajuste. |
+| **Estado da Arte** | 4 a 5 trabalhos dos últimos 5 a 10 anos; análise individual (problema, abordagem, achados, falhas); comparação; tabela comparativa; como o TCC se diferencia. | Usar as referências verificadas do Anexo C; o Leonardo ficha os trabalhos, e os colegas conferem quando ele enviar. |
 | **Metodologia (prático)** | Ferramentas usadas, critérios de escolha e por que não outras. 4 diagramas UML (Caso de Uso, Classes, Sequência, Atividades) e MER se houver banco, cada um descrito. Questionário opcional. Texto no passado e na voz passiva. Definir o público-alvo. | Justificar cada escolha (modelo de IA, framework do app, backend, banco). |
 | **Ética** | Segundo o manual, a universidade não tem comitê de ética, então devem-se evitar pesquisas que envolvam o bem-estar de seres humanos. | Seguimos o manual: nenhuma pesquisa envolvendo pessoas; no máximo um questionário de usabilidade simples e anônimo. |
 | **Resultados e Discussão** | Não usar “Desenvolvimento” como título. Apresentar o software com prints. Tabelas com título acima e fonte abaixo; toda figura citada no texto e com fonte. Comparar com o Estado da Arte. Ser honesto sobre dificuldades. | Métricas do modelo, prints de todas as telas, tempo de resposta, resultado do questionário. |
@@ -148,8 +157,10 @@ O MVP tem três partes, nesta ordem de prioridade:
 
 ### 4.5 Como destravar o treino (passo a passo)
 
+Tudo isto já está no notebook `ml/01_treino_classificador.ipynb` do repositório; os passos abaixo explicam o que ele faz.
+
 1. Fixar a versão do pacote no Colab: `pip install ultralytics==8.4.188` (versão usada nos modelos oficiais do plugin Flutter). Registrar a versão na Metodologia.
-2. Montar o dataset de classificação: pastas `train/`, `val/` e `test/`, com uma subpasta por classe (`verde/`, `de_vez/`, `maduro/`, `passado/`, `outro/`). Os recortes das caixas do dataset público viram as imagens.
+2. Montar o dataset de classificação: pastas `train/`, `val/` e `test/`, com uma subpasta por classe (`verde/`, `de_vez/`, `maduro/`, `passado/`, `outro/`). O dataset público já traz os recortes de 160×160 (`tomato_ripeness_crops.zip`) separados assim; a classe `outro` sai de recortes de fundo das imagens de detecção.
 3. Treinar a partir dos pesos pré-treinados: `YOLO('yolo26n-cls.pt').train(data='caminho/do/dataset', epochs=50, imgsz=224)`.
 4. Salvar no Google Drive com `save_period`. Se o Colab cair (as sessões gratuitas duram no máximo 12 h), retomar com `resume=True` a partir do `last.pt`.
 5. Validar com `val()` e olhar a matriz de confusão. Separar treino e teste por fruto ou lote, nunca por foto, para não vazar informação.
@@ -179,7 +190,7 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 | **Funcionamento** | Offline: tudo roda no celular. |
 | **Saída** | Classe, confiança e a recomendação "colher" ou "esperar". |
 | **Público-alvo** | Produtores de tomate, sobretudo pequenos e familiares: 82,2% dos estabelecimentos de tomate estaqueado são de agricultura familiar (IBGE, Censo Agro 2017). |
-| **Fora do escopo** | Contagem de frutos, várias culturas, login, sincronização na nuvem, backend e previsão de dias (extra possível). |
+| **Fora do escopo** | Contagem de frutos, várias culturas, sincronização na nuvem, backend e previsão de dias (extra possível). Login pode entrar depois do MVP, se sobrar tempo. |
 
 ### 5.2 Funcionalidades
 
@@ -192,10 +203,11 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 | **MVP** | Guardar o histórico das análises no aparelho (SQLite) |
 | **Extra (22/11)** | Comparação com um LLM multimodal na nuvem, via FastAPI |
 | **Extra (22/11)** | Faixa estimada de dias até a colheita |
+| **Depois do MVP** | Login, se sobrar tempo |
 
 ### 5.3 Problema, objetivos e hipótese (rascunho)
 
-**Pergunta de pesquisa:** um classificador leve, executado no celular sem internet, indica com acurácia adequada se o tomate está no ponto de colheita a partir de uma foto de campo?
+**Pergunta de pesquisa:** em que medida um classificador leve, executado no próprio celular e sem conexão com a internet, consegue indicar se o tomate está no ponto de colheita a partir de uma foto tirada no campo? O manual pede uma pergunta que não se responda só com sim ou não.
 
 **Objetivo geral:** desenvolver um aplicativo móvel que, a partir de uma foto, classifique a maturação do tomate e recomende colher ou esperar, funcionando sem conexão com a internet.
 
@@ -248,35 +260,26 @@ Uma API pequena em Python + FastAPI, só para chamar um LLM multimodal (ex.: Gem
 
 ## 7. Divisão de papéis
 
-Por decisão do grupo, **o Leonardo executa** o projeto (código, modelo e texto), com apoio de IA de uso declarado, e **os outros dois integrantes revisam**. A revisão também é preparação: os três precisam dominar o conteúdo para a apresentação.
+**O Leonardo executa** o projeto (código, modelo e texto), com apoio de IA de uso declarado. **Vitor Kazuma e Victor José revisam** o que ele enviar, quando ele achar pertinente; não há calendário fixo de revisão. Os três precisam dominar o conteúdo para a apresentação.
 
 | Quem | O quê |
 |---|---|
-| **Leonardo** (com apoio de IA) | Dataset, treino e avaliação do modelo; app Flutter; requisitos, UML e MER; escrita de todos os capítulos; dono do projeto no Overleaf; cronograma. |
-| **Revisor 1:** (preencher) | Revisa o Referencial Teórico, o Estado da Arte e a Conclusão; confere as referências contra as fontes. Testa o APK no próprio celular. |
-| **Revisor 2:** (preencher) | Revisa a Introdução, a Metodologia (com os diagramas) e os Resultados; confere a ABNT. Testa o APK no próprio celular. |
-
-### Calendário de revisão
-
-| Data de envio | O que vai para revisão | Devolução |
-|---|---|---|
-| **15/11** | Referencial Teórico e Estado da Arte (rascunho) | até 17/11 |
-| **22/11** | Metodologia (com UML e MER) e o APK para testar | até 24/11 |
-| **28/11** | Texto completo (versão 1) | até 02/12 |
-| **30/11 a 06/12** | Ajustes finais, junto com o retorno do professor | até 06/12 |
+| **Leonardo Sergi Molina** (com apoio de IA) | Dataset, treino e avaliação do modelo; app Flutter; requisitos, UML e MER; escrita de todos os capítulos; dono do projeto no Overleaf; cronograma. |
+| **Vitor Kazuma** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
+| **Victor José** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
 
 ## 8. Cronograma semana a semana
 
-Considera a postagem oficial em 12/12 e a meta interna de texto completo em 28/11. Cada semana termina num marco. Se um marco atrasar, corta-se escopo, nunca a escrita.
+Considera a postagem oficial em 12/12 e a meta interna de texto completo em 28/11. Cada semana termina num marco. Se um marco atrasar, corta-se escopo, nunca a escrita. Os colegas revisam quando o Leonardo enviar algo, sem data fixa.
 
-| Semana | Marco no fim da semana | Código e modelo | Texto (Overleaf) | Revisores |
-|---|---|---|---|---|
-| **S1** · 03 a 08/11 | Escopo fechado; 1º modelo treinado; Overleaf criado | Dataset escolhido e classes mapeadas; 1º YOLO26n-cls; repositório; projeto Flutter com câmera | Projeto abnTeX2; uma página com problema, objetivos e hipótese; requisitos e casos de uso | Conhecer as decisões D1 a D8 |
-| **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | App rodando o modelo offline num Android | Treino definitivo; exportar para LiteRT; integrar no app; tela de resultado com a regra colher/esperar; começar as fotos diárias de teste | Referencial Teórico; Estado da Arte (fichamentos e tabela comparativa) | Receber Referencial e Estado da Arte em 15/11 |
-| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Histórico em SQLite, mensagens de erro, APK de teste; rotular as fotos de teste; script de avaliação | Metodologia: ferramentas, dados, requisitos, 4 diagramas UML e MER | Devolver Referencial e Estado da Arte até 17/11; receber Metodologia e APK em 22/11 |
-| **S4** · 23 a 29/11 (ENADE em 29/11) | **Texto completo em 28/11** | Métricas finais, matriz de confusão, tempo de resposta em 2 ou 3 celulares, modo avião, prints; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract; nota de uso de IA | Devolver Metodologia até 24/11; **ENADE no domingo** |
-| **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Versão revisada | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); README do repositório | Devolver o texto completo até 02/12 |
-| **S6** · 07 a 12/12 | **Postagem até 10/12** (oficial: sábado, 12/12) | Congelar modelo, código e APK | PDF final; postagem no Espaço do Aluno | Conferir o relatório de estágio e as AC de cada um (vencem em 12/12) |
+| Semana | Marco no fim da semana | Código e modelo | Texto (Overleaf) |
+|---|---|---|---|
+| **S1** · 03 a 08/11 | Escopo fechado; 1º modelo treinado; Overleaf criado | Dataset escolhido e classes mapeadas (feito); notebook pronto (feito); 1º YOLO26n-cls treinado no Colab; projeto Flutter com câmera | Projeto abnTeX2 (feito; falta importar); Introdução em rascunho (feito); requisitos e casos de uso |
+| **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | App rodando o modelo offline num Android | Treino definitivo; exportar para LiteRT; integrar no app; tela de resultado com a regra colher/esperar; começar as fotos diárias de teste | Referencial Teórico; Estado da Arte (fichamentos e tabela comparativa) |
+| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Histórico em SQLite, mensagens de erro, APK de teste; rotular as fotos de teste; script de avaliação | Metodologia: ferramentas, dados, requisitos, 4 diagramas UML e MER |
+| **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Métricas finais, matriz de confusão, tempo de resposta em 2 ou 3 celulares, modo avião, prints; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract; nota de uso de IA |
+| **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Versão revisada pelo professor e pelos colegas | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); README do repositório |
+| **S6** · 07 a 12/12 | **Postagem até 10/12** (oficial: sábado, 12/12) | Congelar modelo, código e APK | PDF final; postagem no Espaço do Aluno |
 
 > [!tip] **Regra de ouro do cronograma**
 >
@@ -334,6 +337,7 @@ Lista generalista. Vale transformar cada item em cartão no quadro Kanban e queb
 
 - [ ] Comparação com LLM: API em FastAPI, prompt com saída JSON restrita às classes, mesmo conjunto de teste, respostas brutas salvas.
 - [ ] Faixa de dias: tabela do Anexo B dentro do app, sempre mostrada como faixa e com a ressalva.
+- [ ] Login, só depois do MVP pronto e se sobrar tempo.
 
 ### Apresentação
 
@@ -345,19 +349,20 @@ Lista generalista. Vale transformar cada item em cartão no quadro Kanban e queb
 
 Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR 14724). Os números de seção são só sugestão.
 
-| Capítulo | Seções sugeridas | Revisão |
-|---|---|---|
-| **Pré-textuais** | Capa, folha de rosto, resumo e palavras-chave, abstract, listas de figuras, tabelas e siglas, sumário. | Revisor 2 |
-| **1 Introdução** | 1.1 Contexto: agricultura brasileira, perdas pós-colheita, importância do ponto de colheita · 1.2 Problema de pesquisa · 1.3 Justificativa · 1.4 Objetivo geral e específicos · 1.5 Metodologia (resumo) · 1.6 Hipótese · 1.7 Estrutura do trabalho | Revisor 2 |
-| **2 Referencial Teórico** | 2.1 Maturação do tomate (estádios de maturação, frutos climatéricos, escalas de cor, ponto de colheita) · 2.2 Processamento digital de imagens e visão computacional · 2.3 Deep learning e redes neurais convolucionais · 2.4 Classificação de imagens e a família YOLO · 2.5 Transfer learning · 2.6 Métricas de avaliação · 2.7 Computação móvel e inferência no aparelho | Revisor 1 |
-| **3 Estado da Arte** | 3.1 a 3.5: um trabalho correlato por seção (problema, abordagem, resultados, limitações) · 3.6 Quadro comparativo · 3.7 Posicionamento deste trabalho | Revisor 1 |
-| **4 Metodologia** | 4.1 Classificação da pesquisa (aplicada, quantitativa, experimental) · 4.2 Público-alvo · 4.3 Etapas (fluxograma) · 4.4 Ferramentas e justificativas · 4.5 Dataset e classes · 4.6 Treinamento do modelo · 4.7 Requisitos funcionais e não funcionais · 4.8 Diagramas UML · 4.9 MER · 4.10 Plano de testes e de avaliação · 4.11 Declaração de uso de IA | Revisor 2 |
-| **5 Resultados e Discussão** | 5.1 Desempenho do modelo (tabelas, matriz de confusão) · 5.2 O aplicativo, tela a tela · 5.3 Testes funcionais e de desempenho (tempo de resposta, uso sem internet) · 5.4 Comparação com os trabalhos correlatos · 5.5 Dificuldades e limitações | Revisor 2 |
-| **6 Conclusão** | Resposta ao problema, objetivos e hipótese, contribuições, limitações e trabalhos futuros (faixa de dias, comparação com LLM e outras culturas, se não entrarem). | Revisor 1 |
-| **Pós-textuais** | Referências (NBR 6023) · Apêndices: regra de decisão usada pelo app, link do repositório. | Revisor 1 |
+| Capítulo | Seções sugeridas |
+|---|---|
+| **Pré-textuais** | Capa, folha de rosto, resumo e palavras-chave, abstract, listas de figuras, tabelas e siglas, sumário. |
+| **1 Introdução** | 1.1 Contexto: agricultura brasileira, perdas pós-colheita, importância do ponto de colheita · 1.2 Problema de pesquisa · 1.3 Justificativa · 1.4 Objetivo geral e específicos · 1.5 Metodologia (resumo) · 1.6 Hipótese · 1.7 Estrutura do trabalho |
+| **2 Referencial Teórico** | 2.1 Maturação do tomate (estádios de maturação, frutos climatéricos, escalas de cor, ponto de colheita) · 2.2 Processamento digital de imagens e visão computacional · 2.3 Deep learning e redes neurais convolucionais · 2.4 Classificação de imagens e a família YOLO · 2.5 Transfer learning · 2.6 Métricas de avaliação · 2.7 Computação móvel e inferência no aparelho |
+| **3 Estado da Arte** | 3.1 a 3.5: um trabalho correlato por seção (problema, abordagem, resultados, limitações) · 3.6 Quadro comparativo · 3.7 Posicionamento deste trabalho |
+| **4 Metodologia** | 4.1 Classificação da pesquisa (aplicada, quantitativa, experimental) · 4.2 Público-alvo · 4.3 Etapas (fluxograma) · 4.4 Ferramentas e justificativas · 4.5 Dataset e classes · 4.6 Treinamento do modelo · 4.7 Requisitos funcionais e não funcionais · 4.8 Diagramas UML · 4.9 MER · 4.10 Plano de testes e de avaliação · 4.11 Declaração de uso de IA |
+| **5 Resultados e Discussão** | 5.1 Desempenho do modelo (tabelas, matriz de confusão) · 5.2 O aplicativo, tela a tela · 5.3 Testes funcionais e de desempenho (tempo de resposta, uso sem internet) · 5.4 Comparação com os trabalhos correlatos · 5.5 Dificuldades e limitações |
+| **6 Conclusão** | Resposta ao problema, objetivos e hipótese, contribuições, limitações e trabalhos futuros (faixa de dias, comparação com LLM e outras culturas, se não entrarem). |
+| **Pós-textuais** | Referências (NBR 6023) · Apêndices: regra de decisão usada pelo app, link do repositório. |
 
 ### Convenção de termos
 
+- Citações pela **NBR 10520 de 2023** (decidido em 04/11).
 - **Classe** é o que o modelo devolve (verde, de vez, maduro, passado, outro). **Estádio de maturação** é o termo técnico da agronomia (Embrapa) e só aparece no Referencial Teórico, quando o assunto é a fisiologia do fruto.
 - Termos de computação ficam em inglês quando esse é o uso na área, em itálico na monografia: dataset, label, baseline, backend, endpoint, deploy, fine-tuning, transfer learning, framework, prompt, bounding box.
 
@@ -365,9 +370,9 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 
 | Necessidade | Ferramenta | Observação |
 |---|---|---|
-| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib são escritos no repositório e sincronizados. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
+| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib ficam em docs/tcc no repositório, compilam localmente com o Tectonic e são reenviados ao Overleaf. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
 | **Referências** | Zotero (com extensão do navegador e Better BibTeX) | Exporta o .bib para o Overleaf; evita referência errada. |
-| **Código** | GitHub: um repositório com pastas app/, ml/ e docs/ | README explicando como rodar; o link vai para o apêndice. |
+| **Código** | GitHub: leonardomolinan/app-maturacao-tcc (privado), com pastas app/, ml/ e docs/ | README e instruções para agentes (CLAUDE.md); o link vai para o apêndice. |
 | **Tarefas** | GitHub Projects (Kanban) | Colunas: A fazer / Fazendo / Em revisão / Feito. |
 | **Design** | Figma ou rascunho no papel | Wireframes simples; os prints do app entram no TCC. |
 | **UML** | draw.io (diagrams.net) ou PlantUML | Os 4 diagramas obrigatórios. |
@@ -378,7 +383,7 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 ### Combinados do grupo
 
 - **Definição de pronto:** uma tarefa só está feita quando o código está no GitHub, o trecho de texto correspondente está no Overleaf e o print ou figura está salvo em docs/.
-- **Revisão pelos colegas** nas datas da seção 7, com devolução em até 2 ou 3 dias.
+- **Revisão pelos colegas** quando o Leonardo enviar algo, sem calendário fixo.
 - **Escopo congelado em 22/11:** ideia nova vira “trabalhos futuros”.
 - **Escrever junto com o código:** cada funcionalidade gera um parágrafo e um print na hora.
 
@@ -397,7 +402,7 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 | **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Testar com fotos próprias; usar data augmentation; relatar como limitação. |
 | **Recomendação errada em casos limítrofes** (classe “de vez”) | Média | Médio | Mostrar a confiança; mensagem condicional ao destino da venda; pedir nova foto quando a confiança for baixa. |
 | **Prazo curto (postagem em 12/12)** | Alta | Alto | Cronograma semanal com marcos; escrita em paralelo desde a semana 1; escopo congelado em 22/11; versão completa em 28/11. |
-| **Uma pessoa executando tudo** | Alta | Alto | Apoio de IA; escopo enxuto; calendário de revisão fixo para os colegas acompanharem e dominarem o conteúdo. |
+| **Uma pessoa executando tudo** | Alta | Alto | Apoio de IA; escopo enxuto; o Leonardo envia partes para os colegas revisarem, para eles acompanharem e dominarem o conteúdo. |
 | **ENADE (29/11), V2 de outras disciplinas (30/11 a 05/12) e estágio competindo por tempo** | Alta | Médio | Texto completo antes do ENADE; a semana da V2 fica só para revisão. |
 | **UML ou MER inconsistentes com o código** | Média | Alto | Diagramas atualizados junto com o código; revisão pelos colegas. |
 | **Licença AGPL-3.0 do Ultralytics e do plugin** | Média | Baixo | Para o TCC basta publicar o código no GitHub. Para virar produto fechado no futuro, trocar por MobileNet ou EfficientNet com LiteRT (licenças permissivas). |
@@ -596,16 +601,12 @@ _→ Plugin Flutter oficial: Android 7.0+ (LiteRT) e iOS (Core ML), offline._
 
 1. Há prazo interno ou entrega parcial antes de 12/12? A nota do TCC entra como V1, VT ou V2, ou é dada por banca?
 2. O que deve ser postado: só o PDF, ou também código, APK, vídeo e link do GitHub? Cada integrante posta, ou só um?
-3. Usar dataset público e modelo pré-treinado é aceito?
-4. Qual versão da NBR 10520 usar: a de 2002 (“DEMO, 2014”) ou a de 2023 (“Demo, 2014”)?
 
 > [!info] **Já respondidas**
 >
-> Grupo de 3: aceito. Formato: monografia. Ética: seguimos o manual (sem pesquisa envolvendo pessoas). Uso de IA: liberado como auxílio, segundo o professor Igor (relato de um colega); vamos declarar o uso na monografia.
+> Grupo de 3: aceito. Formato: monografia. Ética: seguimos o manual (sem pesquisa envolvendo pessoas). Uso de IA: liberado como auxílio, segundo o professor Igor (relato de um colega); vamos declarar o uso na monografia. NBR 10520: a de 2023. Dataset: público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação.
 
 ### Checklist individual de cada integrante
 
 - [ ] ENADE: inscrição como concluinte confirmada, local de prova consultado e Questionário do Estudante preenchido até as 13h de 29/11.
-- [ ] Atividades complementares (240 h) aprovadas.
-- [ ] Estágio Supervisionado II com horas cumpridas e relatório postado até 12/12.
 - [ ] Nenhuma disciplina pendente na matriz (conferir no Espaço do Aluno).
