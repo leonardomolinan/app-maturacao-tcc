@@ -117,3 +117,35 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
+# LaTeX (o PDF é compilado no Overleaf)
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+docs/*.zip
+
+# Python / notebooks / treino
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+ml/datasets/
+ml/runs/
+*.pt
+*.tflite
+*.mlpackage/
+# O modelo exportado que o app usa fica versionado
+!app/assets/models/*.tflite
+!app/assets/models/*.mlpackage/
+
+# Compilação local do TCC (tectonic --outdir build)
+docs/tcc/build/

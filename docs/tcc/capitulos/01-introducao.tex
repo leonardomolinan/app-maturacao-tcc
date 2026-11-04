@@ -1,0 +1,50 @@
+\chapter{Introdução}\label{cap:introducao}
+
+% Rascunho inicial (04/11/2026). O manual pede que a Introdução seja reescrita
+% por último, para refletir o trabalho concluído. Todo parágrafo de contexto,
+% problema e justificativa precisa de citação.
+
+\section{Contextualização}
+
+A agricultura familiar responde pela maior parte dos estabelecimentos rurais do Brasil. Segundo o Censo Agropecuário 2017, são 3.897.408 estabelecimentos familiares, o equivalente a 76,8\% do total. Na produção de tomate estaqueado, a participação é ainda maior: 82,2\% dos estabelecimentos são familiares, e Minas Gerais responde por 24,0\% da produção nacional \cite{ibge2019censo}.
+
+Parte relevante dos alimentos se perde antes de chegar ao consumidor. A FAO estima que 13,8\% dos alimentos produzidos em 2016 se perderam entre a pós-colheita e o varejo, sem contar o próprio varejo, e aponta o estádio de maturação e o momento da colheita entre as causas de perda relatadas na colheita de frutas \cite{fao2019}.
+
+O uso de tecnologias digitais já é comum no campo: em pesquisa com 504 produtores brasileiros, 84\% declararam usar ao menos uma tecnologia digital \cite{bolfe2020}. A conectividade, porém, segue limitada. A rede móvel funciona em 68,0\% dos domicílios rurais, contra 96,1\% dos urbanos \cite{ibge2026pnadtic}, o que torna arriscado depender de internet numa ferramenta pensada para uso na lavoura.
+
+Técnicas de visão computacional baseadas em aprendizado profundo já foram aplicadas à classificação da maturação de frutos, inclusive em aplicativos para smartphone \cite{rizzo2023,mohamedon2021}. No Brasil, \citeonline{mundimfilho2021} usaram uma rede neural convolucional para indicar se cafeeiros estavam prontos para a colheita e obtiveram acurácia de 93\%.
+
+\section{Problema de pesquisa}
+
+Diante desse cenário, este trabalho busca responder à seguinte pergunta: em que medida um classificador leve, executado no próprio celular e sem conexão com a internet, consegue indicar se o tomate está no ponto de colheita a partir de uma foto tirada no campo?
+
+\section{Justificativa}
+
+\pendente{Relevância para o produtor (decisão de colheita e redução de perdas), para a área acadêmica (avaliação de um modelo embarcado com fotos de campo) e diferença em relação a \citeonline{mundimfilho2021}: outra cultura, modelo recente, avaliação com fotos próprias e aplicativo multiplataforma. Todo parágrafo com citação.}
+
+\section{Objetivos}
+
+\subsection{Objetivo geral}
+
+Desenvolver um aplicativo móvel que, a partir de uma foto, classifique a maturação do tomate e recomende colher ou esperar, funcionando sem conexão com a internet.
+
+\subsection{Objetivos específicos}
+
+\begin{alineas}
+  \item definir as classes de maturação a partir de escalas de cor de referência;
+  \item treinar e avaliar um classificador leve com um conjunto de dados público e fotos próprias de teste;
+  \item desenvolver o aplicativo com inferência no dispositivo, regra de decisão e histórico de análises;
+  \item avaliar o desempenho no celular quanto à acurácia, ao F1 por classe, ao tempo de resposta e ao funcionamento sem internet.
+\end{alineas}
+
+\section{Metodologia}
+
+\pendente{Resumo de um parágrafo: pesquisa aplicada, quantitativa e experimental; etapas de dados, treinamento, desenvolvimento e avaliação. Detalhes no Capítulo~\ref{cap:metodologia}.}
+
+\section{Hipótese}
+
+Parte-se da hipótese de que um classificador embarcado atinge acurácia de pelo menos \pendente{META A DEFINIR COM O PROFESSOR} no conjunto de teste com fotos próprias, responde em poucos segundos e funciona sem internet.
+
+\section{Estrutura do trabalho}
+
+Além desta introdução, o trabalho está organizado em cinco capítulos. O Capítulo~\ref{cap:referencial} apresenta os conceitos de maturação do tomate, visão computacional, aprendizado profundo e computação móvel que fundamentam a proposta. O Capítulo~\ref{cap:estado-da-arte} analisa trabalhos correlatos e posiciona esta pesquisa em relação a eles. O Capítulo~\ref{cap:metodologia} descreve os dados, o treinamento do modelo, os requisitos, a modelagem do sistema e o plano de avaliação. O Capítulo~\ref{cap:resultados} apresenta o aplicativo e os resultados obtidos, e o Capítulo~\ref{cap:conclusao} traz as conclusões, as limitações e as sugestões de trabalhos futuros.
