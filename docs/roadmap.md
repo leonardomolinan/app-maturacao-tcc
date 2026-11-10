@@ -8,6 +8,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 - **App:** pronto e validado (compila, passa nos 58 testes e abre no emulador); só falta o modelo.
 - **Notebook de treino:** conferido com os arquivos do dataset e pronto para rodar no Colab.
 - **Fotos próprias de teste:** começam nesta semana, seguindo `ml/protocolo-fotos-proprias.md`.
+- **Monografia:** em 10/11 foram escritos os rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER; falta a revisão do Leonardo. Resultados, Conclusão e Resumo dependem do modelo.
 - **Gargalo:** o modelo. Sem ele não há Resultados, por isso o treino e as fotos vêm antes de tudo.
 
 ### O que precisa ser entregue
@@ -233,7 +234,7 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 
 **Hipótese:** o classificador embarcado atinge acurácia de pelo menos **[META A DEFINIR COM O PROFESSOR]** no conjunto de teste com fotos próprias, responde em poucos segundos e funciona sem internet.
 
-**O que nos diferencia:** o antecedente mais próximo é o trabalho da UFU com café (app offline em português que responde "colher" ou "não colher"). Nosso trabalho se diferencia pela cultura (tomate), pelo modelo recente (YOLO26), pela avaliação com fotos próprias de campo e pelo app em Flutter (Android e iOS). Se um dos extras de 22/11 entrar, ele reforça a contribuição.
+**O que nos diferencia:** o antecedente mais próximo é o trabalho da UFU com café: um artigo com o modelo (MobileNet, 93% de acurácia na decisão "colher" ou "não colher") e uma dissertação do mesmo grupo com protótipos de app Android com TensorFlow Lite. Nosso trabalho se diferencia pela cultura (tomate), pelo modelo recente (YOLO26), pela avaliação com fotos próprias de campo e pelo app em Flutter (Android e iOS). Se um dos extras de 22/11 entrar, ele reforça a contribuição.
 
 > [!info] Rascunho para validar com o professor. O manual pede a Introdução escrita por último, então este texto vai mudar.
 
@@ -304,11 +305,11 @@ Lista generalista. Vale transformar cada item em cartão no quadro Kanban e queb
 
 ### Escrita (Overleaf)
 
-- [ ] Criar o projeto abnTeX2 com um arquivo por capítulo e o .bib compartilhado.
+- [x] Criar o projeto abnTeX2 com um arquivo por capítulo e o .bib compartilhado.
 - [ ] Uma página com título provisório, problema, objetivos e hipótese; validar com o professor.
-- [ ] Fichar 4 a 5 trabalhos correlatos e montar a tabela comparativa.
-- [ ] Referencial Teórico (seções 2.1 a 2.7).
-- [ ] Metodologia: ferramentas e justificativas, dados, requisitos, UML, MER, plano de testes e a nota de uso de IA.
+- [ ] Fichar 4 a 5 trabalhos correlatos e montar a tabela comparativa (rascunho em 10/11, com os números conferidos nos textos completos; falta revisar).
+- [ ] Referencial Teórico, seções 2.1 a 2.7 (rascunho em 10/11; falta revisar).
+- [ ] Metodologia: ferramentas e justificativas, dados, requisitos, UML, MER, plano de testes e a nota de uso de IA (rascunho em 10/11, com os diagramas em TikZ; faltam os dados do treino e das fotos próprias).
 - [ ] Resultados e Discussão: métricas, prints, testes e comparação com os correlatos.
 - [ ] Conclusão, Introdução final, Resumo e Abstract.
 - [ ] Revisão ABNT: citações, figuras, tabelas e referências.
@@ -460,7 +461,7 @@ Todos conferidos na fonte em 03/11/2026. Citem a fonte original; as referências
 | **Passado** | Defeito grave | n/a | n/a | Colher já ou descartar |
 | **Outro** | n/a | n/a | n/a | Pedir nova foto |
 
-A Portaria 553/1995 foi revogada pela IN MAPA 33/2018, que não tem subgrupos de cor: citem como escala histórica e de mercado, junto com a norma voluntária PBMH/CEAGESP (2003) e a escala do USDA. O “mature green” dos artigos em inglês equivale ao “imaturo” da Portaria; não misturem os dois nos labels. Ajustem os limites às classes do dataset escolhido. A recomendação para a classe “de vez” segue a orientação da Embrapa, publicada na norma PBMH, de colher no início da maturação quando o mercado é distante.
+A Portaria 553/1995 foi revogada pela IN MAPA 33/2018, que não tem subgrupos de cor: citem como escala histórica e de mercado, junto com a norma voluntária PBMH/CEAGESP (2003) e a escala do USDA. O “mature green” dos artigos em inglês equivale ao “imaturo” da Portaria; não misturem os dois nos labels. Ajustem os limites às classes do dataset escolhido. A norma PBMH traz um texto da Embrapa Hortaliças que recomenda colher no início da maturação, porque o processo continua depois da colheita, mas não fala em distância do mercado (conferido no PDF em 10/11). A regra da classe “de vez” (colher se for para mercado distante) é, portanto, uma decisão do grupo apoiada nesse ponto, e é assim que aparece no Apêndice A da monografia.
 
 ### Referência para trabalho futuro: dias até o vermelho
 
@@ -489,11 +490,11 @@ Os 5 marcados como “Sugerido” cobrem os lados do TCC: app brasileiro, YOLO e
 
 MUNDIM FILHO, A. C.; ALVARENGA, C.; CARNEIRO, M. G. Colher ou não colher? Uma rede neural convolucional para apoiar cafeicultores na decisão da colheita. In: WORKSHOP DE INICIAÇÃO CIENTÍFICA EM SISTEMAS DE INFORMAÇÃO – SIMPÓSIO BRASILEIRO DE SISTEMAS DE INFORMAÇÃO (SBSI), 17., 2021, On-line. **Anais Estendidos** [...]. Porto Alegre: Sociedade Brasileira de Computação, 2021. p. 57-60. DOI: 10.5753/sbsi.2021.15356.
 
-_→ Sugerido. Antecedente mais próximo (UFU, Monte Carmelo): app Android offline em português, decisão colher/não colher do café, 93% de acurácia. O TCC precisa se diferenciar dele._
+_→ Sugerido. Antecedente mais próximo (UFU): MobileNet com transfer learning do ImageNet, decisão colher/não colher do café, 93% de acurácia e 92% de F1 em 150 imagens de teste. O artigo não tem app: levar o modelo para um app aparece como próximo passo (conferido no PDF em 10/11). O TCC precisa se diferenciar dele._
 
 SANTOS, D. M. **Redes neurais convolucionais para classificar a maturação de frutos de café**. 2022. 63 f. Dissertação (Mestrado em Agricultura e Informações Geoespaciais) – Universidade Federal de Uberlândia, Monte Carmelo, 2022. Disponível em: https://repositorio.ufu.br/handle/123456789/36614. Acesso em: 3 nov. 2026.
 
-_→ Complementa o anterior: 63% de acurácia em 5 classes de maturação, contra 93% na decisão binária._
+_→ Complementa o anterior (mesmo grupo): dois protótipos de app Android com TensorFlow Lite; 92% de acurácia na decisão binária e precisão média de 63% nos 5 estádios (conferido no PDF em 10/11)._
 
 BAZAME, H. C. et al. Detection of coffee fruits on tree branches using computer vision. **Scientia Agricola**, Piracicaba, v. 80, e20220064, 2023. DOI: 10.1590/1678-992X-2022-0064.
 
