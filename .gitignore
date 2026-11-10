@@ -117,22 +117,6 @@ app.*.symbols
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
-# LaTeX (o PDF é compilado no Overleaf)
-*.aux
-*.bbl
-*.blg
-*.brf
-*.fdb_latexmk
-*.fls
-*.idx
-*.ilg
-*.ind
-*.lof
-*.lot
-*.out
-*.synctex.gz
-*.toc
-docs/*.zip
 
 # Python / notebooks / treino
 __pycache__/
@@ -147,5 +131,6 @@ ml/runs/
 !app/assets/models/*.tflite
 !app/assets/models/*.mlpackage/
 
-# Compilação local do TCC (tectonic --outdir build)
-docs/tcc/build/
+# App Flutter: os arquivos de lock do app vão para o git (a regra *.lock acima os ignoraria)
+!app/pubspec.lock
+!app/ios/Podfile.lock

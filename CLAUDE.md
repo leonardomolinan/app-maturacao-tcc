@@ -10,7 +10,7 @@ Responda em português do Brasil.
 - **Classes:** `verde`, `de_vez`, `maduro`, `passado`, `outro`.
 - **Regra de decisão:** verde → esperar; de vez → colher se for para mercado distante, senão esperar; maduro → colher; passado → colher já ou descartar; outro ou confiança baixa → pedir nova foto.
 - **Onde roda:** no celular, offline. Exportar para LiteRT (`.tflite`, Android) e Core ML (iOS).
-- **App:** Flutter, Android primeiro (minSdk 24, exigido pelo plugin `ultralytics_yolo`). Inferência pelo plugin `ultralytics_yolo` ou por `flutter_litert`.
+- **App:** Flutter, Android primeiro. Inferência pelo `flutter_litert` (Apache-2.0), escolhido em 04/11/2026 no lugar do `ultralytics_yolo` (AGPL-3.0): é mais leve e deixa o pré-processamento e as probabilidades no código Dart, testável. Detalhes em `app/README.md`.
 - **Backend:** nenhum no MVP. O histórico fica em SQLite no celular.
 - **Dataset:** público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação.
 - **Login:** só depois do MVP, se sobrar tempo.
@@ -22,32 +22,29 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 
 ## Estrutura
 
-- `app/`: aplicativo Flutter (ainda não criado).
+- `app/`: aplicativo Flutter. Código em `app/lib/` (domínio e regra de decisão, classificador, SQLite, telas), testes em `app/test/`, modelo em `app/assets/models/`. Projetos nativos em `app/android/` e `app/ios/` (gerados com `flutter create`). Em 04/11/2026, com Flutter 3.47.9: `flutter analyze` sem problemas, `flutter test` passando, `flutter build apk --debug` funcionando e o app abrindo no emulador (sem modelo). Ainda não testados: o fluxo de foto e análise com o `.tflite` real, um celular de verdade e o iOS.
 - `ml/`: notebooks de treino e avaliação no Google Colab. Datasets, pesos e execuções não vão para o git (ver `.gitignore`); só o modelo exportado que o app usa fica em `app/assets/models/`.
 - `docs/roadmap.md`: plano do TCC.
-- `docs/tcc/`: monografia em LaTeX (abnTeX2), importada no Overleaf. É a fonte da verdade do texto.
+- A monografia (LaTeX, abnTeX2, importada no Overleaf) fica **fora deste repositório**, em `/Users/leonardomolina/www/unitri/tcc-overleaf/`, que tem o seu próprio `CLAUDE.md` com as regras do texto, do `.bib` e da compilação. O histórico dela até 04/11/2026 ficou aqui em `docs/tcc/` (commit `5899781`).
 
 ## Integridade acadêmica (obrigatório)
 
-- **Nunca invente fonte.** Só cite entradas de `docs/tcc/referencias.bib`, que foram conferidas. Para incluir uma referência nova, abra a fonte (DOI, PDF ou página oficial) antes; o que não der para confirmar fica fora do texto.
+- **Nunca invente fonte.** Só cite entradas do `referencias.bib` da monografia, que foram conferidas. Para incluir uma referência nova, abra a fonte (DOI, PDF ou página oficial) antes; o que não der para confirmar fica fora do texto.
 - **Nunca simule dado.** Métricas, tabelas, tempos e prints só saem de execução real do modelo ou do app. Enquanto não existirem, use `\resultado` no LaTeX ou `[RESULTADO A PREENCHER]` no resto.
 - **Sem plágio:** ideia de outro autor vira paráfrase com citação; citação direta só entre aspas e com página.
 - O uso de IA é declarado na seção "Declaração de uso de inteligência artificial" da Metodologia.
 
-## Convenções do texto (manual do professor)
+## App
 
-- Estrutura: Introdução, Referencial Teórico, Estado da Arte, Metodologia, Resultados e Discussão, Conclusão. Não usar "Desenvolvimento" como título.
-- Português acadêmico, impessoal (terceira pessoa ou voz passiva). Metodologia e Resultados no passado.
-- Na Introdução, no Referencial e no Estado da Arte, todo parágrafo leva citação. Na Conclusão, em regra, não.
-- O Estado da Arte tem 4 a 5 trabalhos, cada um analisado em separado (problema, abordagem, achados, limitações), mais um quadro comparativo e a lacuna explícita.
-- A Metodologia precisa dos 4 diagramas UML (casos de uso, classes, sequência, atividades) e do MER, cada um descrito.
-- Tabelas e figuras: título acima, fonte abaixo (`\legend{Fonte: ...}`), e toda figura citada no texto.
-- Termos: **classe** é o que o modelo devolve; **estádio de maturação** só no contexto agronômico (Referencial). Termos de computação ficam em inglês (dataset, label, baseline, backend, framework, transfer learning, bounding box) e vão em itálico na monografia.
-- Citações: o grupo decidiu pela **NBR 10520 de 2023**, com o autor em maiúsculas e minúsculas, como "(Demo, 2014)". O modelo ainda usa `abntex2cite` (estilo `alf`), que segue a versão de 2002 e põe o autor em caixa alta: falta ajustar.
-- `\pendente{...}` marca o que falta escrever ou confirmar; não pode sobrar na versão postada.
-- Depois de mexer em `docs/tcc/`, compile para conferir: `cd docs/tcc && tectonic --outdir build --keep-logs main.tex`. Verifique erros, `Invalid UTF-8` e avisos do BibTeX em `build/tectonic.out`.
-- No `.bib`: proteja siglas e nomes próprios do título com chaves (`{YOLOv8}`, `{Brazilian}`), porque o estilo põe o título em minúsculas. Em campos que vão para maiúsculas (autor, organização), escreva os acentos no formato do LaTeX (`{\'E}`, `{\c c}{\~a}o`). Autor composto ou entidade vai como `{\relax Nome}`. Nunca ponha comentário com `%` dentro de uma entrada.
-- O Overleaf gratuito não sincroniza com o GitHub: depois de editar `docs/tcc/`, avise o Leonardo quais arquivos reenviar.
+- Código, nomes e textos da interface em português do Brasil.
+- Nada de classificador falso: sem o `.tflite` em `app/assets/models/`, o app mostra o aviso de modelo ausente. Valores fixos só nos testes.
+- Os nomes das classes vêm dos metadados do modelo, nunca de uma ordem fixa no código.
+- O limiar de confiança baixa (`limiarConfiancaBaixaPendente` em `app/lib/dominio/regra_decisao.dart`) é provisório e não foi medido; ele só muda com um valor vindo da validação do modelo.
+- Ao mexer no app, rode `flutter analyze` e `flutter test` dentro de `app/`. Se mudar a tabela `analise`, atualize o MER e a tabela do `app/README.md`.
+
+## Termos
+
+**Classe** é o que o modelo devolve; **estádio de maturação** só no contexto agronômico. Termos de computação ficam em inglês (dataset, label, baseline, backend, framework, transfer learning, bounding box). As demais convenções do texto estão no `CLAUDE.md` da monografia.
 
 ## Git
 

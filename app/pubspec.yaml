@@ -1,0 +1,40 @@
+name: maturacao_tomate
+description: "Classifica a maturação do tomate por foto, offline, e recomenda colher ou esperar (TCC UNITRI 2026/2)."
+publish_to: 'none'
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Inferência no aparelho (LiteRT, antigo TensorFlow Lite). Apache-2.0.
+  flutter_litert: ^3.9.4
+  # Histórico local em SQLite.
+  sqflite: ^2.4.5
+  # Câmera e galeria.
+  image_picker: ^1.2.4
+  # Decodificação, recorte, redimensionamento e remoção do EXIF.
+  image: ^4.12.0
+  path_provider: ^2.1.6
+  path: ^1.9.1
+  # SHA-256 do modelo, gravado em cada análise.
+  crypto: ^3.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  # SQLite no computador, para testar o banco com `flutter test`.
+  sqflite_common_ffi: ^2.4.5
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/models/
