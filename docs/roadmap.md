@@ -4,6 +4,12 @@
 
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
+**Situação em 10/11:**
+- **App:** pronto e validado (compila, passa nos 58 testes e abre no emulador); só falta o modelo.
+- **Notebook de treino:** conferido com os arquivos do dataset e pronto para rodar no Colab.
+- **Fotos próprias de teste:** começam nesta semana, seguindo `ml/protocolo-fotos-proprias.md`.
+- **Gargalo:** o modelo. Sem ele não há Resultados, por isso o treino e as fotos vêm antes de tudo.
+
 ### O que precisa ser entregue
 
 - **O TCC inteiro sai neste semestre.** A disciplina N587 é única na matriz atual (não existe TCC I e II).
@@ -21,7 +27,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **D3** | Onde roda | No celular, offline |
 | **D4** | O que o app responde | "Colher" ou "esperar", junto com a classe e a confiança. A faixa de dias saiu do MVP por falta de base científica sólida |
 | **D5** | Contribuição | App funcionando primeiro. A comparação com um LLM na nuvem só entra se sobrar tempo (decisão em 22/11) |
-| **D6** | Stack do app | Flutter, com Android primeiro |
+| **D6** | Stack do app | Flutter, com Android primeiro; o modelo roda no aparelho pelo plugin `flutter_litert` (Apache-2.0) |
 | **D7** | Backend | Nenhum no MVP: o histórico fica em SQLite no celular. Um FastAPI pequeno só entra junto com o LLM |
 | **D8** | Quem faz | O Leonardo Sergi Molina executa tudo (código, modelo e texto), com apoio de IA declarado; Vitor Kazuma e Victor José revisam o que ele enviar, sem calendário fixo |
 | **D9** | Normas | Citações pela NBR 10520 de 2023 |
@@ -42,22 +48,29 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **12/12 (sábado)** | **Postagem oficial do TCC**; também vencem o relatório de estágio e a aprovação das atividades complementares |
 | **23/12** | Fim do semestre |
 
-### O que fazer nesta semana
+### O que fazer nesta semana (09 a 15/11)
 
-Já feito em 04/11:
+Já feito:
 
-- Dataset escolhido (Unified Tomato Dataset, que já traz os recortes por classe) e classes mapeadas no notebook.
-- Repositório leonardomolinan/app-maturacao-tcc criado, com README e instruções para agentes (CLAUDE.md).
-- Projeto abnTeX2 pronto para importar no Overleaf, compilando localmente com o Tectonic; Introdução em rascunho.
-- Notebook de treino `ml/01_treino_classificador.ipynb` pronto para o Colab.
+- **04/11, base do projeto:**
+  - dataset escolhido (Unified Tomato Dataset, que já traz os recortes por classe) e classes mapeadas no notebook;
+  - repositório leonardomolinan/app-maturacao-tcc criado, com README e instruções para agentes (CLAUDE.md);
+  - projeto abnTeX2 pronto para importar no Overleaf, com a Introdução em rascunho. Ele fica numa pasta própria, fora do repositório (`~/www/unitri/tcc-overleaf`);
+  - notebook de treino pronto para o Colab.
+- **04/11, app:** Flutter 3.47.9 e Android SDK instalados no Mac. O app foi validado: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador (sem modelo).
+- **09/11:**
+  - notebook conferido com os arquivos do dataset (pastas e classes dos dois zips);
+  - protocolo das fotos próprias escrito (`ml/protocolo-fotos-proprias.md`);
+  - app enviado ao GitHub, na branch `mvp/app-flutter`.
 
 Falta nesta semana:
 
+- [ ] Rodar o notebook no Colab e trazer o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `results.csv`). O passo a passo está em `ml/README.md`.
+- [ ] Comprar uns 20 tomates em estádios variados e fotografar todo dia até 22/11, seguindo o protocolo.
+- [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos.
 - [ ] Levar ao professor as 2 perguntas que restam (Anexo D).
 - [ ] Importar o projeto no Overleaf.
-- [ ] Rodar o notebook no Colab e treinar o primeiro YOLO26n-cls.
-- [ ] Levantar os requisitos e desenhar o diagrama de casos de uso.
-- [ ] Comprar tomates verdes e começar as fotos diárias do conjunto de teste.
+- [ ] Revisar os rascunhos da monografia escritos em 10/11.
 
 ## 2. Entregáveis e prazos da disciplina (2026/2)
 
@@ -147,7 +160,7 @@ Esforço em pessoas-semana (40 h), sem contar a escrita. As estimativas são da 
 
 O MVP tem três partes, nesta ordem de prioridade:
 
-1. **Núcleo offline:** app Flutter com YOLO26n-cls (classes verde, de vez, maduro, passado e outro), treinado a partir de dataset público de tomate, exportado para LiteRT (Android) e Core ML (iPhone) e lido pelo [plugin oficial](https://pub.dev/packages/ultralytics_yolo) `ultralytics_yolo`.
+1. **Núcleo offline:** app Flutter com YOLO26n-cls (classes verde, de vez, maduro, passado e outro), treinado a partir de dataset público de tomate, exportado para LiteRT (.tflite) e lido no app pelo plugin `flutter_litert` (Apache-2.0), o mesmo arquivo no Android e no iPhone.
 2. **Regra de decisão:** cada classe vira "colher" ou "esperar" por uma regra fixa (seção 5.1), com aviso quando a confiança for baixa.
 3. **Avaliação:** conjunto de teste com fotos próprias de tomates fotografados dia a dia. Medir acurácia, F1 por classe, matriz de confusão, tempo de resposta no celular e funcionamento em modo avião.
 
@@ -228,10 +241,10 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 
 | Componente | Tecnologia | Por quê |
 |---|---|---|
-| **App móvel** | Flutter (Dart), Android primeiro | Um código para Android e iOS; o plugin oficial do YOLO evita código nativo. |
+| **App móvel** | Flutter (Dart), Android primeiro | Um código para Android e iOS, sem código nativo. |
 | **Modelo no aparelho** | YOLO26n-cls exportado para LiteRT (.tflite) e Core ML | 2,8 milhões de parâmetros; roda offline; mesma API do treino. |
-| **Inferência** | `ultralytics_yolo` (AGPL-3.0) ou `flutter_litert` (Apache-2.0) | O plugin lê os rótulos (labels) do próprio modelo; o `flutter_litert` serve se trocarmos para MobileNet. |
-| **Regra de decisão** | Tabela classe → recomendação, em JSON dentro do app | Funciona offline e é fácil de descrever no texto. |
+| **Inferência** | `flutter_litert` (Apache-2.0), escolhido em 04/11 | Plugin leve: o pré-processamento e as probabilidades ficam no código Dart, onde dá para testar e descrever na Metodologia. Os nomes das classes vêm dos metadados do modelo. O `ultralytics_yolo` (AGPL-3.0) foi deixado de lado porque traz a câmera junto e esconde esses passos. |
+| **Regra de decisão** | Tabela classe → recomendação, em código Dart com testes unitários | Funciona offline e é fácil de descrever no texto. |
 | **Histórico** | SQLite no aparelho | Funciona offline e gera o MER. |
 | **Treino e avaliação** | Google Colab, com notebooks versionados no GitHub | GPU grátis e experimento reprodutível. |
 
@@ -274,16 +287,16 @@ Considera a postagem oficial em 12/12 e a meta interna de texto completo em 28/1
 
 | Semana | Marco no fim da semana | Código e modelo | Texto (Overleaf) |
 |---|---|---|---|
-| **S1** · 03 a 08/11 | Escopo fechado; 1º modelo treinado; Overleaf criado | Dataset escolhido e classes mapeadas (feito); notebook pronto (feito); 1º YOLO26n-cls treinado no Colab; projeto Flutter com câmera | Projeto abnTeX2 (feito; falta importar); Introdução em rascunho (feito); requisitos e casos de uso |
-| **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | App rodando o modelo offline num Android | Treino definitivo; exportar para LiteRT; integrar no app; tela de resultado com a regra colher/esperar; começar as fotos diárias de teste | Referencial Teórico; Estado da Arte (fichamentos e tabela comparativa) |
-| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Histórico em SQLite, mensagens de erro, APK de teste; rotular as fotos de teste; script de avaliação | Metodologia: ferramentas, dados, requisitos, 4 diagramas UML e MER |
-| **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Métricas finais, matriz de confusão, tempo de resposta em 2 ou 3 celulares, modo avião, prints; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract; nota de uso de IA |
+| **S1** · 03 a 08/11 | Escopo fechado; app validado; Overleaf criado | Dataset escolhido e classes mapeadas (feito); notebook pronto (feito); app compilado, com 58 testes passando e aberto no emulador (feito em 04/11). O 1º treino passou para a S2 | Projeto abnTeX2 (feito; falta importar); Introdução em rascunho (feito); requisitos (feito) |
+| **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | 1º modelo treinado e rodando no app | Treino no Colab; exportar para LiteRT; integrar no app; testar no emulador e num celular; conferir se o app e o Python dão a mesma classe; fotos diárias de teste a partir de 09/11 | Rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os diagramas UML e o MER; revisão do Leonardo |
+| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Notebook 02 (avaliação nas fotos próprias); limiar de confiança baixa definido na validação; testes em 2 ou 3 celulares e em modo avião; APK para os colegas | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
+| **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Revisão de design do app (alto contraste e botões grandes, RNF05) entre 23 e 25/11; prints depois dela; métricas finais e matriz de confusão; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract |
 | **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Versão revisada pelo professor e pelos colegas | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); README do repositório |
 | **S6** · 07 a 12/12 | **Postagem até 10/12** (oficial: sábado, 12/12) | Congelar modelo, código e APK | PDF final; postagem no Espaço do Aluno |
 
 > [!tip] **Regra de ouro do cronograma**
 >
-> Toda parte implementada gera, na mesma semana, o trecho de texto e o print correspondentes. Assim, em 28/11 o texto está completo sem uma maratona de escrita no fim.
+> Toda parte implementada gera, na mesma semana, o trecho de texto correspondente. Assim, em 28/11 o texto está completo sem uma maratona de escrita no fim. A exceção são os prints das telas: o design do app fica para o fim, então os prints saem depois da revisão de design (23 a 25/11), para não precisarem ser refeitos.
 
 ## 9. Backlog inicial por frente
 
@@ -302,24 +315,28 @@ Lista generalista. Vale transformar cada item em cartão no quadro Kanban e queb
 
 ### Design e UX
 
-- [ ] Fluxo: abrir o app → tirar a foto → resultado → histórico.
-- [ ] Wireframes das telas (câmera, resultado, histórico).
-- [ ] Pensar no uso no campo: alto contraste para sol forte, botões grandes, pouco texto, ícones claros.
+Fica para o fim, quando o app estiver funcionando (23 a 25/11), e antes dos prints da monografia. O requisito RNF05 (interface legível sob sol forte, com alto contraste e botões grandes) sai daqui.
+
+- [x] Fluxo: abrir o app → tirar a foto → conferir o recorte → resultado → histórico (já implementado).
+- [ ] Revisão visual das telas (início, conferência da foto, resultado, histórico).
+- [ ] Uso no campo: alto contraste para sol forte, botões grandes, pouco texto, ícones claros.
 
 ### App (Flutter)
 
-- [ ] Criar o projeto Flutter (Android primeiro), navegação e tema.
-- [ ] Câmera e galeria, com guia de enquadramento na tela.
-- [ ] Integração com o modelo no aparelho (plugin `ultralytics_yolo` ou `flutter_litert`).
-- [ ] Tela de resultado: classe, confiança e recomendação "colher" ou "esperar".
-- [ ] Regra de decisão em JSON e histórico em SQLite.
-- [ ] Erros tratados: foto escura ou tremida, classe "outro", confiança baixa.
-- [ ] Gerar o APK para os testes.
+Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador. Falta o modelo. Dos erros, já estão tratadas a classe "outro" e a confiança baixa; a foto escura ou tremida ficou fora por enquanto.
+
+- [x] Criar o projeto Flutter (Android primeiro), navegação e tema.
+- [x] Câmera e galeria, com guia de enquadramento: ilustração na tela inicial e conferência do quadrado analisado. Uma moldura sobre a câmera ao vivo exigiria o plugin `camera`.
+- [ ] Integração com o modelo no aparelho (plugin `flutter_litert`): código pronto e testado sem modelo; falta o `.tflite`.
+- [x] Tela de resultado: classe, confiança e recomendação, com a pergunta do destino para a classe "de vez".
+- [x] Regra de decisão (código Dart com testes) e histórico em SQLite.
+- [ ] Erros tratados: classe "outro" e confiança baixa (feito); foto escura ou tremida (fora por enquanto).
+- [ ] Gerar o APK para os testes: o de debug já sai; falta gerar com o modelo dentro.
 
 ### IA e Dados
 
-- [ ] Baixar o dataset público de tomate (Anexo C), mapear as classes e conferir a licença.
-- [ ] Montar o conjunto de teste próprio: comprar tomates verdes, fotografar todo dia até ficarem vermelhos (2 ou 3 celulares, luz variada) e rotular por classe.
+- [x] Escolher o dataset público de tomate (Anexo C), mapear as classes e conferir a licença (CC BY 4.0). O download é feito pelo notebook, no Colab.
+- [ ] Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`: uns 20 tomates em estádios variados e numerados, 2 fotos por tomate por dia até 22/11, e o rótulo anotado antes de ver a resposta do modelo.
 - [ ] Ter um baseline na semana 1 (modelo pronto do Hugging Face) para já ter números.
 - [ ] Treinar o YOLO26n-cls (versão do `ultralytics` fixada) e guardar a configuração no repositório.
 - [ ] Avaliar: acurácia, precisão, recall, F1 por classe, matriz de confusão e tempo de inferência.
@@ -370,7 +387,7 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 
 | Necessidade | Ferramenta | Observação |
 |---|---|---|
-| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib ficam em docs/tcc no repositório, compilam localmente com o Tectonic e são reenviados ao Overleaf. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
+| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib ficam na pasta tcc-overleaf, fora do repositório do app, compilam localmente com o Tectonic e são reenviados ao Overleaf. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
 | **Referências** | Zotero (com extensão do navegador e Better BibTeX) | Exporta o .bib para o Overleaf; evita referência errada. |
 | **Código** | GitHub: leonardomolinan/app-maturacao-tcc (privado), com pastas app/, ml/ e docs/ | README e instruções para agentes (CLAUDE.md); o link vai para o apêndice. |
 | **Tarefas** | GitHub Projects (Kanban) | Colunas: A fazer / Fazendo / Em revisão / Feito. |
@@ -399,13 +416,14 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 | Risco | Chance | Impacto | O que fazer |
 |---|---|---|---|
 | **O treino do modelo não fica bom ou atrasa** | Média | Alto | Começar por dataset público e por um baseline pronto; se o YOLO26n-cls travar, trocar por YOLO11n-cls ou MobileNet com as mesmas pastas. Em último caso, LLM na nuvem como plano B. |
-| **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Testar com fotos próprias; usar data augmentation; relatar como limitação. |
+| **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Testar com fotos próprias (`ml/protocolo-fotos-proprias.md`); usar data augmentation; relatar como limitação. |
+| **Fotos próprias incompletas no prazo** (o tomate verde leva de 10 a 15 dias para ficar vermelho a 25 °C; Anexo B) | Média | Alto | Comprar tomates em vários estádios no primeiro dia, para ter todas as classes logo; fotografar até 22/11; se faltar alguma classe, relatar o que houver como limitação. |
 | **Recomendação errada em casos limítrofes** (classe “de vez”) | Média | Médio | Mostrar a confiança; mensagem condicional ao destino da venda; pedir nova foto quando a confiança for baixa. |
 | **Prazo curto (postagem em 12/12)** | Alta | Alto | Cronograma semanal com marcos; escrita em paralelo desde a semana 1; escopo congelado em 22/11; versão completa em 28/11. |
 | **Uma pessoa executando tudo** | Alta | Alto | Apoio de IA; escopo enxuto; o Leonardo envia partes para os colegas revisarem, para eles acompanharem e dominarem o conteúdo. |
 | **ENADE (29/11), V2 de outras disciplinas (30/11 a 05/12) e estágio competindo por tempo** | Alta | Médio | Texto completo antes do ENADE; a semana da V2 fica só para revisão. |
 | **UML ou MER inconsistentes com o código** | Média | Alto | Diagramas atualizados junto com o código; revisão pelos colegas. |
-| **Licença AGPL-3.0 do Ultralytics e do plugin** | Média | Baixo | Para o TCC basta publicar o código no GitHub. Para virar produto fechado no futuro, trocar por MobileNet ou EfficientNet com LiteRT (licenças permissivas). |
+| **Licença AGPL-3.0 do Ultralytics** | Média | Baixo | O app usa o `flutter_litert` (Apache-2.0), mas o modelo treinado com o `ultralytics` continua sob a AGPL-3.0. Para o TCC basta publicar o código no GitHub. Para virar produto fechado no futuro, trocar por MobileNet ou EfficientNet com LiteRT (licenças permissivas). |
 | **Fotos e localização dos usuários (LGPD)** | Baixa | Médio | No MVP as fotos ficam só no celular e o EXIF/GPS é removido; nada vai para servidor. |
 | **Limite de colaboradores do Overleaf** | Alta | Baixo | O Leonardo é o dono; os revisores leem o PDF. |
 | **Questões éticas** | Baixa | Médio | Seguir o manual: nenhuma pesquisa envolvendo pessoas; questionário só se for simples e anônimo. |
