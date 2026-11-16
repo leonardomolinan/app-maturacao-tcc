@@ -34,7 +34,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **D5** | Contribuição | App funcionando primeiro. A comparação com um LLM na nuvem só entra se sobrar tempo (decisão em 22/11) |
 | **D6** | Stack do app | Flutter, com Android primeiro; o modelo roda no aparelho pelo plugin `flutter_litert` (Apache-2.0) |
 | **D7** | Backend | Nenhum no MVP: o histórico fica em SQLite no celular. Um FastAPI pequeno só entra junto com o LLM |
-| **D8** | Quem faz | O Leonardo Sergi Molina executa tudo (código, modelo e texto), com apoio de IA declarado; Vitor Kazuma e Victor José revisam o que ele enviar, sem calendário fixo |
+| **D8** | Quem faz | O Leonardo Sergi Molina executa tudo (código, modelo e texto), com apoio de IA declarado; Vítor Tetsuya Kazuma e Victor José Morais de Lima revisam o que ele enviar, sem calendário fixo |
 | **D9** | Normas | Citações pela NBR 10520 de 2023 |
 | **D10** | Depois do MVP | Login pode entrar se sobrar tempo |
 
@@ -283,13 +283,13 @@ Uma API pequena em Python + FastAPI, só para chamar um LLM multimodal (ex.: Gem
 
 ## 7. Divisão de papéis
 
-**O Leonardo executa** o projeto (código, modelo e texto), com apoio de IA de uso declarado. **Vitor Kazuma e Victor José revisam** o que ele enviar, quando ele achar pertinente; não há calendário fixo de revisão. Os três precisam dominar o conteúdo para a apresentação.
+**O Leonardo executa** o projeto (código, modelo e texto), com apoio de IA de uso declarado. **Vítor Tetsuya Kazuma e Victor José Morais de Lima revisam** o que ele enviar, quando ele achar pertinente; não há calendário fixo de revisão. Os três precisam dominar o conteúdo para a apresentação.
 
 | Quem | O quê |
 |---|---|
 | **Leonardo Sergi Molina** (com apoio de IA) | Dataset, treino e avaliação do modelo; app Flutter; requisitos, UML e MER; escrita de todos os capítulos; dono do projeto no Overleaf; cronograma. |
-| **Vitor Kazuma** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
-| **Victor José** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
+| **Vítor Tetsuya Kazuma** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
+| **Victor José Morais de Lima** | Revisa os trechos e versões que o Leonardo enviar; testa o APK no próprio celular. |
 
 ## 8. Cronograma semana a semana
 

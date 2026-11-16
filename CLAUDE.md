@@ -1,6 +1,6 @@
 # Instruções para agentes
 
-Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vitor Kazuma** e **Victor José** (revisam o que o Leonardo enviar, sem calendário fixo; sobrenomes ainda a confirmar). Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas.
+Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vítor Tetsuya Kazuma** e **Victor José Morais de Lima** (revisam o que o Leonardo enviar, sem calendário fixo). O grupo não tem orientador. Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas.
 
 Responda em português do Brasil.
 
