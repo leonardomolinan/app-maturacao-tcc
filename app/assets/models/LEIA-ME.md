@@ -1,7 +1,7 @@
 # Modelo do app
 
 Coloque aqui **um único** `.tflite`: o YOLO26n-cls exportado pelo notebook
-`ml/01_treino_classificador.ipynb` (seção 8, `export(format='litert', imgsz=224)`),
+`ml/01_treino_classificador.ipynb` (seção 9, `export(format='litert', imgsz=224)`),
 copiado de `MyDrive/tcc-maturacao/exports/<experimento>/`. O nome do arquivo
 pode ser qualquer um.
 

@@ -14,11 +14,13 @@ O treino roda no Google Colab; nada é instalado no computador. O próprio noteb
    https://colab.research.google.com/github/leonardomolinan/app-maturacao-tcc/blob/main/ml/01_treino_classificador.ipynb
 
    Outra forma: no Colab, **Arquivo → Abrir notebook → GitHub**, marque **Incluir repositórios particulares** e escolha `leonardomolinan/app-maturacao-tcc`.
+
+   Sem autorizar o GitHub: no Colab, **Arquivo → Fazer upload de notebook** e escolha o `ml/01_treino_classificador.ipynb` do seu clone do repositório. O link abre a versão da `main`; o upload usa a versão que está no seu computador.
 2. **Ambiente de execução → Alterar o tipo de ambiente de execução → GPU T4 → Salvar.**
 3. **Ambiente de execução → Executar tudo**, e autorize o Google Drive quando ele pedir.
 4. Na saída da primeira célula, confira se aparece `CUDA disponível: True`. Se aparecer `False`, a GPU não foi ativada: o plano gratuito não garante GPU, então tente de novo mais tarde.
 5. Se o Colab pedir para reiniciar a sessão depois da instalação, reinicie e execute tudo de novo.
-6. Deixe a aba aberta até o fim. Se a sessão cair no meio do treino, use a célula de retomada (seção 6 do notebook).
+6. Deixe a aba aberta até o fim. Se a sessão cair no meio do treino, rode as seções 1 a 5 de novo, pule a célula de treino e use a célula de retomada (seção 6 do notebook). Se rodar tudo de novo por engano, a célula de treino para com um aviso e não apaga nada.
 
 ## Onde ficam os resultados
 
