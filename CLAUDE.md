@@ -9,7 +9,7 @@ Responda em português do Brasil.
 - **Modelo:** classificação de imagem com **YOLO26n-cls**, sem anotar bounding boxes, treinado a partir de dataset público de tomate. Pacote `ultralytics` com versão fixada (`8.4.188`). Imagem de 224 px.
 - **Classes:** `verde`, `de_vez`, `maduro`, `passado`, `outro`.
 - **Regra de decisão:** verde → esperar; de vez → colher se for para mercado distante, senão esperar; maduro → colher; passado → colher já ou descartar; outro ou confiança baixa → pedir nova foto.
-- **Onde roda:** no celular, offline. Exportar para LiteRT (`.tflite`, Android) e Core ML (iOS).
+- **Onde roda:** no celular, offline. O app usa o mesmo `.tflite` (LiteRT) no Android e no iOS, pelo `flutter_litert`; o Core ML não é usado.
 - **App:** Flutter, Android primeiro. Inferência pelo `flutter_litert` (Apache-2.0), escolhido em 04/11/2026 no lugar do `ultralytics_yolo` (AGPL-3.0): é mais leve e deixa o pré-processamento e as probabilidades no código Dart, testável. Detalhes em `app/README.md`.
 - **Backend:** nenhum no MVP. O histórico fica em SQLite no celular.
 - **Dataset:** público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação.
@@ -25,7 +25,7 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 - `app/`: aplicativo Flutter. Código em `app/lib/` (domínio e regra de decisão, classificador, SQLite, telas), testes em `app/test/`, modelo em `app/assets/models/`. Projetos nativos em `app/android/` e `app/ios/` (gerados com `flutter create`). Em 04/11/2026, com Flutter 3.47.9: `flutter analyze` sem problemas, `flutter test` passando, `flutter build apk --debug` funcionando e o app abrindo no emulador (sem modelo). Ainda não testados: o fluxo de foto e análise com o `.tflite` real, um celular de verdade e o iOS.
 - `ml/`: notebooks de treino e avaliação no Google Colab. Datasets, pesos e execuções não vão para o git (ver `.gitignore`); só o modelo exportado que o app usa fica em `app/assets/models/`.
 - `docs/roadmap.md`: plano do TCC.
-- A monografia (LaTeX, abnTeX2, importada no Overleaf) fica **fora deste repositório**, em `/Users/leonardomolina/www/unitri/tcc-overleaf/`, que tem o seu próprio `CLAUDE.md` com as regras do texto, do `.bib` e da compilação. O histórico dela até 04/11/2026 ficou aqui em `docs/tcc/` (commit `5899781`).
+- A monografia (LaTeX, abnTeX2, importada no Overleaf) fica **fora deste repositório**, na pasta `../tcc-overleaf` (repositório privado `leonardomolinan/tcc-overleaf`, clonado ao lado deste), que tem o seu próprio `CLAUDE.md` com as regras do texto, do `.bib` e da compilação. O histórico dela até 04/11/2026 ficou aqui em `docs/tcc/` (commit `5899781`).
 
 ## Integridade acadêmica (obrigatório)
 
@@ -48,4 +48,4 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 
 ## Git
 
-Trabalhe numa branch por tarefa. Commit e push só quando o Leonardo pedir.
+Trabalhe numa branch por tarefa. Commit e push só quando o Leonardo pedir. Ele trabalha em dois computadores (Mac e Windows), então puxe as mudanças (`git pull`) antes de começar.

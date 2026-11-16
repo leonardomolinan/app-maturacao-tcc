@@ -4,18 +4,22 @@
 
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
-**Situação em 10/11:**
-- **App:** pronto e validado (compila, passa nos 58 testes e abre no emulador); só falta o modelo.
-- **Notebook de treino:** conferido com os arquivos do dataset e pronto para rodar no Colab.
-- **Fotos próprias de teste:** começam nesta semana, seguindo `ml/protocolo-fotos-proprias.md`.
-- **Monografia:** em 10/11 foram escritos os rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER; falta a revisão do Leonardo. Resultados, Conclusão e Resumo dependem do modelo.
-- **Gargalo:** o modelo. Sem ele não há Resultados, por isso o treino e as fotos vêm antes de tudo.
+**Situação em 16/11:**
+- **App:** pronto e validado (compila, passa nos 58 testes e abre no emulador); falta colocar o modelo treinado.
+- **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Os arquivos estão no Google Drive do Leonardo (`MyDrive/tcc-maturacao/`) e ainda precisam vir para `app/assets/models/` e `ml/resultados/yolo26n_cls_v1/`.
+- **Fotos próprias de teste:** seguem `ml/protocolo-fotos-proprias.md`; o andamento não foi registrado desde 10/11.
+- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Resultados, Conclusão e Resumo esperam as métricas do modelo.
+- **Entregas:** três protocolos no Espaço do Aluno (seção 2). Falta confirmar se o Projeto de TCC já foi protocolado. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
+- **Gargalo:** trazer as métricas do Drive e testar o modelo no app; depois, avaliar nas fotos próprias (notebook 02).
 
 ### O que precisa ser entregue
 
 - **O TCC inteiro sai neste semestre.** A disciplina N587 é única na matriz atual (não existe TCC I e II).
-- **Postagem no Espaço do Aluno até sábado, 12/12/2026**, segundo o calendário oficial. Entregar no prazo é requisito de aprovação (MIA, seção 23).
-- As notas de V2 e VT fecham em 10/12, então o professor pode querer o trabalho antes. **Meta interna: texto completo em 28/11.**
+- **Três protocolos no Espaço do Aluno** (Secretaria → Protocolos), cada um liberado só depois que o professor defere o anterior (orientações da UNITRI de 29/07/2026):
+  1. **Projeto de TCC**: sem ele deferido, não sai a nota de V1 nem abre o protocolo seguinte;
+  2. **TCC pré-banca**: o professor marca a data deste protocolo e, se deferir, a da apresentação à banca;
+  3. **TCC pós-banca**: a versão final, depois da banca, **até quinta, 10/12/2026**. Sem ele deferido, não saem as notas de V2 e do TCC.
+- As notas são lançadas por aluno, então **cada integrante precisa ter os seus protocolos deferidos**. Entregar no prazo é requisito de aprovação (MIA, seção 23). **Meta interna: texto completo (versão pré-banca) em 28/11.**
 - **ENADE em 29/11 (domingo)**: obrigatório para a colação de cada integrante.
 - **Formato confirmado:** monografia; grupo de 3 aceito; citações pela NBR 10520 de 2023.
 
@@ -45,8 +49,10 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **28/11** | **Texto completo (versão 1)** |
 | **29/11** | **ENADE** (todos os integrantes) |
 | **30/11 a 05/12** | V2 das outras disciplinas: semana só de revisão do TCC |
-| **10/12** | Fechamento das notas de V2 e VT: **limite prático para postar** |
-| **12/12 (sábado)** | **Postagem oficial do TCC**; também vencem o relatório de estágio e a aprovação das atividades complementares |
+| **Antes de 10/12** | Protocolo do TCC pré-banca e apresentação à banca, nas datas que o professor marcar |
+| **10/12 (quinta)** | **Último dia para protocolar o TCC pós-banca** (versão final, depois da banca); fecham também as notas de V2 e VT |
+| **12/12 (sábado)** | Vencem o relatório de estágio e a aprovação das atividades complementares |
+| **13/12 (domingo)** | Último dia para o professor responder aos protocolos pós-banca |
 | **23/12** | Fim do semestre |
 
 ### O que fazer nesta semana (09 a 15/11)
@@ -56,7 +62,7 @@ Já feito:
 - **04/11, base do projeto:**
   - dataset escolhido (Unified Tomato Dataset, que já traz os recortes por classe) e classes mapeadas no notebook;
   - repositório leonardomolinan/app-maturacao-tcc criado, com README e instruções para agentes (CLAUDE.md);
-  - projeto abnTeX2 pronto para importar no Overleaf, com a Introdução em rascunho. Ele fica numa pasta própria, fora do repositório (`~/www/unitri/tcc-overleaf`);
+  - projeto abnTeX2 pronto para importar no Overleaf, com a Introdução em rascunho. Ele fica numa pasta própria, `tcc-overleaf`, ao lado deste repositório; desde 16/11 é o repositório privado `leonardomolinan/tcc-overleaf`;
   - notebook de treino pronto para o Colab.
 - **04/11, app:** Flutter 3.47.9 e Android SDK instalados no Mac. O app foi validado: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador (sem modelo).
 - **09/11:**
@@ -66,25 +72,28 @@ Já feito:
 
 Falta nesta semana:
 
-- [ ] Rodar o notebook no Colab e trazer o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `results.csv`). O passo a passo está em `ml/README.md`.
+- [x] Rodar o notebook no Colab: feito entre 10 e 11/11 (50 épocas em 4,6 h numa T4). O `.tflite` foi exportado; o Core ML falhou, mas o app não usa Core ML.
+- [ ] Trazer do Drive o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `results.csv`).
 - [ ] Comprar uns 20 tomates em estádios variados e fotografar todo dia até 22/11, seguindo o protocolo.
 - [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos.
-- [ ] Levar ao professor as 2 perguntas que restam (Anexo D).
+- [ ] Conferir no Espaço do Aluno se o Projeto de TCC (1ª etapa) já foi protocolado e deferido para os três. Sem ele, o protocolo pré-banca não abre e a V1 não sai.
+- [ ] Levar ao professor as perguntas que restam (Anexo D), entre elas as datas do protocolo pré-banca e da apresentação.
 - [ ] Importar o projeto no Overleaf.
 - [ ] Revisar os rascunhos da monografia escritos em 10/11.
 
 ## 2. Entregáveis e prazos da disciplina (2026/2)
 
-O Manual de TCC não traz datas nem entregas parciais. A busca nos documentos oficiais da Unitri ([calendário 2026/2](https://unitri.edu.br/wp-content/uploads/2026/09/2026-2-l-UNITRI-l-Calendario-Letivo-l-21_08_2026-OFICIAL.pdf), [MIA 2026.1](https://unitri.edu.br/wp-content/uploads/2025/12/UNITRI-l-MIA-l-2026.1-l-17112025.pdf) e [matriz 102AN](http://gradecurricular.unitri.edu.br/12_102AN.pdf)) encontrou o seguinte:
+O Manual de TCC não traz datas nem entregas parciais. A busca nos documentos oficiais da Unitri ([calendário 2026/2](https://unitri.edu.br/wp-content/uploads/2026/09/2026-2-l-UNITRI-l-Calendario-Letivo-l-21_08_2026-OFICIAL.pdf), [MIA 2026.1](https://unitri.edu.br/wp-content/uploads/2025/12/UNITRI-l-MIA-l-2026.1-l-17112025.pdf) e [matriz 102AN](http://gradecurricular.unitri.edu.br/12_102AN.pdf)) encontrou o seguinte. As linhas de protocolos, prazo final e banca vêm das orientações da UNITRI para protocolar o TCC em 2026/2 (PDF de 29/07/2026, recebido em 11/11):
 
 | Item | O que encontramos | Status |
 |---|---|---|
 | **Disciplina** | N587 · Trabalho de Conclusão de Curso em Ciência da Computação: 80 h/a, 8º período, sem pré-requisito. Não é dividida em TCC I e II na matriz 102AN (a matriz antiga, 102DS, tinha Trabalho de Graduação I e II). | Confirmado |
 | **Entregável principal** | O TCC (monografia, artigo ou projeto, conforme o PPC), enviado pelo Espaço do Aluno para avaliação do professor. Entregar no prazo é requisito de aprovação. | Confirmado (MIA, seção 23) |
-| **Prazo de postagem** | Sábado, 12/12/2026. O calendário não informa até que horas o sistema aceita. | Confirmado (calendário de 21/08/2026) |
-| **Prazo interno** | Provavelmente antes: as notas de V2 e VT fecham em 10/12. | Inferido |
+| **Protocolos** | Três, pelo Espaço do Aluno (Secretaria → Protocolos): Projeto de TCC, TCC pré-banca e TCC pós-banca. Cada um só abre com o anterior deferido pelo professor. O Projeto deferido é condição para a nota de V1; o pós-banca, para as notas de V2 e do TCC. As notas são lançadas por aluno. | Confirmado (orientações de 29/07/2026) |
+| **Prazo final** | Quinta, 10/12/2026: último dia para o aluno protocolar o TCC pós-banca; o professor responde até 13/12. O calendário fala em postagem até 12/12, mas vale a data das orientações, que é mais cedo e específica do TCC. Nenhum dos dois informa até que horas o sistema aceita. | Confirmado (orientações de 29/07/2026) |
 | **Grupo e formato** | Grupo de 3 aceito; formato monografia. | Confirmado pelo professor |
-| **Banca, apresentação, páginas, critério de nota** | Nada publicado. Pelo MIA, cada colegiado divulga as regras de avaliação no início do semestre, e o plano de ensino fica no Espaço do Aluno. | Não encontrado |
+| **Banca** | Há apresentação: o professor marca a data depois de deferir o protocolo pré-banca, e a versão final só é protocolada depois da aprovação na banca. São até 15 minutos de apresentação, mais 15 de perguntas da banca. As datas ainda não saíram. | Confirmado (orientações de 29/07/2026; duração informada pelo Leonardo em 12/11) |
+| **Páginas e critério de nota** | Nada publicado. Pelo MIA, cada colegiado divulga as regras de avaliação no início do semestre, e o plano de ensino fica no Espaço do Aluno. | Não encontrado |
 | **Formato e normas** | Overleaf, ABNT (NBR 14724, 10520 de 2023 e 6023), 4 diagramas UML e o MER (seção 3). | Confirmado (manual; a versão de 2023 da NBR 10520 foi decidida pelo grupo) |
 | **Publicação** | O TCC vai para o repositório interno do Espaço do Aluno e do Professor; não há repositório público. | Confirmado (MIA, seção 22) |
 | **Ética** | O manual diz que não há comitê de ética. Seguimos o manual: nada de pesquisa envolvendo pessoas. | Decidido |
@@ -92,7 +101,7 @@ O Manual de TCC não traz datas nem entregas parciais. A busca nos documentos of
 
 > [!warn] **Ainda sem resposta: perguntar ao professor nesta semana**
 >
-> Há entregas parciais ou nota de V1 ou V2 ligada ao TCC? Haverá banca? O que postar além do PDF? Cada integrante posta, ou só um? A lista está no Anexo D.
+> Quais são as datas do protocolo pré-banca e da apresentação? Como é a apresentação? O que vai nos protocolos além do PDF? Cada integrante protocola o mesmo arquivo? A lista está no Anexo D.
 
 **Não planejem com “TCC II no semestre que vem”.** Na matriz atual, isso só aconteceria com reprovação e nova matrícula, o que atrasaria a formatura em cerca de 6 meses.
 
@@ -148,7 +157,7 @@ Esforço em pessoas-semana (40 h), sem contar a escrita. As estimativas são da 
 
 | Caminho | Treino? | Sem internet? | Esforço | Custo | Avaliação para o TCC |
 |---|---|---|---|---|---|
-| **YOLO detectando com anotação própria** (caminho anterior) | Sim, com caixas | Sim | Alto (7 a 10) | Zero | Valor alto, mas é o maior risco para 12/12. |
+| **YOLO detectando com anotação própria** (caminho anterior) | Sim, com caixas | Sim | Alto (7 a 10) | Zero | Valor alto, mas é o maior risco para o prazo de 10/12. |
 | **YOLO26n-cls em dataset público de tomate** (escolhido) | Sim, leve (pastas) | Sim | Médio (2,5 a 3,5) | Zero | Melhor equilíbrio: métricas claras, roda offline e aproveita o que já se aprendeu de YOLO. |
 | **YOLO detectando em dataset público já no formato YOLO** | Sim, sem anotar | Sim | Médio (3,5 a 5) | Zero | Bom se quiséssemos contar frutos na foto; as classes intermediárias são as mais difíceis. |
 | **LLM multimodal na nuvem** (Gemini, Claude, GPT) via backend | Não | Não | Baixo (dias) | Menos de US$ 1 por 1.000 fotos nos modelos mais baratos | Extra opcional (decisão em 22/11) e plano B de emergência. Cerca de 80% em frutas comuns com boa foto; pior em campo. |
@@ -178,7 +187,7 @@ Tudo isto já está no notebook `ml/01_treino_classificador.ipynb` do repositór
 3. Treinar a partir dos pesos pré-treinados: `YOLO('yolo26n-cls.pt').train(data='caminho/do/dataset', epochs=50, imgsz=224)`.
 4. Salvar no Google Drive com `save_period`. Se o Colab cair (as sessões gratuitas duram no máximo 12 h), retomar com `resume=True` a partir do `last.pt`.
 5. Validar com `val()` e olhar a matriz de confusão. Separar treino e teste por fruto ou lote, nunca por foto, para não vazar informação.
-6. Exportar com `export(format='litert')` (Android) e `export(format='coreml')` (iPhone), usando o mesmo tamanho de imagem do treino.
+6. Exportar com `export(format='litert')`, usando o mesmo tamanho de imagem do treino. O app usa esse `.tflite` no Android e no iOS, porque o `flutter_litert` roda nos dois; o Core ML não é necessário.
 7. Testar cedo com fotos próprias: o maior risco é a diferença entre as fotos do dataset (estufa, esteira) e as de campo.
 
 > [!warn] **Erros que mais travam quem treina YOLO pela primeira vez**
@@ -243,7 +252,7 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 | Componente | Tecnologia | Por quê |
 |---|---|---|
 | **App móvel** | Flutter (Dart), Android primeiro | Um código para Android e iOS, sem código nativo. |
-| **Modelo no aparelho** | YOLO26n-cls exportado para LiteRT (.tflite) e Core ML | 2,8 milhões de parâmetros; roda offline; mesma API do treino. |
+| **Modelo no aparelho** | YOLO26n-cls exportado para LiteRT (.tflite), o mesmo arquivo no Android e no iOS | 1,5 milhão de parâmetros com as 5 classes (log do treino); roda offline; mesma API do treino. |
 | **Inferência** | `flutter_litert` (Apache-2.0), escolhido em 04/11 | Plugin leve: o pré-processamento e as probabilidades ficam no código Dart, onde dá para testar e descrever na Metodologia. Os nomes das classes vêm dos metadados do modelo. O `ultralytics_yolo` (AGPL-3.0) foi deixado de lado porque traz a câmera junto e esconde esses passos. |
 | **Regra de decisão** | Tabela classe → recomendação, em código Dart com testes unitários | Funciona offline e é fácil de descrever no texto. |
 | **Histórico** | SQLite no aparelho | Funciona offline e gera o MER. |
@@ -284,7 +293,7 @@ Uma API pequena em Python + FastAPI, só para chamar um LLM multimodal (ex.: Gem
 
 ## 8. Cronograma semana a semana
 
-Considera a postagem oficial em 12/12 e a meta interna de texto completo em 28/11. Cada semana termina num marco. Se um marco atrasar, corta-se escopo, nunca a escrita. Os colegas revisam quando o Leonardo enviar algo, sem data fixa.
+Considera o último dia do protocolo pós-banca, 10/12, e a meta interna de texto completo (versão pré-banca) em 28/11. Cada semana termina num marco. Se um marco atrasar, corta-se escopo, nunca a escrita. Os colegas revisam quando o Leonardo enviar algo, sem data fixa.
 
 | Semana | Marco no fim da semana | Código e modelo | Texto (Overleaf) |
 |---|---|---|---|
@@ -292,8 +301,8 @@ Considera a postagem oficial em 12/12 e a meta interna de texto completo em 28/1
 | **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | 1º modelo treinado e rodando no app | Treino no Colab; exportar para LiteRT; integrar no app; testar no emulador e num celular; conferir se o app e o Python dão a mesma classe; fotos diárias de teste a partir de 09/11 | Rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os diagramas UML e o MER; revisão do Leonardo |
 | **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Notebook 02 (avaliação nas fotos próprias); limiar de confiança baixa definido na validação; testes em 2 ou 3 celulares e em modo avião; APK para os colegas | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
 | **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Revisão de design do app (alto contraste e botões grandes, RNF05) entre 23 e 25/11; prints depois dela; métricas finais e matriz de confusão; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract |
-| **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Versão revisada pelo professor e pelos colegas | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); README do repositório |
-| **S6** · 07 a 12/12 | **Postagem até 10/12** (oficial: sábado, 12/12) | Congelar modelo, código e APK | PDF final; postagem no Espaço do Aluno |
+| **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Protocolo pré-banca; apresentação à banca, na data que o professor marcar | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); slides para até 15 minutos de apresentação; README do repositório |
+| **S6** · 07 a 10/12 | **Protocolo pós-banca até quinta, 10/12**, por cada integrante | Congelar modelo, código e APK | Correções da banca; PDF final; protocolo do TCC pós-banca no Espaço do Aluno |
 
 > [!tip] **Regra de ouro do cronograma**
 >
@@ -339,9 +348,9 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 - [x] Escolher o dataset público de tomate (Anexo C), mapear as classes e conferir a licença (CC BY 4.0). O download é feito pelo notebook, no Colab.
 - [ ] Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`: uns 20 tomates em estádios variados e numerados, 2 fotos por tomate por dia até 22/11, e o rótulo anotado antes de ver a resposta do modelo.
 - [ ] Ter um baseline na semana 1 (modelo pronto do Hugging Face) para já ter números.
-- [ ] Treinar o YOLO26n-cls (versão do `ultralytics` fixada) e guardar a configuração no repositório.
+- [x] Treinar o YOLO26n-cls (versão do `ultralytics` fixada). A configuração vai para o repositório junto das métricas (`ambiente.json`).
 - [ ] Avaliar: acurácia, precisão, recall, F1 por classe, matriz de confusão e tempo de inferência.
-- [ ] Exportar para o celular (LiteRT e Core ML).
+- [x] Exportar para o celular (LiteRT). O Core ML falhou no Colab e não é usado pelo app.
 - [ ] Registrar cada passo; vira a seção de dados e treinamento da Metodologia.
 
 ### Testes e avaliação
@@ -388,7 +397,7 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 
 | Necessidade | Ferramenta | Observação |
 |---|---|---|
-| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib ficam na pasta tcc-overleaf, fora do repositório do app, compilam localmente com o Tectonic e são reenviados ao Overleaf. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
+| **Escrita** | Overleaf + modelo abnTeX2 | Exigido pelo manual. O Leonardo é o dono do projeto; os arquivos .tex e o .bib ficam na pasta tcc-overleaf (repositório privado `leonardomolinan/tcc-overleaf`), fora do repositório do app, compilam localmente com o Tectonic e são reenviados ao Overleaf. O plano gratuito aceita só 1 colaborador: os revisores leem o PDF, ou um deles entra como colaborador. |
 | **Referências** | Zotero (com extensão do navegador e Better BibTeX) | Exporta o .bib para o Overleaf; evita referência errada. |
 | **Código** | GitHub: leonardomolinan/app-maturacao-tcc (privado), com pastas app/, ml/ e docs/ | README e instruções para agentes (CLAUDE.md); o link vai para o apêndice. |
 | **Tarefas** | GitHub Projects (Kanban) | Colunas: A fazer / Fazendo / Em revisão / Feito. |
@@ -420,7 +429,8 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 | **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Testar com fotos próprias (`ml/protocolo-fotos-proprias.md`); usar data augmentation; relatar como limitação. |
 | **Fotos próprias incompletas no prazo** (o tomate verde leva de 10 a 15 dias para ficar vermelho a 25 °C; Anexo B) | Média | Alto | Comprar tomates em vários estádios no primeiro dia, para ter todas as classes logo; fotografar até 22/11; se faltar alguma classe, relatar o que houver como limitação. |
 | **Recomendação errada em casos limítrofes** (classe “de vez”) | Média | Médio | Mostrar a confiança; mensagem condicional ao destino da venda; pedir nova foto quando a confiança for baixa. |
-| **Prazo curto (postagem em 12/12)** | Alta | Alto | Cronograma semanal com marcos; escrita em paralelo desde a semana 1; escopo congelado em 22/11; versão completa em 28/11. |
+| **Prazo curto (banca e protocolo pós-banca até 10/12)** | Alta | Alto | Cronograma semanal com marcos; escrita em paralelo desde a semana 1; escopo congelado em 22/11; versão completa (pré-banca) em 28/11. Se o professor marcar a banca antes, a meta interna adianta. |
+| **Projeto de TCC sem protocolo deferido** | A confirmar | Alto | Sem ele, o protocolo pré-banca não abre e a V1 não sai. Conferir no Espaço do Aluno nesta semana e, se faltar, protocolar já. |
 | **Uma pessoa executando tudo** | Alta | Alto | Apoio de IA; escopo enxuto; o Leonardo envia partes para os colegas revisarem, para eles acompanharem e dominarem o conteúdo. |
 | **ENADE (29/11), V2 de outras disciplinas (30/11 a 05/12) e estágio competindo por tempo** | Alta | Médio | Texto completo antes do ENADE; a semana da V2 fica só para revisão. |
 | **UML ou MER inconsistentes com o código** | Média | Alto | Diagramas atualizados junto com o código; revisão pelos colegas. |
@@ -618,12 +628,14 @@ _→ Plugin Flutter oficial: Android 7.0+ (LiteRT) e iOS (Core ML), offline._
 
 ## Anexo D · Perguntas para levar ao professor
 
-1. Há prazo interno ou entrega parcial antes de 12/12? A nota do TCC entra como V1, VT ou V2, ou é dada por banca?
-2. O que deve ser postado: só o PDF, ou também código, APK, vídeo e link do GitHub? Cada integrante posta, ou só um?
+1. Quais são as datas do protocolo do TCC pré-banca e da apresentação à banca?
+2. Na apresentação (até 15 minutos, mais 15 de perguntas), quem avalia e se deve ter demonstração do app?
+3. O que vai nos protocolos: só o PDF, ou também código, APK, vídeo e link do GitHub? Cada integrante protocola o mesmo arquivo?
+4. Se o Projeto de TCC ainda não foi protocolado: o que ele deve conter e até quando pode entrar?
 
 > [!info] **Já respondidas**
 >
-> Grupo de 3: aceito. Formato: monografia. Ética: seguimos o manual (sem pesquisa envolvendo pessoas). Uso de IA: liberado como auxílio, segundo o professor Igor (relato de um colega); vamos declarar o uso na monografia. NBR 10520: a de 2023. Dataset: público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação.
+> Grupo de 3: aceito. Formato: monografia. Ética: seguimos o manual (sem pesquisa envolvendo pessoas). Uso de IA: liberado como auxílio, segundo o professor Igor (relato de um colega); vamos declarar o uso na monografia. NBR 10520: a de 2023. Dataset: público, com treino do nosso próprio modelo; o modelo pronto do Hugging Face serve só de comparação. Entregas e notas (orientações de 29/07/2026): três protocolos (Projeto de TCC, TCC pré-banca e TCC pós-banca), com a banca entre o segundo e o terceiro; o Projeto deferido libera a V1, e o pós-banca, a V2 e a nota do TCC, até 10/12.
 
 ### Checklist individual de cada integrante
 
