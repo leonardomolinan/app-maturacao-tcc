@@ -165,9 +165,11 @@ Fica em `lib/dominio/regra_decisao.dart`:
 - passado → colher já ou descartar;
 - outro, ou confiança abaixo do limiar → tirar nova foto.
 
-**Pendente:** o limiar de confiança baixa (`limiarConfiancaBaixaPendente`) está
-com um valor provisório (0,5) que **não foi medido**. Ele precisa ser definido
-na validação do modelo e registrado na Metodologia.
+O limiar de confiança baixa (`limiarConfiancaBaixa`, em
+`lib/dominio/regra_decisao.dart`) é 0,47. Ele foi escolhido em 16/11/2026 com
+as imagens de validação do dataset, no notebook `ml/02_limiar_e_paridade.ipynb`:
+é o maior valor em que as imagens de validação com confiança abaixo dele erram
+mais do que acertam. Se o modelo mudar, o limiar precisa ser escolhido de novo.
 
 ## Banco de dados (base do MER)
 
@@ -200,13 +202,20 @@ a remoção do EXIF, o banco SQLite e as telas (modelo ausente, resultado e
 pergunta do destino). Os valores fixos dos testes são só entradas de teste; os
 testes não executam nenhum modelo.
 
+`integration_test/paridade_test.dart` roda no emulador ou num celular, com o
+modelo real: classifica as imagens de teste do dataset pelo mesmo caminho do app
+(`limparFoto` e `ClassificadorLitert`) e grava classe e probabilidades num CSV,
+que o notebook `ml/02_limiar_e_paridade.ipynb` compara com o Python. Os comandos
+estão no começo do arquivo e na seção 6 do notebook.
+
 ## Pendências
 
-- Testar o fluxo de foto e análise, com o `.tflite` real, no emulador e num celular.
-- Integrar o `.tflite` real quando o treino sair e conferir, com as mesmas fotos,
-  que o app dá a mesma classe que o Python (o redimensionamento pode mudar um
-  pouco a confiança).
-- Definir o limiar de confiança baixa a partir da validação do modelo.
+- Testar o fluxo de foto e análise num celular de verdade (no emulador, já
+  funciona com o modelo).
+- Comparar o app com o Python em fotos grandes, que o app reduz. Em 16/11/2026,
+  nas 918 imagens de teste do dataset (160 px, que o app amplia), o app deu a
+  mesma classe que o Python em 897 (97,7%), depois de passar a usar a
+  interpolação bilinear na ampliação; antes, eram 879 (95,8%).
 - iOS: o build não foi testado. Com o `flutter_litert`, o iPhone usa o mesmo
   `.tflite`; a exportação para Core ML fica opcional.
 - Guia de enquadramento: hoje há uma ilustração na tela inicial e a conferência

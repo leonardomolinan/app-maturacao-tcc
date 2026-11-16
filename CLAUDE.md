@@ -39,7 +39,7 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 - Código, nomes e textos da interface em português do Brasil.
 - Nada de classificador falso: sem o `.tflite` em `app/assets/models/`, o app mostra o aviso de modelo ausente. Valores fixos só nos testes.
 - Os nomes das classes vêm dos metadados do modelo, nunca de uma ordem fixa no código.
-- O limiar de confiança baixa (`limiarConfiancaBaixaPendente` em `app/lib/dominio/regra_decisao.dart`) é provisório e não foi medido; ele só muda com um valor vindo da validação do modelo.
+- O limiar de confiança baixa (`limiarConfiancaBaixa` em `app/lib/dominio/regra_decisao.dart`) é 0,47, escolhido em 16/11/2026 com as imagens de validação (notebook `ml/02_limiar_e_paridade.ipynb`); ele só muda com um valor vindo de uma nova validação do modelo.
 - Ao mexer no app, rode `flutter analyze` e `flutter test` dentro de `app/`. Se mudar a tabela `analise`, atualize o MER e a tabela do `app/README.md`.
 
 ## Termos

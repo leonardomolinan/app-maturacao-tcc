@@ -3,6 +3,7 @@
 | Arquivo | O que faz |
 |---|---|
 | `01_treino_classificador.ipynb` | Treina o YOLO26n-cls nas classes verde, de vez, maduro, passado e outro, com o dataset público fixado num commit; avalia no teste do dataset; exporta para LiteRT e Core ML |
+| `02_limiar_e_paridade.ipynb` | Escolhe o limiar de confiança baixa com as imagens de validação, mede o efeito no teste e compara, imagem a imagem, as previsões do app (teste `app/integration_test/paridade_test.dart`) com as do Python. Roda no Colab ou num computador com Python 3.13 |
 | `protocolo-fotos-proprias.md` | Como montar um conjunto de teste com fotos próprias: quantos tomates, como marcar, rotina diária e critério das classes. Não foi executado: em 16/11/2026, a avaliação com fotos próprias virou trabalho futuro |
 
 ## Como rodar o treino no Colab
@@ -32,6 +33,6 @@ Tudo vai para `MyDrive/tcc-maturacao/` no Google Drive:
 
 1. Copie o `.tflite` de `exports/<experimento>/` para `app/assets/models/`. Deixe só um `.tflite` na pasta.
 2. Copie `results.csv`, `metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `args.yaml` para `ml/resultados/<experimento>/`. São os números que vão para a monografia, por isso ficam versionados. O `args.yaml` traz todos os hiperparâmetros do treino, inclusive os padrões do pacote.
-3. Rode o app no emulador ou no celular e confira, com as mesmas fotos, se ele dá a mesma classe que o Python.
+3. Rode o notebook `02_limiar_e_paridade.ipynb`. Ele escolhe o limiar de confiança na validação e compara o app com o Python nas imagens de teste; a seção 6 dele explica como rodar o teste do app no emulador ou no celular.
 
 Datasets, pesos (`.pt`) e execuções não vão para o git. Entram no repositório só o modelo exportado que o app usa, em `app/assets/models/`, e os arquivos de métricas, em `ml/resultados/`.

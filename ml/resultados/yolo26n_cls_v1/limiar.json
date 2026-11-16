@@ -1,0 +1,37 @@
+{
+  "regra": "maior limiar, de 0,20 a 0,99, em que as imagens de validação abaixo dele têm acurácia abaixo de 50%",
+  "limiar": 0.47,
+  "validacao": {
+    "limiar": 0.47,
+    "imagens": 9279,
+    "aceitas": 9270,
+    "fracao_aceitas": 0.9990300678952473,
+    "acuracia_aceitas": 0.9607335490830636,
+    "rejeitadas": 9,
+    "erros_rejeitados": 5,
+    "acertos_rejeitados": 4,
+    "acuracia_rejeitadas": 0.4444444444444444
+  },
+  "teste": {
+    "limiar": 0.47,
+    "imagens": 918,
+    "aceitas": 916,
+    "fracao_aceitas": 0.9978213507625272,
+    "acuracia_aceitas": 0.8493449781659389,
+    "rejeitadas": 2,
+    "erros_rejeitados": 1,
+    "acertos_rejeitados": 1,
+    "acuracia_rejeitadas": 0.5
+  },
+  "teste_com_limiar_provisorio_0_5": {
+    "limiar": 0.5,
+    "imagens": 918,
+    "aceitas": 915,
+    "fracao_aceitas": 0.9967320261437909,
+    "acuracia_aceitas": 0.8502732240437159,
+    "rejeitadas": 3,
+    "erros_rejeitados": 2,
+    "acertos_rejeitados": 1,
+    "acuracia_rejeitadas": 0.3333333333333333
+  }
+}

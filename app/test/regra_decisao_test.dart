@@ -93,10 +93,10 @@ void main() {
     });
   });
 
-  test('o limiar padrão do app continua marcado como pendente', () {
-    // Quando o limiar vier da validação do modelo, troque a constante para
-    // false e atualize este teste.
-    expect(limiarConfiancaAindaPendente, isTrue);
-    expect(const RegraDecisao().limiarConfianca, limiarConfiancaBaixaPendente);
+  test('o limiar padrão do app é o escolhido na validação do modelo', () {
+    // Valor do notebook ml/02_limiar_e_paridade.ipynb (limiar.json).
+    expect(limiarConfiancaAindaPendente, isFalse);
+    expect(limiarConfiancaBaixa, 0.47);
+    expect(const RegraDecisao().limiarConfianca, limiarConfiancaBaixa);
   });
 }

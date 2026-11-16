@@ -58,14 +58,15 @@ Float32List preprocessar(
 ///
 /// 1. para entrada quadrada, recorta o quadrado central (equivale a
 ///    redimensionar o menor lado e fazer o `CenterCrop`);
-/// 2. redimensiona para [largura] × [altura] (média de área, que se aproxima
-///    do redimensionamento com antialias do PIL usado no treino);
+/// 2. redimensiona para [largura] × [altura]. Para reduzir (o caso das fotos
+///    do celular), usa a média de área, que se aproxima do redimensionamento
+///    com antialias do PIL usado pelo `ultralytics`. Para ampliar (imagens
+///    menores que a entrada do modelo), usa a interpolação bilinear, como o
+///    PIL: nesse caso, a média de área do pacote `image` vira vizinho mais
+///    próximo, e a comparação com o Python mostrou que isso muda a classe de
+///    algumas imagens (notebook `ml/02_limiar_e_paridade.ipynb`);
 /// 3. converte para RGB entre 0 e 1, sem subtrair média nem dividir por
 ///    desvio (o `ultralytics` usa média 0 e desvio 1 por padrão).
-///
-/// PENDENTE: conferir, com o modelo real, que o app e o Python dão a mesma
-/// classe para as mesmas fotos (diferenças pequenas de redimensionamento
-/// podem mudar a confiança).
 Float32List preprocessarImagem(
   img.Image imagem, {
   required int largura,
@@ -95,7 +96,9 @@ Float32List preprocessarImagem(
           recorte,
           width: largura,
           height: altura,
-          interpolation: img.Interpolation.average,
+          interpolation: recorte.width < largura
+              ? img.Interpolation.linear
+              : img.Interpolation.average,
         );
 
   final plano = largura * altura;

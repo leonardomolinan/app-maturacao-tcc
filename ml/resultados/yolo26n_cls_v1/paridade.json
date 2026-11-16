@@ -1,0 +1,508 @@
+{
+  "app_atual": {
+    "imagens": 918,
+    "mesma_classe": 897,
+    "fracao_mesma_classe": 0.9771241830065359,
+    "acertos_app": 783,
+    "acertos_python": 779,
+    "diferenca_confianca_mediana": 0.004300999999999999,
+    "diferenca_confianca_media": 0.01596256209150327,
+    "maior_diferenca_probabilidade": 0.332244,
+    "tempo_inferencia_ms_mediana": 64.75,
+    "divergencias": [
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-1037-_jpg.rf.9599652e6b0dac70dc381ac084f6d343_1.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.525856,
+        "app": "verde",
+        "confianca_app": 0.51669
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-1441-_jpg.rf.fedbf7770dfea4b5aea0e8ec2dcf71bc_0.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.646703,
+        "app": "verde",
+        "confianca_app": 0.526801
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_1.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.555839,
+        "app": "maduro",
+        "confianca_app": 0.520147
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_24.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.502414,
+        "app": "maduro",
+        "confianca_app": 0.524321
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_21.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.52416,
+        "app": "verde",
+        "confianca_app": 0.542947
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-55-_jpg.rf.9a010c4cf305dd64114a37905cbfff45_12.jpg",
+        "python": "maduro",
+        "confianca_python": 0.476821,
+        "app": "de_vez",
+        "confianca_app": 0.47684
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-55-_jpg.rf.9a010c4cf305dd64114a37905cbfff45_13.jpg",
+        "python": "maduro",
+        "confianca_python": 0.502382,
+        "app": "de_vez",
+        "confianca_app": 0.561305
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_30.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.521134,
+        "app": "maduro",
+        "confianca_app": 0.530601
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-1021-_jpg.rf.c09e7e4aa7f09c82971d43eb9c38e641_17.jpg",
+        "python": "passado",
+        "confianca_python": 0.513206,
+        "app": "maduro",
+        "confianca_app": 0.631806
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-122-_jpg.rf.e261f1df016d1c97517b9108a2f43dac_43.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.540692,
+        "app": "maduro",
+        "confianca_app": 0.583305
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_31.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.517192,
+        "app": "maduro",
+        "confianca_app": 0.563047
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-394-_jpg.rf.684b110b548f5f5e766bc81f2cf34e19_1.jpg",
+        "python": "passado",
+        "confianca_python": 0.358632,
+        "app": "outro",
+        "confianca_app": 0.274405
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-695-_jpg.rf.21327f37ed93028687070f2a804ef25e_11.jpg",
+        "python": "passado",
+        "confianca_python": 0.639757,
+        "app": "maduro",
+        "confianca_app": 0.519768
+      },
+      {
+        "classe_real": "passado",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_16.jpg",
+        "python": "passado",
+        "confianca_python": 0.703367,
+        "app": "maduro",
+        "confianca_app": 0.534535
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-1092-_jpg.rf.7c7568bbaa1ffaaca98ec2609d904fae_4.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.549643,
+        "app": "verde",
+        "confianca_app": 0.610608
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-1185-_jpg.rf.506d0f52b42b7a6ef076b55dea619551_13.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.517857,
+        "app": "verde",
+        "confianca_app": 0.568738
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-183-_jpg.rf.d13c3c21781c7b66b5708a3274455de6_10.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.542968,
+        "app": "verde",
+        "confianca_app": 0.573794
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-183-_jpg.rf.d13c3c21781c7b66b5708a3274455de6_21.jpg",
+        "python": "verde",
+        "confianca_python": 0.525346,
+        "app": "de_vez",
+        "confianca_app": 0.514779
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_9.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.587803,
+        "app": "verde",
+        "confianca_app": 0.523221
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-65-_jpg.rf.035ea3ffecf8fe5f193d0fa3ece96495_7.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.551559,
+        "app": "verde",
+        "confianca_app": 0.513106
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_16.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.52057,
+        "app": "verde",
+        "confianca_app": 0.593736
+      }
+    ]
+  },
+  "app_com_media_de_area": {
+    "imagens": 918,
+    "mesma_classe": 879,
+    "fracao_mesma_classe": 0.9575163398692811,
+    "acertos_app": 778,
+    "acertos_python": 779,
+    "diferenca_confianca_mediana": 0.008495500000000045,
+    "diferenca_confianca_media": 0.027823209150326798,
+    "maior_diferenca_probabilidade": 0.998833,
+    "tempo_inferencia_ms_mediana": 64.80000000000001,
+    "divergencias": [
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-126-_jpg.rf.be381e744370a93ea8aa3ef0c6f7dd00_20.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.594429,
+        "app": "verde",
+        "confianca_app": 0.548349
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-1441-_jpg.rf.fedbf7770dfea4b5aea0e8ec2dcf71bc_0.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.646703,
+        "app": "verde",
+        "confianca_app": 0.518227
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-1441-_jpg.rf.fedbf7770dfea4b5aea0e8ec2dcf71bc_4.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.557788,
+        "app": "maduro",
+        "confianca_app": 0.507231
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_1.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.555839,
+        "app": "maduro",
+        "confianca_app": 0.514765
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_24.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.502414,
+        "app": "maduro",
+        "confianca_app": 0.526731
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_26.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.617848,
+        "app": "maduro",
+        "confianca_app": 0.530993
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-192-_jpg.rf.b8f686cd96fb97a8d190979419e3b688_26.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.649828,
+        "app": "verde",
+        "confianca_app": 0.58765
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_15.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.641483,
+        "app": "verde",
+        "confianca_app": 0.510316
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_21.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.52416,
+        "app": "verde",
+        "confianca_app": 0.64045
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-55-_jpg.rf.9a010c4cf305dd64114a37905cbfff45_12.jpg",
+        "python": "maduro",
+        "confianca_python": 0.476821,
+        "app": "de_vez",
+        "confianca_app": 0.556907
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-55-_jpg.rf.9a010c4cf305dd64114a37905cbfff45_13.jpg",
+        "python": "maduro",
+        "confianca_python": 0.502382,
+        "app": "de_vez",
+        "confianca_app": 0.588797
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_30.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.521134,
+        "app": "maduro",
+        "confianca_app": 0.506783
+      },
+      {
+        "classe_real": "de_vez",
+        "arquivo": "def__dataset-71-_jpg.rf.1487b5b73d77b578585dcb7d08839a57_16.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.538788,
+        "app": "maduro",
+        "confianca_app": 0.570156
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-1021-_jpg.rf.c09e7e4aa7f09c82971d43eb9c38e641_17.jpg",
+        "python": "passado",
+        "confianca_python": 0.513206,
+        "app": "maduro",
+        "confianca_app": 0.543226
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-122-_jpg.rf.e261f1df016d1c97517b9108a2f43dac_34.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.503286,
+        "app": "maduro",
+        "confianca_app": 0.514516
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-122-_jpg.rf.e261f1df016d1c97517b9108a2f43dac_43.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.540692,
+        "app": "maduro",
+        "confianca_app": 0.648972
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-1436-_jpg.rf.3bada45db67ee432d8380fd747750cfa_6.jpg",
+        "python": "maduro",
+        "confianca_python": 0.727928,
+        "app": "passado",
+        "confianca_app": 0.57602
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-183-_jpg.rf.d13c3c21781c7b66b5708a3274455de6_4.jpg",
+        "python": "passado",
+        "confianca_python": 0.572965,
+        "app": "maduro",
+        "confianca_app": 0.459615
+      },
+      {
+        "classe_real": "maduro",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_31.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.517192,
+        "app": "maduro",
+        "confianca_app": 0.551057
+      },
+      {
+        "classe_real": "outro",
+        "arquivo": "outro_test_00091.jpg",
+        "python": "outro",
+        "confianca_python": 0.99999,
+        "app": "verde",
+        "confianca_app": 0.558485
+      },
+      {
+        "classe_real": "outro",
+        "arquivo": "outro_test_00114.jpg",
+        "python": "outro",
+        "confianca_python": 0.999103,
+        "app": "verde",
+        "confianca_app": 0.999647
+      },
+      {
+        "classe_real": "outro",
+        "arquivo": "outro_test_00142.jpg",
+        "python": "outro",
+        "confianca_python": 0.940185,
+        "app": "verde",
+        "confianca_app": 0.868273
+      },
+      {
+        "classe_real": "outro",
+        "arquivo": "outro_test_00143.jpg",
+        "python": "outro",
+        "confianca_python": 0.999965,
+        "app": "verde",
+        "confianca_app": 0.855646
+      },
+      {
+        "classe_real": "passado",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_16.jpg",
+        "python": "passado",
+        "confianca_python": 0.703367,
+        "app": "maduro",
+        "confianca_app": 0.722808
+      },
+      {
+        "classe_real": "passado",
+        "arquivo": "def__dataset-192-_jpg.rf.b8f686cd96fb97a8d190979419e3b688_15.jpg",
+        "python": "passado",
+        "confianca_python": 0.844324,
+        "app": "maduro",
+        "confianca_app": 0.621322
+      },
+      {
+        "classe_real": "passado",
+        "arquivo": "def__dataset-214-_jpg.rf.73610289fdaeb9e6929753618e479076_4.jpg",
+        "python": "passado",
+        "confianca_python": 0.782988,
+        "app": "maduro",
+        "confianca_app": 0.687749
+      },
+      {
+        "classe_real": "passado",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_7.jpg",
+        "python": "passado",
+        "confianca_python": 0.869495,
+        "app": "maduro",
+        "confianca_app": 0.506971
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-1092-_jpg.rf.7c7568bbaa1ffaaca98ec2609d904fae_4.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.549643,
+        "app": "verde",
+        "confianca_app": 0.621357
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-1185-_jpg.rf.506d0f52b42b7a6ef076b55dea619551_13.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.517857,
+        "app": "verde",
+        "confianca_app": 0.614512
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-183-_jpg.rf.d13c3c21781c7b66b5708a3274455de6_10.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.542968,
+        "app": "verde",
+        "confianca_app": 0.831275
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-183-_jpg.rf.d13c3c21781c7b66b5708a3274455de6_20.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.623262,
+        "app": "verde",
+        "confianca_app": 0.534084
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-189-_jpg.rf.4fc10c5ca24c06260c15111537792273_9.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.587803,
+        "app": "verde",
+        "confianca_app": 0.664967
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-65-_jpg.rf.035ea3ffecf8fe5f193d0fa3ece96495_13.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.639309,
+        "app": "verde",
+        "confianca_app": 0.511303
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-65-_jpg.rf.035ea3ffecf8fe5f193d0fa3ece96495_7.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.551559,
+        "app": "verde",
+        "confianca_app": 0.633385
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_16.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.52057,
+        "app": "verde",
+        "confianca_app": 0.771488
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_2.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.621071,
+        "app": "verde",
+        "confianca_app": 0.503613
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-70-_jpg.rf.090ee792ed0202c5dcd3bf9f0c53aa01_3.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.561273,
+        "app": "verde",
+        "confianca_app": 0.572406
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-71-_jpg.rf.1487b5b73d77b578585dcb7d08839a57_10.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.583516,
+        "app": "verde",
+        "confianca_app": 0.544596
+      },
+      {
+        "classe_real": "verde",
+        "arquivo": "def__dataset-71-_jpg.rf.1487b5b73d77b578585dcb7d08839a57_8.jpg",
+        "python": "de_vez",
+        "confianca_python": 0.618416,
+        "app": "verde",
+        "confianca_app": 0.525417
+      }
+    ]
+  }
+}

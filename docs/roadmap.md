@@ -5,12 +5,12 @@
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
 **Situação em 16/11:**
-- **App:** pronto e com o modelo desde 16/11. No emulador, três imagens de validação do dataset deram as mesmas classes que o Python (maduro, verde e outro), com a recomendação certa. Faltam a câmera, um celular de verdade e o modo avião.
+- **App:** pronto e com o modelo desde 16/11. No emulador, ele deu a mesma classe que o Python em 897 das 918 imagens de teste (97,7%), depois de uma correção no redimensionamento das imagens pequenas; o limiar de confiança baixa ficou em 0,47, escolhido na validação (notebook 02). Faltam a câmera, um celular de verdade e o modo avião.
 - **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Em 16/11, o `.tflite` foi para `app/assets/models/`, e as métricas, para `ml/resultados/yolo26n_cls_v1/`. No teste do dataset: acurácia de 84,9% e F1 macro de 0,858 (96,0% na validação).
 - **Fotos próprias de teste:** não foram tiradas. Em 16/11, a avaliação com fotos de campo virou trabalho futuro: o modelo é avaliado só na partição de teste do dataset, e a monografia trata isso como a principal limitação.
-- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Faltam o limiar de confiança, a comparação entre o app e o Python, os testes no celular, os prints do app, a Conclusão e o Resumo.
+- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Também entraram o limiar de confiança e a comparação entre o app e o Python. Faltam os testes no celular, os prints do app, a Conclusão e o Resumo.
 - **Entregas:** três protocolos no Espaço do Aluno (seção 2). Falta confirmar se o Projeto de TCC já foi protocolado. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
-- **Gargalo:** o limiar de confiança e a comparação entre o app e o Python, que pedem rodar o modelo de novo nas imagens de validação e de teste (no Colab), e os testes e prints no celular.
+- **Gargalo:** os testes e os prints no celular, a partir de 17/11, e a escrita da Conclusão, do Resumo e da Introdução final.
 
 ### O que precisa ser entregue
 
@@ -75,7 +75,7 @@ Falta nesta semana:
 - [x] Rodar o notebook no Colab: feito entre 10 e 11/11 (50 épocas em 4,6 h numa T4). O `.tflite` foi exportado; o Core ML falhou, mas o app não usa Core ML.
 - [x] Trazer do Drive o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json`, `results.csv` e `args.yaml`): feito em 16/11.
 - ~~Comprar uns 20 tomates em estádios variados e fotografar todo dia até 22/11, seguindo o protocolo.~~ Cancelado em 16/11: as fotos não foram tiradas e viraram trabalho futuro.
-- [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos. No emulador, feito em 16/11 com três imagens de validação; faltam o celular e uma comparação com mais imagens.
+- [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos. No emulador, feito em 16/11 com as 918 imagens de teste (97,7% de concordância, notebook 02); falta o celular.
 - [ ] Conferir no Espaço do Aluno se o Projeto de TCC (1ª etapa) já foi protocolado e deferido para os três. Sem ele, o protocolo pré-banca não abre e a V1 não sai.
 - [ ] Levar ao professor as perguntas que restam (Anexo D), entre elas as datas do protocolo pré-banca e da apresentação.
 - [x] Importar o projeto no Overleaf: feito em 10/11.
@@ -241,7 +241,7 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 3. Desenvolver o aplicativo em Flutter com inferência no aparelho, regra de decisão e histórico.
 4. Avaliar o app no celular: tempo de resposta e funcionamento offline.
 
-**Hipótese:** o classificador embarcado atinge acurácia de pelo menos **[META A DEFINIR COM O PROFESSOR]** na partição de teste do dataset público, responde em poucos segundos e funciona sem internet.
+**Hipótese:** o classificador embarcado atinge acurácia de pelo menos **80%** nas quatro classes de maturação da partição de teste do dataset público, responde em poucos segundos e funciona sem internet. A meta segue os 80,8% do classificador publicado pelo autor do dataset, número que já estava neste plano (seção 4.2) antes do treino. No teste, o modelo teve 81,9% nas quatro classes (16/11); falta mostrar a meta ao professor.
 
 **O que nos diferencia:** o antecedente mais próximo é o trabalho da UFU com café: um artigo com o modelo (MobileNet, 93% de acurácia na decisão "colher" ou "não colher") e uma dissertação do mesmo grupo com protótipos de app Android com TensorFlow Lite. Nosso trabalho se diferencia pela cultura (tomate), pelo modelo recente (YOLO26), pelo app em Flutter (Android e iOS) e pelo tempo de resposta medido no aparelho. Se um dos extras de 22/11 entrar, ele reforça a contribuição.
 
@@ -299,7 +299,7 @@ Considera o último dia do protocolo pós-banca, 10/12, e a meta interna de text
 |---|---|---|---|
 | **S1** · 03 a 08/11 | Escopo fechado; app validado; Overleaf criado | Dataset escolhido e classes mapeadas (feito); notebook pronto (feito); app compilado, com 58 testes passando e aberto no emulador (feito em 04/11). O 1º treino passou para a S2 | Projeto abnTeX2 (feito; falta importar); Introdução em rascunho (feito); requisitos (feito) |
 | **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | 1º modelo treinado e rodando no app | Treino no Colab; exportar para LiteRT; integrar no app; testar no emulador e num celular; conferir se o app e o Python dão a mesma classe; fotos diárias de teste a partir de 09/11 | Rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os diagramas UML e o MER; revisão do Leonardo |
-| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Limiar de confiança baixa definido na validação; paridade entre o app e o Python; testes em 2 ou 3 celulares e em modo avião; APK para os colegas. As fotos próprias saíram em 16/11 | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
+| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Limiar de confiança baixa definido na validação e paridade entre o app e o Python (feitos em 16/11); testes em 2 ou 3 celulares e em modo avião; APK para os colegas. As fotos próprias saíram em 16/11 | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
 | **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Revisão de design do app (alto contraste e botões grandes, RNF05) entre 23 e 25/11; prints depois dela; métricas finais e matriz de confusão; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract |
 | **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Protocolo pré-banca; apresentação à banca, na data que o professor marcar | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); slides para até 15 minutos de apresentação; README do repositório |
 | **S6** · 07 a 10/12 | **Protocolo pós-banca até quinta, 10/12**, por cada integrante | Congelar modelo, código e APK | Correções da banca; PDF final; protocolo do TCC pós-banca no Espaço do Aluno |
@@ -349,9 +349,10 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 - ~~Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`.~~ Cancelado em 16/11: virou trabalho futuro, e o protocolo fica como proposta.
 - [ ] Ter um baseline na semana 1 (modelo pronto do Hugging Face) para já ter números.
 - [x] Treinar o YOLO26n-cls (versão do `ultralytics` fixada). A configuração vai para o repositório junto das métricas (`ambiente.json`).
-- [ ] Avaliar: acurácia, precisão, recall, F1 por classe, matriz de confusão e tempo de inferência.
+- [ ] Avaliar: acurácia, precisão, recall, F1 por classe e matriz de confusão (feito em 16/11); falta o tempo de inferência no celular.
 - [x] Exportar para o celular (LiteRT). O Core ML falhou no Colab e não é usado pelo app.
-- [ ] Registrar cada passo; vira a seção de dados e treinamento da Metodologia.
+- [x] Registrar cada passo; vira a seção de dados e treinamento da Metodologia (feito em 16/11).
+- [x] Limiar de confiança baixa escolhido na validação: 0,47 (notebook 02, 16/11).
 
 ### Testes e avaliação
 

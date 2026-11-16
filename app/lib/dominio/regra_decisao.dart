@@ -2,18 +2,19 @@ import 'classe_maturacao.dart';
 import 'destino.dart';
 import 'recomendacao.dart';
 
-/// PENDENTE: limiar de confiança baixa.
+/// Limiar de confiança baixa: abaixo dele, o app pede uma nova foto.
 ///
-/// Este valor é PROVISÓRIO e NÃO foi medido: está aqui só para o app ter um
-/// comportamento definido enquanto o modelo não é treinado e validado. Ele
-/// deve ser escolhido a partir da validação do modelo (por exemplo, olhando
-/// acurácia e cobertura por faixa de confiança no conjunto de fotos próprias)
-/// e registrado na Metodologia. Não usar este número como resultado do TCC.
-const double limiarConfiancaBaixaPendente = 0.5;
+/// Escolhido com as imagens de validação do dataset no notebook
+/// `ml/02_limiar_e_paridade.ipynb`, para o modelo `yolo26n_cls_v1`: é o maior
+/// valor, de 0,20 a 0,99, em que as imagens de validação com confiança abaixo
+/// dele erram mais do que acertam (`ml/resultados/yolo26n_cls_v1/limiar.json`).
+/// Se o modelo mudar, o limiar precisa ser escolhido de novo.
+const double limiarConfiancaBaixa = 0.47;
 
-/// Indica que [limiarConfiancaBaixaPendente] ainda não foi definido por medição.
-/// Mudar para `false` só quando o valor vier da validação do modelo.
-const bool limiarConfiancaAindaPendente = true;
+/// Indica se [limiarConfiancaBaixa] ainda é provisório. Passou a `false` em
+/// 16/11/2026, quando o valor veio da validação do modelo; volte para `true`
+/// se trocar o modelo sem escolher o limiar de novo.
+const bool limiarConfiancaAindaPendente = false;
 
 /// Regra fixa que transforma a classe do modelo em recomendação.
 ///
@@ -25,7 +26,7 @@ const bool limiarConfiancaAindaPendente = true;
 ///
 /// A confiança é a probabilidade (0 a 1) que o modelo deu à classe escolhida.
 class RegraDecisao {
-  const RegraDecisao({this.limiarConfianca = limiarConfiancaBaixaPendente})
+  const RegraDecisao({this.limiarConfianca = limiarConfiancaBaixa})
       : assert(limiarConfianca >= 0 && limiarConfianca <= 1);
 
   /// Confiança mínima para aceitar a classe. Abaixo dela, pede nova foto.
