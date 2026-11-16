@@ -17,8 +17,17 @@ Verificado em 04/11/2026 num Mac com Apple silicon, usando Flutter 3.47.9
 - emulador Android 36 (arm64): o app abre, mostra o aviso "Modelo de IA não
   encontrado" com os botões de análise desligados, e o histórico abre vazio.
 
-Ainda **não** foram testados: tirar ou escolher foto e analisar (dependem do
-`.tflite`), um celular de verdade e o iOS.
+Em 16/11/2026, com o modelo treinado (`assets/models/best.tflite`, experimento
+`yolo26n_cls_v1`), `flutter analyze`, `flutter test` e o APK de debug passaram
+de novo. No emulador, o app leu as 5 classes dos metadados do modelo e analisou
+imagens de validação do dataset escolhidas pela galeria. Um tomate maduro deu
+maduro (colher), um verde deu verde (esperar), e um recorte de fundo deu outro
+(nova foto). São as mesmas classes que o Python deu a essas imagens no treino
+(`val_batch0_pred.jpg`). O mesmo recorte de fundo, cortado de outro jeito, saiu
+como verde, com 62,9% de confiança.
+
+Ainda **não** foram testados: a câmera, um celular de verdade, o modo avião e o
+iOS.
 
 As pastas `android/` e `ios/` já foram geradas com
 `flutter create --org br.tcc --project-name maturacao_tomate --platforms android,ios .`
@@ -140,7 +149,7 @@ lib/
   fotos/                     escolha da foto, remoção do EXIF/GPS e armazenamento
   ui/                        telas: início (guia de enquadramento), conferir foto,
                              resultado e histórico
-assets/models/               o .tflite do modelo (não versionado até o treino sair)
+assets/models/               o .tflite do modelo (best.tflite, versionado desde 16/11/2026)
 test/                        testes de unidade e de tela
 android/, ios/               projetos nativos gerados pelo flutter create
 ```

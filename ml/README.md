@@ -3,8 +3,7 @@
 | Arquivo | O que faz |
 |---|---|
 | `01_treino_classificador.ipynb` | Treina o YOLO26n-cls nas classes verde, de vez, maduro, passado e outro, com o dataset público fixado num commit; avalia no teste do dataset; exporta para LiteRT e Core ML |
-| `protocolo-fotos-proprias.md` | Como montar o conjunto de teste com fotos próprias: quantos tomates, como marcar, rotina diária e critério das classes |
-| `02_...` (a fazer) | Avalia o modelo nas fotos próprias, o teste que responde à pergunta do TCC |
+| `protocolo-fotos-proprias.md` | Como montar um conjunto de teste com fotos próprias: quantos tomates, como marcar, rotina diária e critério das classes. Não foi executado: em 16/11/2026, a avaliação com fotos próprias virou trabalho futuro |
 
 ## Como rodar o treino no Colab
 
@@ -32,7 +31,7 @@ Tudo vai para `MyDrive/tcc-maturacao/` no Google Drive:
 ## Depois do treino
 
 1. Copie o `.tflite` de `exports/<experimento>/` para `app/assets/models/`. Deixe só um `.tflite` na pasta.
-2. Copie `results.csv`, `metricas_teste.json`, `matriz_confusao_teste.png` e `ambiente.json` para `ml/resultados/<experimento>/`. São os números que vão para a monografia, por isso ficam versionados.
+2. Copie `results.csv`, `metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `args.yaml` para `ml/resultados/<experimento>/`. São os números que vão para a monografia, por isso ficam versionados. O `args.yaml` traz todos os hiperparâmetros do treino, inclusive os padrões do pacote.
 3. Rode o app no emulador ou no celular e confira, com as mesmas fotos, se ele dá a mesma classe que o Python.
 
 Datasets, pesos (`.pt`) e execuções não vão para o git. Entram no repositório só o modelo exportado que o app usa, em `app/assets/models/`, e os arquivos de métricas, em `ml/resultados/`.

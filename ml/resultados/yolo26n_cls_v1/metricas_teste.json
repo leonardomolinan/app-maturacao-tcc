@@ -1,0 +1,47 @@
+{
+  "de_vez": {
+    "precision": 0.7967032967032966,
+    "recall": 0.855457227138643,
+    "f1-score": 0.8250355618776671,
+    "support": 339.0
+  },
+  "maduro": {
+    "precision": 0.788659793814433,
+    "recall": 0.7806122448979592,
+    "f1-score": 0.7846153846153846,
+    "support": 196.0
+  },
+  "outro": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 150.0
+  },
+  "passado": {
+    "precision": 0.8478260869565217,
+    "recall": 0.8297872340425532,
+    "f1-score": 0.8387096774193549,
+    "support": 47.0
+  },
+  "verde": {
+    "precision": 0.8963414634146342,
+    "recall": 0.7903225806451613,
+    "f1-score": 0.84,
+    "support": 186.0
+  },
+  "accuracy": 0.8485838779956427,
+  "macro avg": {
+    "precision": 0.865906128177777,
+    "recall": 0.8512358573448633,
+    "f1-score": 0.8576721247824814,
+    "support": 918.0
+  },
+  "weighted avg": {
+    "precision": 0.8510098861134259,
+    "recall": 0.8485838779956427,
+    "f1-score": 0.848726607516181,
+    "support": 918.0
+  },
+  "top1_ultralytics": 0.8485838770866394,
+  "tempo_medio_por_imagem_s_colab": 0.006756906870340173
+}

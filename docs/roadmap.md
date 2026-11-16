@@ -5,12 +5,12 @@
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
 **Situação em 16/11:**
-- **App:** pronto e validado (compila, passa nos 58 testes e abre no emulador); falta colocar o modelo treinado.
-- **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Os arquivos estão no Google Drive do Leonardo (`MyDrive/tcc-maturacao/`) e ainda precisam vir para `app/assets/models/` e `ml/resultados/yolo26n_cls_v1/`.
-- **Fotos próprias de teste:** seguem `ml/protocolo-fotos-proprias.md`; o andamento não foi registrado desde 10/11.
-- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Resultados, Conclusão e Resumo esperam as métricas do modelo.
+- **App:** pronto e com o modelo desde 16/11. No emulador, três imagens de validação do dataset deram as mesmas classes que o Python (maduro, verde e outro), com a recomendação certa. Faltam a câmera, um celular de verdade e o modo avião.
+- **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Em 16/11, o `.tflite` foi para `app/assets/models/`, e as métricas, para `ml/resultados/yolo26n_cls_v1/`. No teste do dataset: acurácia de 84,9% e F1 macro de 0,858 (96,0% na validação).
+- **Fotos próprias de teste:** não foram tiradas. Em 16/11, a avaliação com fotos de campo virou trabalho futuro: o modelo é avaliado só na partição de teste do dataset, e a monografia trata isso como a principal limitação.
+- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Faltam o limiar de confiança, a comparação entre o app e o Python, os testes no celular, os prints do app, a Conclusão e o Resumo.
 - **Entregas:** três protocolos no Espaço do Aluno (seção 2). Falta confirmar se o Projeto de TCC já foi protocolado. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
-- **Gargalo:** trazer as métricas do Drive e testar o modelo no app; depois, avaliar nas fotos próprias (notebook 02).
+- **Gargalo:** o limiar de confiança e a comparação entre o app e o Python, que pedem rodar o modelo de novo nas imagens de validação e de teste (no Colab), e os testes e prints no celular.
 
 ### O que precisa ser entregue
 
@@ -73,12 +73,12 @@ Já feito:
 Falta nesta semana:
 
 - [x] Rodar o notebook no Colab: feito entre 10 e 11/11 (50 épocas em 4,6 h numa T4). O `.tflite` foi exportado; o Core ML falhou, mas o app não usa Core ML.
-- [ ] Trazer do Drive o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `results.csv`).
-- [ ] Comprar uns 20 tomates em estádios variados e fotografar todo dia até 22/11, seguindo o protocolo.
-- [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos.
+- [x] Trazer do Drive o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json`, `results.csv` e `args.yaml`): feito em 16/11.
+- ~~Comprar uns 20 tomates em estádios variados e fotografar todo dia até 22/11, seguindo o protocolo.~~ Cancelado em 16/11: as fotos não foram tiradas e viraram trabalho futuro.
+- [ ] Colocar o `.tflite` no app e testar no emulador e num celular. Conferir se o app dá a mesma classe que o Python nas mesmas fotos. No emulador, feito em 16/11 com três imagens de validação; faltam o celular e uma comparação com mais imagens.
 - [ ] Conferir no Espaço do Aluno se o Projeto de TCC (1ª etapa) já foi protocolado e deferido para os três. Sem ele, o protocolo pré-banca não abre e a V1 não sai.
 - [ ] Levar ao professor as perguntas que restam (Anexo D), entre elas as datas do protocolo pré-banca e da apresentação.
-- [ ] Importar o projeto no Overleaf.
+- [x] Importar o projeto no Overleaf: feito em 10/11.
 - [ ] Revisar os rascunhos da monografia escritos em 10/11.
 
 ## 2. Entregáveis e prazos da disciplina (2026/2)
@@ -172,7 +172,7 @@ O MVP tem três partes, nesta ordem de prioridade:
 
 1. **Núcleo offline:** app Flutter com YOLO26n-cls (classes verde, de vez, maduro, passado e outro), treinado a partir de dataset público de tomate, exportado para LiteRT (.tflite) e lido no app pelo plugin `flutter_litert` (Apache-2.0), o mesmo arquivo no Android e no iPhone.
 2. **Regra de decisão:** cada classe vira "colher" ou "esperar" por uma regra fixa (seção 5.1), com aviso quando a confiança for baixa.
-3. **Avaliação:** conjunto de teste com fotos próprias de tomates fotografados dia a dia. Medir acurácia, F1 por classe, matriz de confusão, tempo de resposta no celular e funcionamento em modo avião.
+3. **Avaliação:** partição de teste do dataset público (acurácia, F1 por classe e matriz de confusão) e, no celular, tempo de resposta e funcionamento em modo avião. A avaliação com fotos próprias, tiradas em campo, virou trabalho futuro em 16/11.
 
 > [!info] **Extras: ponto de decisão em 22/11**
 >
@@ -188,7 +188,7 @@ Tudo isto já está no notebook `ml/01_treino_classificador.ipynb` do repositór
 4. Salvar no Google Drive com `save_period`. Se o Colab cair (as sessões gratuitas duram no máximo 12 h), retomar com `resume=True` a partir do `last.pt`.
 5. Validar com `val()` e olhar a matriz de confusão. Separar treino e teste por fruto ou lote, nunca por foto, para não vazar informação.
 6. Exportar com `export(format='litert')`, usando o mesmo tamanho de imagem do treino. O app usa esse `.tflite` no Android e no iOS, porque o `flutter_litert` roda nos dois; o Core ML não é necessário.
-7. Testar cedo com fotos próprias: o maior risco é a diferença entre as fotos do dataset (estufa, esteira) e as de campo.
+7. Testar cedo com fotos próprias: o maior risco é a diferença entre as fotos do dataset (estufa, esteira) e as de campo. Não foi feito: as fotos próprias viraram trabalho futuro em 16/11.
 
 > [!warn] **Erros que mais travam quem treina YOLO pela primeira vez**
 >
@@ -230,20 +230,20 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 
 ### 5.3 Problema, objetivos e hipótese (rascunho)
 
-**Pergunta de pesquisa:** em que medida um classificador leve, executado no próprio celular e sem conexão com a internet, consegue indicar se o tomate está no ponto de colheita a partir de uma foto tirada no campo? O manual pede uma pergunta que não se responda só com sim ou não.
+**Pergunta de pesquisa:** em que medida um classificador leve, executado no próprio celular e sem conexão com a internet, consegue indicar, a partir da foto de um tomate, se o fruto está no ponto de colheita? O manual pede uma pergunta que não se responda só com sim ou não.
 
 **Objetivo geral:** desenvolver um aplicativo móvel que, a partir de uma foto, classifique a maturação do tomate e recomende colher ou esperar, funcionando sem conexão com a internet.
 
 **Objetivos específicos:**
 
 1. Definir as classes de maturação a partir de escalas de cor de referência (USDA, Portaria 553/1995 e PBMH/CEAGESP).
-2. Treinar e avaliar um classificador leve (YOLO26n-cls) com dataset público e fotos próprias de teste.
+2. Treinar um classificador leve (YOLO26n-cls) com dataset público e avaliá-lo quanto à acurácia e ao F1 por classe.
 3. Desenvolver o aplicativo em Flutter com inferência no aparelho, regra de decisão e histórico.
-4. Avaliar o desempenho no celular: acurácia, F1 por classe, tempo de resposta e funcionamento offline.
+4. Avaliar o app no celular: tempo de resposta e funcionamento offline.
 
-**Hipótese:** o classificador embarcado atinge acurácia de pelo menos **[META A DEFINIR COM O PROFESSOR]** no conjunto de teste com fotos próprias, responde em poucos segundos e funciona sem internet.
+**Hipótese:** o classificador embarcado atinge acurácia de pelo menos **[META A DEFINIR COM O PROFESSOR]** na partição de teste do dataset público, responde em poucos segundos e funciona sem internet.
 
-**O que nos diferencia:** o antecedente mais próximo é o trabalho da UFU com café: um artigo com o modelo (MobileNet, 93% de acurácia na decisão "colher" ou "não colher") e uma dissertação do mesmo grupo com protótipos de app Android com TensorFlow Lite. Nosso trabalho se diferencia pela cultura (tomate), pelo modelo recente (YOLO26), pela avaliação com fotos próprias de campo e pelo app em Flutter (Android e iOS). Se um dos extras de 22/11 entrar, ele reforça a contribuição.
+**O que nos diferencia:** o antecedente mais próximo é o trabalho da UFU com café: um artigo com o modelo (MobileNet, 93% de acurácia na decisão "colher" ou "não colher") e uma dissertação do mesmo grupo com protótipos de app Android com TensorFlow Lite. Nosso trabalho se diferencia pela cultura (tomate), pelo modelo recente (YOLO26), pelo app em Flutter (Android e iOS) e pelo tempo de resposta medido no aparelho. Se um dos extras de 22/11 entrar, ele reforça a contribuição.
 
 > [!info] Rascunho para validar com o professor. O manual pede a Introdução escrita por último, então este texto vai mudar.
 
@@ -299,7 +299,7 @@ Considera o último dia do protocolo pós-banca, 10/12, e a meta interna de text
 |---|---|---|---|
 | **S1** · 03 a 08/11 | Escopo fechado; app validado; Overleaf criado | Dataset escolhido e classes mapeadas (feito); notebook pronto (feito); app compilado, com 58 testes passando e aberto no emulador (feito em 04/11). O 1º treino passou para a S2 | Projeto abnTeX2 (feito; falta importar); Introdução em rascunho (feito); requisitos (feito) |
 | **S2** · 09 a 15/11 (Semana de Extensão; feriado em 15/11) | 1º modelo treinado e rodando no app | Treino no Colab; exportar para LiteRT; integrar no app; testar no emulador e num celular; conferir se o app e o Python dão a mesma classe; fotos diárias de teste a partir de 09/11 | Rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os diagramas UML e o MER; revisão do Leonardo |
-| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Notebook 02 (avaliação nas fotos próprias); limiar de confiança baixa definido na validação; testes em 2 ou 3 celulares e em modo avião; APK para os colegas | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
+| **S3** · 16 a 22/11 (feriado em 20/11) | MVP completo; **ponto de decisão dos extras** | Limiar de confiança baixa definido na validação; paridade entre o app e o Python; testes em 2 ou 3 celulares e em modo avião; APK para os colegas. As fotos próprias saíram em 16/11 | Metodologia final, com os dados reais do treino e os diagramas conferidos com o código; Justificativa da Introdução |
 | **S4** · 23 a 29/11 | **Texto completo em 28/11**; **ENADE em 29/11** | Revisão de design do app (alto contraste e botões grandes, RNF05) entre 23 e 25/11; prints depois dela; métricas finais e matriz de confusão; o extra só se aprovado em 22/11 | Resultados e Discussão; Conclusão; Introdução final; Resumo e Abstract |
 | **S5** · 30/11 a 06/12 (V2 das outras disciplinas) | Protocolo pré-banca; apresentação à banca, na data que o professor marcar | Ajustes só se necessário; vídeo de demonstração | Revisão ABNT (citações, figuras, tabelas e referências); slides para até 15 minutos de apresentação; README do repositório |
 | **S6** · 07 a 10/12 | **Protocolo pós-banca até quinta, 10/12**, por cada integrante | Congelar modelo, código e APK | Correções da banca; PDF final; protocolo do TCC pós-banca no Espaço do Aluno |
@@ -318,7 +318,7 @@ Lista generalista. Vale transformar cada item em cartão no quadro Kanban e queb
 - [ ] Uma página com título provisório, problema, objetivos e hipótese; validar com o professor.
 - [ ] Fichar 4 a 5 trabalhos correlatos e montar a tabela comparativa (rascunho em 10/11, com os números conferidos nos textos completos; falta revisar).
 - [ ] Referencial Teórico, seções 2.1 a 2.7 (rascunho em 10/11; falta revisar).
-- [ ] Metodologia: ferramentas e justificativas, dados, requisitos, UML, MER, plano de testes e a nota de uso de IA (rascunho em 10/11, com os diagramas em TikZ; faltam os dados do treino e das fotos próprias).
+- [ ] Metodologia: ferramentas e justificativas, dados, requisitos, UML, MER, plano de testes e a nota de uso de IA (rascunho em 10/11, com os diagramas em TikZ; faltam os dados do treino).
 - [ ] Resultados e Discussão: métricas, prints, testes e comparação com os correlatos.
 - [ ] Conclusão, Introdução final, Resumo e Abstract.
 - [ ] Revisão ABNT: citações, figuras, tabelas e referências.
@@ -333,20 +333,20 @@ Fica para o fim, quando o app estiver funcionando (23 a 25/11), e antes dos prin
 
 ### App (Flutter)
 
-Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador. Falta o modelo. Dos erros, já estão tratadas a classe "outro" e a confiança baixa; a foto escura ou tremida ficou fora por enquanto.
+Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador. O modelo entrou em 16/11 e funcionou no emulador. Dos erros, já estão tratadas a classe "outro" e a confiança baixa; a foto escura ou tremida ficou fora por enquanto.
 
 - [x] Criar o projeto Flutter (Android primeiro), navegação e tema.
 - [x] Câmera e galeria, com guia de enquadramento: ilustração na tela inicial e conferência do quadrado analisado. Uma moldura sobre a câmera ao vivo exigiria o plugin `camera`.
-- [ ] Integração com o modelo no aparelho (plugin `flutter_litert`): código pronto e testado sem modelo; falta o `.tflite`.
+- [x] Integração com o modelo no aparelho (plugin `flutter_litert`): funcionando no emulador com o modelo treinado (16/11).
 - [x] Tela de resultado: classe, confiança e recomendação, com a pergunta do destino para a classe "de vez".
 - [x] Regra de decisão (código Dart com testes) e histórico em SQLite.
 - [ ] Erros tratados: classe "outro" e confiança baixa (feito); foto escura ou tremida (fora por enquanto).
-- [ ] Gerar o APK para os testes: o de debug já sai; falta gerar com o modelo dentro.
+- [ ] Gerar o APK para os testes: o de debug com o modelo dentro já sai (16/11); falta testá-lo num celular.
 
 ### IA e Dados
 
 - [x] Escolher o dataset público de tomate (Anexo C), mapear as classes e conferir a licença (CC BY 4.0). O download é feito pelo notebook, no Colab.
-- [ ] Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`: uns 20 tomates em estádios variados e numerados, 2 fotos por tomate por dia até 22/11, e o rótulo anotado antes de ver a resposta do modelo.
+- ~~Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`.~~ Cancelado em 16/11: virou trabalho futuro, e o protocolo fica como proposta.
 - [ ] Ter um baseline na semana 1 (modelo pronto do Hugging Face) para já ter números.
 - [x] Treinar o YOLO26n-cls (versão do `ultralytics` fixada). A configuração vai para o repositório junto das métricas (`ambiente.json`).
 - [ ] Avaliar: acurácia, precisão, recall, F1 por classe, matriz de confusão e tempo de inferência.
@@ -426,8 +426,8 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 | Risco | Chance | Impacto | O que fazer |
 |---|---|---|---|
 | **O treino do modelo não fica bom ou atrasa** | Média | Alto | Começar por dataset público e por um baseline pronto; se o YOLO26n-cls travar, trocar por YOLO11n-cls ou MobileNet com as mesmas pastas. Em último caso, LLM na nuvem como plano B. |
-| **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Testar com fotos próprias (`ml/protocolo-fotos-proprias.md`); usar data augmentation; relatar como limitação. |
-| **Fotos próprias incompletas no prazo** (o tomate verde leva de 10 a 15 dias para ficar vermelho a 25 °C; Anexo B) | Média | Alto | Comprar tomates em vários estádios no primeiro dia, para ter todas as classes logo; fotografar até 22/11; se faltar alguma classe, relatar o que houver como limitação. |
+| **Fotos do dataset diferentes das fotos de campo** | Alta | Médio | Sem as fotos próprias, a diferença não foi medida: a monografia a relata como a principal limitação e propõe a avaliação em campo como trabalho futuro. |
+| **Fotos próprias incompletas no prazo** | Aconteceu | Alto | As fotos não foram tiradas. Em 16/11, a avaliação em campo virou trabalho futuro, e a monografia foi ajustada: pergunta de pesquisa, objetivos, hipótese, Metodologia, figura das etapas e limitações. |
 | **Recomendação errada em casos limítrofes** (classe “de vez”) | Média | Médio | Mostrar a confiança; mensagem condicional ao destino da venda; pedir nova foto quando a confiança for baixa. |
 | **Prazo curto (banca e protocolo pós-banca até 10/12)** | Alta | Alto | Cronograma semanal com marcos; escrita em paralelo desde a semana 1; escopo congelado em 22/11; versão completa (pré-banca) em 28/11. Se o professor marcar a banca antes, a meta interna adianta. |
 | **Projeto de TCC sem protocolo deferido** | A confirmar | Alto | Sem ele, o protocolo pré-banca não abre e a V1 não sai. Conferir no Espaço do Aluno nesta semana e, se faltar, protocolar já. |

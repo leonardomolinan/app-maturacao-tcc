@@ -1,5 +1,7 @@
 # Protocolo das fotos próprias (conjunto de teste)
 
+> **Situação em 16/11/2026:** as fotos não foram tiradas. A avaliação com fotos próprias virou trabalho futuro na monografia, e este protocolo fica como proposta para quem continuar o trabalho.
+
 Este conjunto testa o modelo com fotos parecidas com as que o produtor vai tirar no celular. Ele **não entra no treino**: serve só para avaliar. As métricas que respondem à pergunta do TCC saem daqui (notebook `02`, a fazer).
 
 ## Por que fazer
