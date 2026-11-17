@@ -22,7 +22,9 @@ Contexto completo, cronograma e referências em [docs/roadmap.md](docs/roadmap.m
 app/        aplicativo Flutter (código em lib/, testes em test/, projetos nativos em android/ e ios/)
 ml/         notebooks de treino e avaliação do modelo (Google Colab)
 docs/
-  roadmap.md   plano do TCC: decisões, cronograma, riscos e referências
+  roadmap.md   plano do TCC: decisões, situação atual, o que falta fazer, riscos e referências
+  gerar-docx/  gera o Roadmap_TCC.docx a partir do roadmap.md
+CONTINUAR.md   como retomar o projeto em outro computador ou com um Claude sem contexto
 ```
 
 ## App (como rodar)

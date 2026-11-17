@@ -134,3 +134,7 @@ ml/runs/
 # App Flutter: os arquivos de lock do app vão para o git (a regra *.lock acima os ignoraria)
 !app/pubspec.lock
 !app/ios/Podfile.lock
+
+# Gerador do Roadmap_TCC.docx (docs/gerar-docx)
+node_modules/
+docs/gerar-docx/*.docx

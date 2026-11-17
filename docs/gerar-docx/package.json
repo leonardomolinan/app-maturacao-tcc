@@ -1,0 +1,11 @@
+{
+  "name": "gerar-roadmap-docx",
+  "private": true,
+  "description": "Gera o Roadmap_TCC.docx a partir do docs/roadmap.md",
+  "scripts": {
+    "gerar": "node md2docx.js ../roadmap.md Roadmap_TCC.docx"
+  },
+  "dependencies": {
+    "docx": "9.15.4"
+  }
+}

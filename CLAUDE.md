@@ -1,6 +1,6 @@
 # Instruções para agentes
 
-Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vítor Tetsuya Kazuma** e **Victor José Morais de Lima** (revisam o que o Leonardo enviar, sem calendário fixo). O grupo não tem orientador. Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas.
+Este repositório é o TCC do Leonardo (Ciência da Computação, UNITRI, 2026/2): um app Flutter que classifica a maturação do tomate pela câmera, offline, e recomenda colher ou esperar. Grupo: **Leonardo Sergi Molina** (executa o projeto com apoio de IA), **Vítor Tetsuya Kazuma** e **Victor José Morais de Lima** (revisam o que o Leonardo enviar, sem calendário fixo). O grupo não tem orientador. Leia [docs/roadmap.md](docs/roadmap.md) antes de qualquer tarefa grande: ele tem as decisões, o cronograma, os riscos e as referências verificadas, e a seção "O que falta fazer" é a lista oficial dos próximos passos. Se estiver começando sem contexto ou num computador novo, leia antes o [CONTINUAR.md](CONTINUAR.md).
 
 Responda em português do Brasil.
 
@@ -18,13 +18,15 @@ Responda em português do Brasil.
 
 ## Prazos
 
-Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/12). Na dúvida entre escopo e prazo, corte escopo.
+Texto completo em 28/11/2026; ENADE em 29/11; protocolo pré-banca e banca nas datas que o professor marcar; protocolo pós-banca (versão final) até quinta, 10/12. Na dúvida entre escopo e prazo, corte escopo.
 
 ## Estrutura
 
 - `app/`: aplicativo Flutter. Código em `app/lib/` (domínio e regra de decisão, classificador, SQLite, telas), testes em `app/test/`, modelo em `app/assets/models/`. Projetos nativos em `app/android/` e `app/ios/` (gerados com `flutter create`). Em 04/11/2026, com Flutter 3.47.9: `flutter analyze` sem problemas, `flutter test` passando, `flutter build apk --debug` funcionando e o app abrindo no emulador (sem modelo). Em 16/11/2026, com o modelo treinado em `app/assets/models/best.tflite`, o fluxo pela galeria funcionou no emulador. Ainda não testados: a câmera, um celular de verdade, o modo avião e o iOS.
 - `ml/`: notebooks de treino e avaliação no Google Colab. Datasets, pesos e execuções não vão para o git (ver `.gitignore`); só o modelo exportado que o app usa fica em `app/assets/models/`.
-- `docs/roadmap.md`: plano do TCC.
+- `docs/roadmap.md`: plano do TCC, com a situação atual e o que falta fazer.
+- `docs/gerar-docx/`: gera o `Roadmap_TCC.docx` a partir do `docs/roadmap.md` (`npm install`, depois `npm run gerar`). O `.docx` é só uma cópia para leitura e fica fora do git.
+- `CONTINUAR.md`: como retomar o projeto em outro computador ou sem contexto.
 - A monografia (LaTeX, abnTeX2, importada no Overleaf) fica **fora deste repositório**, na pasta `../tcc-overleaf` (repositório privado `leonardomolinan/tcc-overleaf`, clonado ao lado deste), que tem o seu próprio `CLAUDE.md` com as regras do texto, do `.bib` e da compilação. O histórico dela até 04/11/2026 ficou aqui em `docs/tcc/` (commit `5899781`).
 
 ## Integridade acadêmica (obrigatório)
@@ -48,4 +50,4 @@ Texto completo em 28/11/2026; ENADE em 29/11; postagem até 10/12 (oficial: 12/1
 
 ## Git
 
-Trabalhe numa branch por tarefa. Commit e push só quando o Leonardo pedir. Ele trabalha em dois computadores (Mac e Windows), então puxe as mudanças (`git pull`) antes de começar.
+Trabalhe numa branch por tarefa. Commit e push só quando o Leonardo pedir. Ele trabalha em dois computadores (Mac e Windows), então puxe as mudanças (`git pull`) antes de começar. Ao terminar uma tarefa, atualize a "Situação" e o "O que falta fazer" do `docs/roadmap.md`, para o outro computador ver o estado certo.

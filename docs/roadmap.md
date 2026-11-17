@@ -9,7 +9,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 - **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Em 16/11, o `.tflite` foi para `app/assets/models/`, e as métricas, para `ml/resultados/yolo26n_cls_v1/`. No teste do dataset: acurácia de 84,9% e F1 macro de 0,858 (96,0% na validação).
 - **Fotos próprias de teste:** não foram tiradas. Em 16/11, a avaliação com fotos de campo virou trabalho futuro: o modelo é avaliado só na partição de teste do dataset, e a monografia trata isso como a principal limitação.
 - **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Também entraram o limiar de confiança e a comparação entre o app e o Python. À noite, entraram a seção 5.2 (prints do emulador), as seções 5.4 e 5.5, a Conclusão, o Resumo e o Abstract; o que ainda está em vermelho depende do teste no celular (seção 5.3, uma frase da Conclusão, do Resumo e do Abstract). Também ficou pronto o Projeto de TCC (`projeto.tex`).
-- **Entregas:** três protocolos no Espaço do Aluno (seção 2). Falta confirmar se o Projeto de TCC já foi protocolado. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
+- **Entregas:** três protocolos no Espaço do Aluno (seção 2). O Leonardo protocolou o Projeto de TCC em 16/11 e aguarda o deferimento; falta confirmar os protocolos do Vitor e do Victor. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
 - **Gargalo:** os testes e os prints no celular, a partir de 17/11, e a escrita da Conclusão, do Resumo e da Introdução final.
 
 ### O que precisa ser entregue
@@ -55,9 +55,20 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 | **13/12 (domingo)** | Último dia para o professor responder aos protocolos pós-banca |
 | **23/12** | Fim do semestre |
 
-### O que fazer nesta semana (09 a 15/11)
+### O que falta fazer (atualizado em 17/11)
 
-Já feito:
+- [ ] **Projeto de TCC:** aguardar o deferimento (o Leonardo protocolou em 16/11) e confirmar os protocolos do Vitor e do Victor. Sem ele deferido, o protocolo pré-banca não abre e a V1 não sai.
+- [ ] **Teste num celular Android:** câmera, modo avião e tempo de resposta. Com o resultado, preencher a seção 5.3 e as frases em vermelho da Conclusão, do Resumo e do Abstract.
+- [ ] **Revisar a monografia** (rascunhos de 10/11 e as seções escritas em 16/11) e reenviar os arquivos alterados ao Overleaf.
+- [ ] **Fazer o merge do PR #2** (app e plano) na `main` do repositório do app.
+- [ ] **Perguntas ao professor** (Anexo D), entre elas as datas do protocolo pré-banca e da apresentação.
+- [ ] **Protocolo pré-banca:** texto completo até 28/11 e protocolo na data que o professor marcar.
+- [ ] **Apresentação à banca:** até 15 minutos, mais 15 de perguntas; os três precisam dominar o trabalho.
+- [ ] **Protocolo pós-banca:** ajustes pedidos pela banca e versão final até quinta, 10/12.
+- **Extras de 22/11** (comparação com um LLM e faixa de dias até a colheita): com o pouco tempo que resta, a recomendação é deixá-los como trabalhos futuros, como a Conclusão já faz. A decisão é do Leonardo.
+
+### O que já foi feito
+
 
 - **04/11, base do projeto:**
   - dataset escolhido (Unified Tomato Dataset, que já traz os recortes por classe) e classes mapeadas no notebook;
@@ -70,7 +81,7 @@ Já feito:
   - protocolo das fotos próprias escrito (`ml/protocolo-fotos-proprias.md`);
   - app enviado ao GitHub, na branch `mvp/app-flutter`.
 
-Falta nesta semana:
+Semana de 09 a 15/11:
 
 - [x] Rodar o notebook no Colab: feito entre 10 e 11/11 (50 épocas em 4,6 h numa T4). O `.tflite` foi exportado; o Core ML falhou, mas o app não usa Core ML.
 - [x] Trazer do Drive o `.tflite` e as métricas (`metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json`, `results.csv` e `args.yaml`): feito em 16/11.
@@ -272,10 +283,10 @@ Nenhum modelo de visão prevê tempo. Uma estimativa de dias dependeria de uma t
 | Diagrama | Conteúdo sugerido |
 |---|---|
 | **Casos de uso** | Fotografar fruto; analisar maturação; ver recomendação; consultar histórico. Ator: produtor. |
-| **Classes** | Analise, Cultura, ClasseMaturacao, RegraDecisao, ClassificadorLocal, RepositorioAnalises. |
+| **Classes** | Três grupos. Classificação: Classificador (interface), ClassificadorLitert, ResultadoClassificacao e InfoModelo. Domínio: RegraDecisao e as enumerações ClasseMaturacao, Destino e Recomendacao. Dados: RepositorioAnalises (interface), RepositorioAnalisesSqlite, Analise e ServicoFotos. |
 | **Sequência** | Foto → pré-processamento → classificador → regra de decisão → tela de resultado → histórico. |
 | **Atividades** | Fluxo com decisões: a foto está boa? a confiança é suficiente? a recomendação é colher ou esperar? |
-| **MER** | Cultura 1:N ClasseMaturacao 1:1 RegraDecisao. Cada Analise aponta para uma ClasseMaturacao e guarda data, caminho da foto no aparelho, confiança e versão do modelo. |
+| **MER** | Uma única entidade, Analise (a tabela `analise` do SQLite): data e hora, caminho da foto, classe, confiança, recomendação, destino (só para de vez), versão do modelo e tempo de inferência. Classes, destinos e recomendações são valores fixos no código, garantidos no banco por `CHECK`. Se o login entrar, acrescenta-se Usuario 1:N Analise. |
 
 ### 6.3 Se sobrar tempo (extra)
 
@@ -403,8 +414,8 @@ Esqueleto de capítulos já adaptado ao projeto, seguindo a ordem do manual (NBR
 | **Código** | GitHub: leonardomolinan/app-maturacao-tcc (privado), com pastas app/, ml/ e docs/ | README e instruções para agentes (CLAUDE.md); o link vai para o apêndice. |
 | **Tarefas** | GitHub Projects (Kanban) | Colunas: A fazer / Fazendo / Em revisão / Feito. |
 | **Design** | Figma ou rascunho no papel | Wireframes simples; os prints do app entram no TCC. |
-| **UML** | draw.io (diagrams.net) ou PlantUML | Os 4 diagramas obrigatórios. |
-| **MER** | brModelo ou dbdiagram.io | Tabelas do SQLite do app. |
+| **UML** | TikZ, dentro dos arquivos .tex da monografia | Os 4 diagramas obrigatórios, editáveis no próprio Overleaf. |
+| **MER** | TikZ (notação de Chen) | A tabela `analise` do SQLite do app. |
 | **IA** | Google Colab ou Kaggle Notebooks | Classificação com pastas por classe, sem anotar caixas; notebook versionado, com sementes e versões fixadas. |
 | **Comunicação** | Grupo de mensagens | Avisar cada envio para revisão e o prazo de devolução. |
 
