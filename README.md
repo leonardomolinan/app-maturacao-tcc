@@ -19,26 +19,31 @@ Contexto completo, cronograma e referências em [docs/roadmap.md](docs/roadmap.m
 ## Estrutura
 
 ```
-app/        aplicativo Flutter (ainda não criado)
+app/        aplicativo Flutter (código em lib/, testes em test/, projetos nativos em android/ e ios/)
 ml/         notebooks de treino e avaliação do modelo (Google Colab)
 docs/
-  roadmap.md   plano do TCC: decisões, cronograma, riscos e referências
-  tcc/         monografia em LaTeX (abnTeX2), importada no Overleaf
+  roadmap.md   plano do TCC: decisões, situação atual, o que falta fazer, riscos e referências
+  gerar-docx/  gera o Roadmap_TCC.docx a partir do roadmap.md
+CONTINUAR.md   como retomar o projeto em outro computador ou com um Claude sem contexto
 ```
+
+## App (como rodar)
+
+O passo a passo completo está em [app/README.md](app/README.md). Em resumo, com o Flutter stable (3.47.x; o mínimo é 3.44) e o Android SDK instalados:
+
+```bash
+cd app
+flutter pub get
+flutter analyze
+flutter test
+flutter run
+```
+
+O modelo treinado (`.tflite`) vai em `app/assets/models/`; sem ele, o app abre e avisa que o modelo não foi encontrado.
 
 ## Monografia (Overleaf)
 
-O texto fica em `docs/tcc/` e é a fonte da verdade. Para importar no Overleaf:
-
-1. Gerar o zip: `cd docs/tcc && zip -r ../tcc-overleaf.zip main.tex referencias.bib pretextuais capitulos apendices`
-2. No Overleaf: **New Project → Upload Project** e escolher o `tcc-overleaf.zip`.
-3. Compilar com pdfLaTeX (padrão do Overleaf).
-
-Para compilar localmente (macOS), use o Tectonic: `brew install tectonic`, depois `cd docs/tcc && tectonic --outdir build main.tex`. O PDF sai em `docs/tcc/build/main.pdf`, que não vai para o git. Na primeira vez ele baixa os pacotes do LaTeX. O Tectonic usa XeTeX e o Overleaf usa pdfLaTeX; o resultado é praticamente o mesmo, mas a versão oficial é a do Overleaf.
-
-O plano gratuito do Overleaf não sincroniza com o GitHub. Depois de editar aqui, reenvie os arquivos alterados; se editar no Overleaf, traga as mudanças de volta para o repositório.
-
-Trechos em vermelho no PDF (`\pendente{...}` e `\resultado`) ainda precisam ser escritos ou medidos e não podem sobrar na versão final.
+O texto em LaTeX (abnTeX2) fica fora deste repositório, no repositório privado `leonardomolinan/tcc-overleaf`. Clone os dois lado a lado, na mesma pasta, porque um aponta para o outro. O README de lá explica como gerar o zip para o Overleaf e como compilar localmente. O histórico até 04/11/2026 está aqui em `docs/tcc/` (commit `5899781`).
 
 ## Prazos
 

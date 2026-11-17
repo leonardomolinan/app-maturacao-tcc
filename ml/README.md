@@ -1,24 +1,38 @@
 # Treino e avaliação do modelo
 
-| Notebook | O que faz |
+| Arquivo | O que faz |
 |---|---|
 | `01_treino_classificador.ipynb` | Treina o YOLO26n-cls nas classes verde, de vez, maduro, passado e outro, com o dataset público fixado num commit; avalia no teste do dataset; exporta para LiteRT e Core ML |
-| `02_...` (a fazer) | Avalia o modelo nas fotos próprias de campo, o teste que responde à pergunta do TCC |
+| `02_limiar_e_paridade.ipynb` | Escolhe o limiar de confiança baixa com as imagens de validação, mede o efeito no teste e compara, imagem a imagem, as previsões do app (teste `app/integration_test/paridade_test.dart`) com as do Python. Roda no Colab ou num computador com Python 3.13 |
+| `protocolo-fotos-proprias.md` | Como montar um conjunto de teste com fotos próprias: quantos tomates, como marcar, rotina diária e critério das classes. Não foi executado: em 16/11/2026, a avaliação com fotos próprias virou trabalho futuro |
 
-## Como abrir no Colab
+## Como rodar o treino no Colab
 
-O repositório é privado, então escolha uma destas formas:
+O treino roda no Google Colab; nada é instalado no computador. O próprio notebook instala a versão fixada do `ultralytics` e baixa o dataset (uns 830 MB) dentro do Colab.
 
-- No Colab: **Arquivo → Abrir notebook → GitHub**, marque **Incluir repositórios particulares**, autorize e escolha `leonardomolinan/app-maturacao-tcc`.
-- Ou envie o `.ipynb` direto: **Arquivo → Fazer upload de notebook**.
+1. Abra o notebook pelo link abaixo. Como o repositório é privado, o Colab pede para autorizar o GitHub:
+   https://colab.research.google.com/github/leonardomolinan/app-maturacao-tcc/blob/main/ml/01_treino_classificador.ipynb
 
-Depois: **Ambiente de execução → Alterar o tipo de ambiente → GPU T4** e **Executar tudo**.
+   Outra forma: no Colab, **Arquivo → Abrir notebook → GitHub**, marque **Incluir repositórios particulares** e escolha `leonardomolinan/app-maturacao-tcc`.
+
+   Sem autorizar o GitHub: no Colab, **Arquivo → Fazer upload de notebook** e escolha o `ml/01_treino_classificador.ipynb` do seu clone do repositório. O link abre a versão da `main`; o upload usa a versão que está no seu computador.
+2. **Ambiente de execução → Alterar o tipo de ambiente de execução → GPU T4 → Salvar.**
+3. **Ambiente de execução → Executar tudo**, e autorize o Google Drive quando ele pedir.
+4. Na saída da primeira célula, confira se aparece `CUDA disponível: True`. Se aparecer `False`, a GPU não foi ativada: o plano gratuito não garante GPU, então tente de novo mais tarde.
+5. Se o Colab pedir para reiniciar a sessão depois da instalação, reinicie e execute tudo de novo.
+6. Deixe a aba aberta até o fim. Se a sessão cair no meio do treino, rode as seções 1 a 5 de novo, pule a célula de treino e use a célula de retomada (seção 6 do notebook). Se rodar tudo de novo por engano, a célula de treino para com um aviso e não apaga nada.
 
 ## Onde ficam os resultados
 
 Tudo vai para `MyDrive/tcc-maturacao/` no Google Drive:
 
-- `runs/<experimento>/`: pesos (`best.pt`, `last.pt`), `metricas_teste.json`, `matriz_confusao_teste.png` e `ambiente.json`
+- `runs/<experimento>/`: pesos (`best.pt`, `last.pt`), `results.csv`, `metricas_teste.json`, `matriz_confusao_teste.png` e `ambiente.json`
 - `exports/<experimento>/`: modelo para o celular (`.tflite` e, se exportou, `.mlpackage`)
 
-Datasets, pesos e execuções não vão para o git. Só o modelo exportado que o app usa entra no repositório, em `app/assets/models/`.
+## Depois do treino
+
+1. Copie o `.tflite` de `exports/<experimento>/` para `app/assets/models/`. Deixe só um `.tflite` na pasta.
+2. Copie `results.csv`, `metricas_teste.json`, `matriz_confusao_teste.png`, `ambiente.json` e `args.yaml` para `ml/resultados/<experimento>/`. São os números que vão para a monografia, por isso ficam versionados. O `args.yaml` traz todos os hiperparâmetros do treino, inclusive os padrões do pacote.
+3. Rode o notebook `02_limiar_e_paridade.ipynb`. Ele escolhe o limiar de confiança na validação e compara o app com o Python nas imagens de teste; a seção 6 dele explica como rodar o teste do app no emulador ou no celular.
+
+Datasets, pesos (`.pt`) e execuções não vão para o git. Entram no repositório só o modelo exportado que o app usa, em `app/assets/models/`, e os arquivos de métricas, em `ml/resultados/`.
