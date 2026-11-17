@@ -50,4 +50,4 @@ Texto completo em 28/11/2026; ENADE em 29/11; protocolo pré-banca e banca nas d
 
 ## Git
 
-Trabalhe numa branch por tarefa. Commit e push só quando o Leonardo pedir. Ele trabalha em dois computadores (Mac e Windows), então puxe as mudanças (`git pull`) antes de começar. Ao terminar uma tarefa, atualize a "Situação" e o "O que falta fazer" do `docs/roadmap.md`, para o outro computador ver o estado certo.
+Desde 17/11/2026, os commits vão direto na `main`, sem branch nem PR (decisão do Leonardo, depois do merge do PR #2). Commit e push só quando o Leonardo pedir. Ele trabalha em dois computadores (Mac e Windows), então puxe as mudanças (`git pull`) antes de começar. Ao terminar uma tarefa, atualize a "Situação" e o "O que falta fazer" do `docs/roadmap.md`, para o outro computador ver o estado certo.

@@ -4,13 +4,14 @@
 
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
-**Situação em 16/11:**
-- **App:** pronto e com o modelo desde 16/11. No emulador, ele deu a mesma classe que o Python em 897 das 918 imagens de teste (97,7%), depois de uma correção no redimensionamento das imagens pequenas; o limiar de confiança baixa ficou em 0,47, escolhido na validação (notebook 02). Faltam a câmera, um celular de verdade e o modo avião.
+**Situação em 17/11:**
+- **App:** pronto e com o modelo desde 16/11. No emulador, ele deu a mesma classe que o Python em 897 das 918 imagens de teste (97,7%), depois de uma correção no redimensionamento das imagens pequenas; o limiar de confiança baixa ficou em 0,47, escolhido na validação (notebook 02). O APK de release não pede permissão de internet. Faltam a câmera, um celular de verdade, o modo avião e o iOS (só a versão Android foi gerada).
 - **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Em 16/11, o `.tflite` foi para `app/assets/models/`, e as métricas, para `ml/resultados/yolo26n_cls_v1/`. No teste do dataset: acurácia de 84,9% e F1 macro de 0,858 (96,0% na validação).
 - **Fotos próprias de teste:** não foram tiradas. Em 16/11, a avaliação com fotos de campo virou trabalho futuro: o modelo é avaliado só na partição de teste do dataset, e a monografia trata isso como a principal limitação.
-- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Também entraram o limiar de confiança e a comparação entre o app e o Python. À noite, entraram a seção 5.2 (prints do emulador), as seções 5.4 e 5.5, a Conclusão, o Resumo e o Abstract; o que ainda está em vermelho depende do teste no celular (seção 5.3, uma frase da Conclusão, do Resumo e do Abstract). Também ficou pronto o Projeto de TCC (`projeto.tex`).
+- **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Também entraram o limiar de confiança e a comparação entre o app e o Python. À noite, entraram a seção 5.2 (prints do emulador), as seções 5.4 e 5.5, a Conclusão, o Resumo e o Abstract. Também ficou pronto o Projeto de TCC (`projeto.tex`).
 - **Entregas:** três protocolos no Espaço do Aluno (seção 2). O Leonardo protocolou o Projeto de TCC em 16/11 e aguarda o deferimento; falta confirmar os protocolos do Vitor e do Victor. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
-- **Gargalo:** os testes e os prints no celular, a partir de 17/11, e a escrita da Conclusão, do Resumo e da Introdução final.
+- **Monografia em 17/11:** revisada para a avaliação do professor, antes do protocolo pré-banca. Não sobrou trecho em vermelho, e as citações seguem a NBR 10520 de 2023. As referências e os fatos foram conferidos contra o código e os resultados, e a linguagem foi revista. Como o app ainda não rodou num celular, o texto diz isso na seção 5.3, nas Limitações, na Conclusão, no Resumo e no Abstract.
+- **Gargalo:** o teste num celular Android (casos de teste, tempo de inferência e tempo de resposta). Com o resultado, atualizar as partes da monografia que falam desse teste.
 
 ### O que precisa ser entregue
 
@@ -58,9 +59,10 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 ### O que falta fazer (atualizado em 17/11)
 
 - [ ] **Projeto de TCC:** aguardar o deferimento (o Leonardo protocolou em 16/11) e confirmar os protocolos do Vitor e do Victor. Sem ele deferido, o protocolo pré-banca não abre e a V1 não sai.
-- [ ] **Teste num celular Android:** câmera, modo avião e tempo de resposta. Com o resultado, preencher a seção 5.3 e as frases em vermelho da Conclusão, do Resumo e do Abstract.
-- [ ] **Revisar a monografia** (rascunhos de 10/11 e as seções escritas em 16/11) e reenviar os arquivos alterados ao Overleaf.
-- [ ] **Fazer o merge do PR #2** (app e plano) na `main` do repositório do app.
+- [ ] **Teste num celular Android:** os casos de teste da Metodologia (câmera, modo avião, exclusão, foto sem EXIF, Android 7.0), o tempo de inferência que o app registra e o tempo de resposta, do toque em Analisar ao resultado, medido numa gravação da tela. O APK de release fica no Mac, em `app/build/app/outputs/flutter-apk/app-release.apk`; em outro computador, gere com `flutter build apk --release`. Com o resultado, atualizar a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract.
+- [x] **Revisão da monografia para a avaliação do professor** (17/11): sem trechos em vermelho, citações pela NBR 10520 de 2023, referências e fatos conferidos e linguagem revista.
+- [ ] **Reenviar ao Overleaf** os arquivos alterados em 17/11 (o mais simples é subir o `tcc-overleaf.zip` inteiro).
+- [x] **Merge do PR #2** (app e plano) na `main`, em 17/11. Desde então, os commits vão direto na `main`.
 - [ ] **Perguntas ao professor** (Anexo D), entre elas as datas do protocolo pré-banca e da apresentação.
 - [ ] **Protocolo pré-banca:** texto completo até 28/11 e protocolo na data que o professor marcar.
 - [ ] **Apresentação à banca:** até 15 minutos, mais 15 de perguntas; os três precisam dominar o trabalho.
@@ -80,6 +82,10 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
   - notebook conferido com os arquivos do dataset (pastas e classes dos dois zips);
   - protocolo das fotos próprias escrito (`ml/protocolo-fotos-proprias.md`);
   - app enviado ao GitHub, na branch `mvp/app-flutter`.
+- **17/11:**
+  - merge do PR #2 na `main`; daqui em diante, os commits vão direto na `main`;
+  - `CONTINUAR.md` e o gerador do `Roadmap_TCC.docx` (`docs/gerar-docx`) entraram no repositório;
+  - monografia revisada para a avaliação do professor (ver a "Situação em 17/11").
 
 Semana de 09 a 15/11:
 

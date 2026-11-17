@@ -23,9 +23,9 @@ App Flutter que fotografa um tomate, classifica a maturação no próprio celula
 
 - **App:** funciona com o modelo treinado. No emulador, deu a mesma classe que o Python em 97,7% das imagens de teste. **Ainda não foram testados:** a câmera, um celular de verdade, o modo avião e o iOS.
 - **Modelo:** acurácia de 84,9% e F1 macro de 0,858 no teste do dataset. As métricas estão em `ml/resultados/yolo26n_cls_v1/`.
-- **Monografia:** todos os capítulos têm rascunho. O que ainda está em vermelho (`\pendente` e `\resultado`) depende do teste no celular: seção 5.3, uma frase da Conclusão, do Resumo e do Abstract. Falta também a revisão do Leonardo. O estilo de citação ainda segue a NBR 10520 de 2002, e o grupo decidiu pela de 2023 (ver o comentário no `main.tex`).
+- **Monografia:** completa para a avaliação do professor, sem trechos em vermelho, e com as citações pela NBR 10520 de 2023 desde 17/11. O texto diz que o app só rodou no emulador e que o tempo de resposta num celular ainda não foi medido. Quando esse teste for feito, atualize a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract.
 - **Protocolos:** o Leonardo protocolou o Projeto de TCC em 16/11 e aguarda o deferimento. Falta confirmar os protocolos do Vitor e do Victor.
-- **Git:** o PR #2 (branch `mvp/app-flutter`, com o app e o plano) ainda está aberto. Até ele entrar na `main`, trabalhe a partir dessa branch.
+- **Git:** o PR #2 (app e plano) entrou na `main` em 17/11. Desde então, os commits vão direto na `main`, nos dois repositórios.
 
 O que fazer em seguida: seção "O que falta fazer" do [docs/roadmap.md](docs/roadmap.md).
 
@@ -38,7 +38,7 @@ O que fazer em seguida: seção "O que falta fazer" do [docs/roadmap.md](docs/ro
    git clone git@github.com:leonardomolinan/tcc-overleaf.git
    ```
 
-   Enquanto o PR #2 estiver aberto, rode `git checkout mvp/app-flutter` dentro de `app-maturacao-tcc`. Nos dias seguintes, rode `git pull` nos dois antes de começar.
+   Os dois ficam na `main`. Nos dias seguintes, rode `git pull` nos dois antes de começar.
 
 2. **App:**
    - instale o Flutter stable 3.47.x (o mínimo é 3.44) e o Android SDK; o Android Studio instala o SDK e o emulador;
@@ -78,7 +78,7 @@ O detalhe está nos dois `CLAUDE.md`. Em resumo:
   - nunca inventar fonte: só citar o que está no `referencias.bib` e foi conferido;
   - nunca simular dado: número, tabela ou print só saem de execução real; enquanto não existirem, ficam marcados como pendentes;
   - nunca plagiar.
-- **Git:** uma branch por tarefa, e commit ou push só quando o Leonardo pedir.
+- **Git:** commits direto na `main`, e commit ou push só quando o Leonardo pedir.
 - **Ao terminar uma tarefa:**
   - atualize a seção "O que falta fazer" e a "Situação" do `docs/roadmap.md`, e faça commit e push, para o outro computador ver;
   - se mexeu na monografia, avise quais arquivos reenviar ao Overleaf.
