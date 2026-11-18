@@ -86,6 +86,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
   - merge do PR #2 na `main`; daqui em diante, os commits vão direto na `main`;
   - `CONTINUAR.md` e o gerador do `Roadmap_TCC.docx` (`docs/gerar-docx`) entraram no repositório;
   - monografia revisada para a avaliação do professor (ver a "Situação em 17/11").
+  - Metodologia ampliada depois da avaliação do professor: a Seção 4.4 explica cada tecnologia, o motivo da escolha e as alternativas descartadas, e os requisitos funcionais e não funcionais viraram duas tabelas ligadas aos diagramas UML, com um caso de teste novo (CT13) para o RNF05.
 
 Semana de 09 a 15/11:
 
