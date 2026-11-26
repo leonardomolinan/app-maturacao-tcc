@@ -5,13 +5,13 @@
 Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da colheita e recebe a **classe de maturação** e a recomendação **colher** ou **esperar**, sem precisar de internet. Até 03/11, um integrante tinha tentado treinar um YOLO de detecção sem sucesso, e a escrita não tinha começado.
 
 **Situação em 17/11:**
-- **App:** pronto e com o modelo desde 16/11. No emulador, ele deu a mesma classe que o Python em 897 das 918 imagens de teste (97,7%), depois de uma correção no redimensionamento das imagens pequenas; o limiar de confiança baixa ficou em 0,47, escolhido na validação (notebook 02). O APK de release não pede permissão de internet. Faltam a câmera, um celular de verdade, o modo avião e o iOS (só a versão Android foi gerada).
+- **App:** pronto e com o modelo desde 16/11. No emulador, ele deu a mesma classe que o Python em 897 das 918 imagens de teste (97,7%), depois de uma correção no redimensionamento das imagens pequenas; o limiar de confiança baixa ficou em 0,47, escolhido na validação (notebook 02). O APK de release não pede permissão de internet. Em 25/11, o APK de release rodou num celular de verdade (Redmi Note 13 5G, Android 15): a câmera e o modo avião funcionaram, e o app mostrou inferência de 34 e 39 ms. Faltam os outros casos de teste, o tempo de resposta medido e o iOS (só a versão Android foi gerada).
 - **Modelo:** treinado no Colab entre 10 e 11/11 (50 épocas em 4,6 h numa T4) e exportado para `.tflite`. Em 16/11, o `.tflite` foi para `app/assets/models/`, e as métricas, para `ml/resultados/yolo26n_cls_v1/`. No teste do dataset: acurácia de 84,9% e F1 macro de 0,858 (96,0% na validação).
 - **Fotos próprias de teste:** não foram tiradas. Em 16/11, a avaliação com fotos de campo virou trabalho futuro: o modelo é avaliado só na partição de teste do dataset, e a monografia trata isso como a principal limitação.
 - **Monografia:** rascunhos do Referencial Teórico, do Estado da Arte e da Metodologia, com os 4 diagramas UML e o MER, escritos em 10/11 e compilando no Overleaf; falta a revisão do Leonardo. Em 16/11, a Metodologia recebeu os dados reais do treino, a seção 5.1 dos Resultados foi escrita com as métricas do teste, e as fotos próprias saíram do texto. Também entraram o limiar de confiança e a comparação entre o app e o Python. À noite, entraram a seção 5.2 (prints do emulador), as seções 5.4 e 5.5, a Conclusão, o Resumo e o Abstract. Também ficou pronto o Projeto de TCC (`projeto.tex`).
 - **Entregas:** três protocolos no Espaço do Aluno (seção 2). O Leonardo protocolou o Projeto de TCC em 16/11 e aguarda o deferimento; falta confirmar os protocolos do Vitor e do Victor. A banca tem até 15 minutos de apresentação, mais 15 de perguntas; as datas ainda não saíram.
 - **Monografia em 17/11:** revisada para a avaliação do professor, antes do protocolo pré-banca. Não sobrou trecho em vermelho, e as citações seguem a NBR 10520 de 2023. As referências e os fatos foram conferidos contra o código e os resultados, e a linguagem foi revista. Como o app ainda não rodou num celular, o texto diz isso na seção 5.3, nas Limitações, na Conclusão, no Resumo e no Abstract.
-- **Gargalo:** o teste num celular Android (casos de teste, tempo de inferência e tempo de resposta). Com o resultado, atualizar as partes da monografia que falam desse teste.
+- **Gargalo:** terminar o teste num celular Android. A câmera e o modo avião já funcionaram em 25/11; faltam os outros casos de teste e o tempo de resposta. Com o resultado, atualizar as partes da monografia que falam desse teste, que ainda dizem que o app só rodou no emulador.
 
 ### O que precisa ser entregue
 
@@ -59,7 +59,7 @@ Vamos fazer um aplicativo em que o produtor rural fotografa o tomate na hora da 
 ### O que falta fazer (atualizado em 17/11)
 
 - [ ] **Projeto de TCC:** aguardar o deferimento (o Leonardo protocolou em 16/11) e confirmar os protocolos do Vitor e do Victor. Sem ele deferido, o protocolo pré-banca não abre e a V1 não sai.
-- [ ] **Teste num celular Android:** os casos de teste da Metodologia (câmera, modo avião, exclusão, foto sem EXIF, Android 7.0), o tempo de inferência que o app registra e o tempo de resposta, do toque em Analisar ao resultado, medido numa gravação da tela. O APK de release fica no Mac, em `app/build/app/outputs/flutter-apk/app-release.apk`; em outro computador, gere com `flutter build apk --release`. Com o resultado, atualizar a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract.
+- [ ] **Teste num celular Android:** em 25/11, o APK de release rodou num Redmi Note 13 5G (Android 15), instalado do Windows pela depuração sem fio. A câmera e o modo avião funcionaram, e o app registrou inferência de 34 e 39 ms. O teste está num vídeo de 58 s gravado na tela do celular, com o modo avião ligado: dois tomates de vez (99,2% e 98,0%) e uma fruta que não é tomate, classificada como outro (90,8%). O vídeo está no Windows, em `Documents\AmiGo\WhatsApp Video 2026-11-25 at 21.07.59.mp4`, e no slide 14 da apresentação "versão direta". Faltam os outros casos de teste da Metodologia (exclusão, foto sem EXIF, Android 7.0) e o tempo de resposta, do toque em Analisar ao resultado, medido numa gravação da tela (a de 25/11 pode servir). O APK de release fica em `app/build/app/outputs/flutter-apk/app-release.apk`, no Mac e no Windows; em outro computador, gere com `flutter build apk --release`. Com o resultado, atualizar a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract, que ainda dizem que o app só rodou no emulador.
 - [x] **Revisão da monografia para a avaliação do professor** (17/11): sem trechos em vermelho, citações pela NBR 10520 de 2023, referências e fatos conferidos e linguagem revista.
 - [ ] **Reenviar ao Overleaf** os arquivos alterados em 17/11 (o mais simples é subir o `tcc-overleaf.zip` inteiro).
 - [x] **Merge do PR #2** (app e plano) na `main`, em 17/11. Desde então, os commits vão direto na `main`.
@@ -351,7 +351,7 @@ Fica para o fim, quando o app estiver funcionando (23 a 25/11), e antes dos prin
 
 ### App (Flutter)
 
-Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador. O modelo entrou em 16/11 e funcionou no emulador. Dos erros, já estão tratadas a classe "outro" e a confiança baixa; a foto escura ou tremida ficou fora por enquanto.
+Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes passando, APK de debug gerado e app abrindo no emulador. O modelo entrou em 16/11 e funcionou no emulador; em 25/11, o APK de release rodou num celular (Redmi Note 13 5G, Android 15), também em modo avião. Dos erros, já estão tratadas a classe "outro" e a confiança baixa; a foto escura ou tremida ficou fora por enquanto.
 
 - [x] Criar o projeto Flutter (Android primeiro), navegação e tema.
 - [x] Câmera e galeria, com guia de enquadramento: ilustração na tela inicial e conferência do quadrado analisado. Uma moldura sobre a câmera ao vivo exigiria o plugin `camera`.
@@ -359,7 +359,7 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 - [x] Tela de resultado: classe, confiança e recomendação, com a pergunta do destino para a classe "de vez".
 - [x] Regra de decisão (código Dart com testes) e histórico em SQLite.
 - [ ] Erros tratados: classe "outro" e confiança baixa (feito); foto escura ou tremida (fora por enquanto).
-- [ ] Gerar o APK para os testes: o de debug com o modelo dentro já sai (16/11); falta testá-lo num celular.
+- [x] Gerar o APK para os testes: o de release, com o modelo dentro, rodou num celular em 25/11.
 
 ### IA e Dados
 
@@ -367,7 +367,7 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 - ~~Montar o conjunto de teste próprio seguindo `ml/protocolo-fotos-proprias.md`.~~ Cancelado em 16/11: virou trabalho futuro, e o protocolo fica como proposta.
 - [ ] Ter um baseline na semana 1 (modelo pronto do Hugging Face) para já ter números.
 - [x] Treinar o YOLO26n-cls (versão do `ultralytics` fixada). A configuração vai para o repositório junto das métricas (`ambiente.json`).
-- [ ] Avaliar: acurácia, precisão, recall, F1 por classe e matriz de confusão (feito em 16/11); falta o tempo de inferência no celular.
+- [ ] Avaliar: acurácia, precisão, recall, F1 por classe e matriz de confusão (feito em 16/11); no celular, o app mostrou inferência de 34 e 39 ms em 25/11, mas falta medir de forma sistemática.
 - [x] Exportar para o celular (LiteRT). O Core ML falhou no Colab e não é usado pelo app.
 - [x] Registrar cada passo; vira a seção de dados e treinamento da Metodologia (feito em 16/11).
 - [x] Limiar de confiança baixa escolhido na validação: 0,47 (notebook 02, 16/11).
@@ -375,7 +375,7 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 ### Testes e avaliação
 
 - [ ] Casos de teste derivados dos requisitos.
-- [ ] Testes no aparelho (um Android intermediário) e em modo avião.
+- [x] Testes no aparelho (um Android intermediário) e em modo avião: Redmi Note 13 5G (Android 15), em 25/11, com a câmera e o modo avião funcionando.
 - [ ] Medir o tempo de resposta em 2 ou 3 celulares.
 - [ ] Questionário de usabilidade simples e anônimo (opcional, permitido pelo manual).
 
@@ -388,7 +388,7 @@ Validado em 04/11 com Flutter 3.47.9: `flutter analyze` sem problemas, 58 testes
 ### Apresentação
 
 - [ ] Slides: problema, solução, demonstração, resultados, conclusão.
-- [ ] Vídeo curto da demonstração (reserva caso a demo ao vivo falhe).
+- [x] Vídeo curto da demonstração (reserva caso a demo ao vivo falhe): 58 s, gravado no celular em modo avião em 25/11; está no slide 14 da apresentação "versão direta".
 - [ ] Ensaio cronometrado com os três.
 
 ## 10. Estrutura sugerida do texto

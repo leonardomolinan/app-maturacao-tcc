@@ -21,9 +21,9 @@ App Flutter que fotografa um tomate, classifica a maturação no próprio celula
 
 ## Situação em 17/11/2026
 
-- **App:** funciona com o modelo treinado. No emulador, deu a mesma classe que o Python em 97,7% das imagens de teste. **Ainda não foram testados:** a câmera, um celular de verdade, o modo avião e o iOS.
+- **App:** funciona com o modelo treinado. No emulador, deu a mesma classe que o Python em 97,7% das imagens de teste. Em 25/11, o APK de release rodou num celular de verdade (Redmi Note 13 5G, Android 15), com a câmera e o modo avião funcionando. **Ainda não foram testados:** os outros casos de teste (exclusão, foto sem EXIF, Android 7.0), o tempo de resposta medido e o iOS.
 - **Modelo:** acurácia de 84,9% e F1 macro de 0,858 no teste do dataset. As métricas estão em `ml/resultados/yolo26n_cls_v1/`.
-- **Monografia:** completa para a avaliação do professor, sem trechos em vermelho, e com as citações pela NBR 10520 de 2023 desde 17/11. O texto diz que o app só rodou no emulador e que o tempo de resposta num celular ainda não foi medido. Quando esse teste for feito, atualize a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract.
+- **Monografia:** completa para a avaliação do professor, sem trechos em vermelho, e com as citações pela NBR 10520 de 2023 desde 17/11. O texto ainda diz que o app só rodou no emulador e que o tempo de resposta num celular não foi medido. Com o teste de 25/11 e, quando for medido, o tempo de resposta, atualize a seção 5.3, as Limitações (5.5), a Conclusão, o Resumo e o Abstract.
 - **Protocolos:** o Leonardo protocolou o Projeto de TCC em 16/11 e aguarda o deferimento. Falta confirmar os protocolos do Vitor e do Victor.
 - **Git:** o PR #2 (app e plano) entrou na `main` em 17/11. Desde então, os commits vão direto na `main`, nos dois repositórios.
 
