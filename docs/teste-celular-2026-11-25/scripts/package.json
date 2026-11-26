@@ -1,0 +1,9 @@
+{
+  "name": "medicao-teste-celular",
+  "private": true,
+  "type": "module",
+  "description": "Scripts que mediram, quadro a quadro, os tempos do teste do app no celular em 25/11/2026",
+  "dependencies": {
+    "puppeteer-core": "23.11.1"
+  }
+}

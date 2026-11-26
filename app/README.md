@@ -26,10 +26,12 @@ maduro (colher), um verde deu verde (esperar), e um recorte de fundo deu outro
 (`val_batch0_pred.jpg`). O mesmo recorte de fundo, cortado de outro jeito, saiu
 como verde, com 62,9% de confiança.
 
-Em 25/11/2026, o APK de release rodou num celular de verdade (Redmi Note 13 5G,
-Android 15): a câmera e o modo avião funcionaram, e o app mostrou inferência de
-34 e 39 ms. Ainda **não** foram testados: os outros casos de teste (exclusão,
-foto sem EXIF, Android 7.0), o tempo de resposta medido e o iOS.
+Em 25/11/2026, o APK de release foi testado num celular de verdade (Redmi Note 13
+5G, Android 15), em 13 análises gravadas na tela: inferência com mediana de 37 ms,
+resposta (do toque ao resultado, fotos da câmera) com mediana de 950 ms e
+funcionamento em modo avião. Os dados estão em `docs/teste-celular-2026-11-25/`.
+Ainda **não** foram testados no celular: histórico, exclusão, EXIF da foto
+gravada, Android 7.0 e sol forte; o iOS também não.
 
 As pastas `android/` e `ios/` já foram geradas com
 `flutter create --org br.tcc --project-name maturacao_tomate --platforms android,ios .`
@@ -212,10 +214,10 @@ estão no começo do arquivo e na seção 6 do notebook.
 
 ## Pendências
 
-- Medir o tempo de resposta num celular e rodar os outros casos de teste
-  (exclusão, foto sem EXIF, Android 7.0). O fluxo de foto e análise já
-  funcionou num Redmi Note 13 5G (Android 15) em 25/11/2026, também em modo
-  avião.
+- Rodar no celular os casos de teste que faltam (histórico, exclusão, EXIF da
+  foto gravada, Android 7.0 e sol forte) e medir os tempos em outros aparelhos.
+  O fluxo de foto e análise e os tempos já foram medidos num Redmi Note 13 5G
+  (Android 15) em 25/11/2026 (`docs/teste-celular-2026-11-25/`).
 - Comparar o app com o Python em fotos grandes, que o app reduz. Em 16/11/2026,
   nas 918 imagens de teste do dataset (160 px, que o app amplia), o app deu a
   mesma classe que o Python em 897 (97,7%), depois de passar a usar a

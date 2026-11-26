@@ -1,0 +1,14 @@
+analise,sessao,gravacao,rede,origem_foto,objeto,classe,confianca_pct,inferencia_ms,t_toque_s,t_registro_s,t_inicio_resultado_s,t_fim_transicao_s,toque_ate_inicio_ms,toque_ate_fim_ms,registro_ate_inicio_ms
+1,1,Screenrecorder-2026-11-25-21-06-16-919.mp4,modo_aviao,camera,tomate amarelado,de_vez,99.2,34,,10.379,11.204,11.491,,,825
+2,1,Screenrecorder-2026-11-25-21-06-16-919.mp4,modo_aviao,camera,tomate alaranjado,de_vez,98.0,34,,29.911,30.734,31.022,,,823
+3,1,Screenrecorder-2026-11-25-21-06-16-919.mp4,modo_aviao,camera,fruta numa redinha de protecao (nao e tomate),outro,90.8,39,,48.046,48.870,49.157,,,824
+4,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,tomate amarelado,de_vez,92.7,68,9.089,9.186,10.073,10.314,984,1225,887
+5,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,tomate vermelho,maduro,67.0,41,22.944,23.040,23.894,24.183,950,1239,854
+6,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,fruta numa redinha de protecao (nao e tomate),outro,67.4,42,36.354,36.438,37.327,37.602,973,1248,889
+7,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,arvore de Natal,outro,99.8,34,45.016,45.115,45.968,46.242,952,1226,853
+8,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,galeria,foto de tomate com podridao,verde,70.1,43,53.080,53.144,53.323,53.599,243,519,179
+9,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,tomate amarelado,de_vez,90.2,35,64.090,64.188,65.010,65.288,920,1198,822
+10,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,planta,outro,100.0,37,72.429,72.525,73.364,73.636,935,1207,839
+11,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,tomate vermelho,maduro,95.7,31,82.518,82.598,83.449,83.724,931,1206,851
+12,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,tomate amarelado,de_vez,97.6,31,93.657,93.738,94.645,94.921,988,1264,907
+13,2,Screenrecorder-2026-11-25-22-09-08-651.mp4,wifi,camera,sala com cadeiras,outro,100.0,40,117.658,117.755,118.589,118.862,931,1204,834
