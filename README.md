@@ -44,9 +44,3 @@ O modelo treinado (`.tflite`) vai em `app/assets/models/`; sem ele, o app abre e
 ## Monografia (Overleaf)
 
 O texto em LaTeX (abnTeX2) fica fora deste repositório, no repositório privado `leonardomolinan/tcc-overleaf`. Clone os dois lado a lado, na mesma pasta, porque um aponta para o outro. O README de lá explica como gerar o zip para o Overleaf e como compilar localmente. O histórico até 04/11/2026 está aqui em `docs/tcc/` (commit `5899781`).
-
-## Prazos
-
-- **28/11/2026**: texto completo
-- **29/11/2026**: ENADE
-- **10/12/2026**: postagem no Espaço do Aluno (limite prático; o prazo oficial é 12/12)
